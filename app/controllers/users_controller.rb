@@ -4,7 +4,6 @@ class UsersController < ApplicationController
       :access_token => request.env['omniauth.auth'].credentials.rtoken,
       :raise_errors => true,
       :retries       => 0,
-      :token_type => "bearer",
     }
     puts request.env['omniauth.auth'].credentials
     client = Spotify::Client.new(config)
