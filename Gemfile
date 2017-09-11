@@ -1,8 +1,8 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-  "https://github.com/#{repo_name}.git"
+  "http://github.com/#{repo_name}.git"
 end
 
 
@@ -10,8 +10,6 @@ end
 gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record
 gem 'pg'
-
-gem 'rest-client', '~> 2.0.2'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
