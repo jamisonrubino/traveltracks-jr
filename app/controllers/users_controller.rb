@@ -1,13 +1,23 @@
 class UsersController < ApplicationController
   def spotify
-    puts request.env['omniauth.auth']
-    spotify_user = Spotify::User.new(request.env['omniauth.auth'])
+    config = {
+      :access_token => request.env['omniauth.auth'].credentials.token,
+      :raise_errors => true,  # choose between returning false or raising a proper exception when API calls fails
+      # Connection properties
+      :retries       => 0,    # automatically retry a certain number of times before returning
+      :read_timeout  => 10,   # set longer read_timeout, default is 10 seconds
+      :write_timeout => 10,   # set longer write_timeout, default is 10 seconds
+      :persistent    => false # when true, make multiple requests calls using a single persistent connection. Use +close_connection+ method on the client to manually clean up sockets
+    }
+    puts request.env['omniauth.auth'].credentials
+    spotify_user = Spotify::User.new(config)
+    puts spotify_user
     # Now you can access user's private data, create playlists and much more
-    hash = spotify_user.to_hash
+    # hash = spotify_user.to_hash
 
-    # Access private data
-    spotify_user.country #=> "US"
-    spotify_user.email   #=> "example@email.com"
+    # # Access private data
+    # spotify_user.country #=> "US"
+    # spotify_user.email   #=> "example@email.com"
 
     # # Create playlist in user's Spotify account
     # playlist = spotify_user.create_playlist!('my-awesome-playlist')
