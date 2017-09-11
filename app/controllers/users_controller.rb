@@ -1,9 +1,7 @@
-class UsersController < ApplicationController
+class ClientsController < ApplicationController
   def spotify
     config = {
-      :access_token => request.env['omniauth.auth'].credentials.token,
-      :raise_errors => true,
-      :retries       => 0,
+      :access_token => request.env['omniauth.auth'].credentials.token
     }
     puts request.env['omniauth.auth'].credentials
     client = Spotify::Client.new(config)
