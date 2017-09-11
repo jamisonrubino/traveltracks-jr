@@ -24,8 +24,8 @@ default: &default
 development:
   <<: *default
   database: triplist_development
-  username: postgres
-  password: password
+  username: <%= ENV['TRIPLIST_DATABASE_USERNAME'] %>
+  password: <%= ENV['TRIPLIST_DATABASE_PASSWORD'] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -83,5 +83,5 @@ test:
 production:
   <<: *default
   database: triplist_production
-  username: triplist
+  username: <%= ENV['TRIPLIST_DATABASE_USERNAME'] %>
   password: <%= ENV['TRIPLIST_DATABASE_PASSWORD'] %>
