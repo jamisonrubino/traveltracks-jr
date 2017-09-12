@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     
     @playlists = @spotify_user.user_playlists(@id)
     
-    puts "#{@spotify_user} #{@id} #{@playlists}"
+    puts "#{@spotify_user} #{@id} #{@playlists.pluck(:name)}"
     # playlists = spotify_user.user_playlists(id)
     # me = spotify_user.me
     # puts spotify_user
