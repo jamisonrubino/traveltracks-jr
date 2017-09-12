@@ -1,4 +1,4 @@
-class ClientsController < ApplicationController
+class UsersController < ApplicationController
   def spotify
     puts request.env['omniauth.auth'].credentials
     config = {
