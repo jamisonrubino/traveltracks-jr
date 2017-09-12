@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :songs
-  resources :playlists, only: [:show, :create]
+  resources :playlists
   resources :users
   get '/auth/spotify/callback', to: 'users#spotify'
   root "welcome#index"
