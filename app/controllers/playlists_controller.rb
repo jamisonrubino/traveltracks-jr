@@ -5,7 +5,8 @@ class PlaylistsController < ApplicationController
   # GET /playlists.json
   def index
     @id = request.env['omniauth.auth'].extra['raw_info'].id
-    @playlists = :spotify_user.user_playlists(@id)
+    @user = Spotify::Client.first
+    @playlists = @user.user_playlists(@id).pluck(:name)
     puts "#{:spotify_user} #{@id} #{@playlists.pluck(:name)}"
   end
 

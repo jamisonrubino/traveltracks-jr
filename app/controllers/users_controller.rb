@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     }
     @spotify_user = Spotify::Client.new(config)
 
-    redirect_to playlists_path(:spotify_user => @spotify_user) 
+    redirect_to playlists_path 
     
     # @id = request.env['omniauth.auth'].extra['raw_info'].id
     
