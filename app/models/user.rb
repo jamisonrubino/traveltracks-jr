@@ -1,2 +1,2 @@
-class Client < ApplicationRecord
+class User < ApplicationRecord
 end
