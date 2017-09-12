@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     }
     user = Spotify::Client.new(config)
     
-    user_me = client.me
+    user_me = user.me
     # puts spotify_user
     # Now you can access user's private data, create playlists and much more
     # hash = spotify_user.to_hash
