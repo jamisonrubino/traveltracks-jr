@@ -7,8 +7,8 @@ class UsersController < ApplicationController
     spotify_user = Spotify::Client.new(config)
     id = request.env['omniauth.auth'].extra['raw_info'].id
     
-    playlists = User.spotify_user.user_playlists(User.id)
-    me = User.spotify_user.me
+    playlists = spotify_user.user_playlists(User.id)
+    me = spotify_user.me
     # puts spotify_user
     # Now you can access user's private data, create playlists and much more
     # hash = spotify_user.to_hash
