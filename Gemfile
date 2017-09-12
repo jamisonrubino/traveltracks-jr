@@ -61,3 +61,6 @@ gem 'spotify-client'
 
 gem 'faraday'
 
+# gem 'rspotify', '>= 1.22.1'
+
+
