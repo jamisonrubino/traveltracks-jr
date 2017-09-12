@@ -1,7 +1,12 @@
 class ClientsController < ApplicationController
   def spotify
     puts request.env['omniauth.auth'].credentials
-    client = Spotify::Client.new(:access_token => request.env['omniauth.auth'].credentials.token)
+    config = {
+      :access_token => request.env['omniauth.auth'].credentials.token
+    }
+    user = Spotify::Client.new(config)
+    
+    user_me = client.me
     # puts spotify_user
     # Now you can access user's private data, create playlists and much more
     # hash = spotify_user.to_hash
