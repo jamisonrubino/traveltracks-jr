@@ -5,10 +5,12 @@ class UsersController < ApplicationController
       :access_token => request.env['omniauth.auth'].credentials.token
     }
     @spotify_user = Spotify::Client.new(config)
-    puts @spotify_user
     
     @id = request.env['omniauth.auth'].extra['raw_info'].id
     
+    @playlists = @spotify_user.user_playlists(@id)
+    
+    puts "#{@spotify_user} #{@id} #{@playlists}"
     # playlists = spotify_user.user_playlists(id)
     # me = spotify_user.me
     # puts spotify_user
