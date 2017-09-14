@@ -4,9 +4,7 @@ class PlaylistsController < ApplicationController
   # GET /playlists
   # GET /playlists.json
   def index
-    @user = Spotify::Client.first
-    @playlists = @user.user_playlists(:id).pluck(:name)
-    puts "#{:spotify_user} #{@id} #{@playlists.pluck(:name)}"
+    @playlists = current_user.user_playlists(:id).pluck(:name)
   end
 
   # GET /playlists/1
