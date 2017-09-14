@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_filter :require_login
+  # skip_before_filter :require_login
   
   def spotify
     session[:spotify_key] = request.env['omniauth.auth'].credentials.token
