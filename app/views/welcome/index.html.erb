@@ -1,7 +1,7 @@
 <div id="welcome">
-    <% if !current_user %>
+    <% #if !current_user %>
         <%= link_to "Sign in to Spotify", '/auth/spotify', class: "sign-in" %>
-    <% else %>
+    <% #else %>
         
         <%= form_tag("/set_time", method:"post") %>
             <%= label_tag(:time, "Trip time") %>
