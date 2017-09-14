@@ -112,6 +112,7 @@ GEM
     pg (0.21.0)
     pg (0.21.0-x86-mingw32)
     public_suffix (3.0.0)
+    puma (3.10.0)
     rack (2.0.3)
     rack-test (0.7.0)
       rack (>= 1.0, < 3)
@@ -202,6 +203,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   omniauth-spotify
   pg
+  puma (~> 3.7)
   rails (~> 5.1.4)
   sass-rails (~> 5.0)
   selenium-webdriver
