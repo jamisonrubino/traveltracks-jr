@@ -7,4 +7,4 @@ function validateHhMm(inputField) {
     }
 }
 var timeInput = $("#time_input");
-$(document).on("change", tineInput, validateHhMm(timeInput));
+$(document).on("change", timeInput, validateHhMm(timeInput));
