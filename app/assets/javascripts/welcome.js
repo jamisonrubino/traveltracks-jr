@@ -1,9 +1,9 @@
 function validateHhMm(inputField) {
-    var isValid = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(inputField.value);
+    var isValid = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(inputField.val());
     if (isValid) {
-        inputField.style.backgroundColor = '#bfa';
+        inputField.css("background", "#bfa");
     } else {
-        inputField.style.backgroundColor = '#fba';
+        inputField.css("background", "#fba");
     }
 
     return isValid;
