@@ -5,7 +5,7 @@
         
         <%= form_tag("/set_time", method:"post") %>
             <%= label_tag(:time, "Trip time") %>
-            <%= time_field(:playlist, :duration) %>
+            <%= number_field(:time, "00:00", :min => 0, :step => 10) %>
             <%= submit_tag("Make playlist") %>
     <% end %>
 </div>
