@@ -25,5 +25,5 @@ function validateHhMm(inputField) {
     return isValid;
 }
 
-var timeInput = document.getElementById(time_input);
+var timeInput = document.getElementById("time_input");
 timeInput.change(validateHhMm(this));
