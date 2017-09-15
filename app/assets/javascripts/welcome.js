@@ -6,5 +6,5 @@ function validateHhMm(inputField) {
         inputField.css("background", "#fba");
     }
 }
-
-$("#time_input").change(validateHhMm($("#time_input")));
+var timeInput = $("#time_input");
+$(document).on("change", tineInput, validateHhMm(timeInput));
