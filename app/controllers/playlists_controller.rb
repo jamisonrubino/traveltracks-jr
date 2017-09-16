@@ -4,7 +4,7 @@ class PlaylistsController < ApplicationController
   # GET /playlists
   # GET /playlists.json
   def index
-    @playlists = current_user.user_playlists(:id).pluck(:name)
+    @playlists = session['spotify_user'].user_playlists(:id).pluck(:name)
   end
 
   # GET /playlists/1
