@@ -5,19 +5,22 @@
     <% puts session[:spotify_user] %>
         
         <%= form_tag("/set_time", method:"post") %>
-            <!-- GOOGLE MAPS DIRECTIONS INPUTS -->
-            
             <h2>Playlist Time</h2>
             <div id="time-wrap">
                 <div id="maps-directions">
+                    
+                    <!-- GOOGLE MAPS DIRECTIONS LINK -->
                     <div id="maps-directions-link">
-                        <%= link_to_function "Google Maps Directions", "$('#maps-directions-input').removeClass('hide'); $('#maps-directions-link').addClass('hide');" %>
+                        <%= link_to "Google Maps Directions", "#" %>
                     </div>
+                    
+                    <!-- GOOGLE MAPS DIRECTIONS INPUTS -->
                     <div id="maps-directions-input" class="hide">
                         <%= label_tag(:directions, "Starting point and destination.") %>
                         <%= text_field_tag(:start, :directions, placeholder: "Starting point, e.g. New York, New York") %>
                         <%= text_field_tag(:destination, :directions, placeholder: "Destination, e.g. Boston, Massachusetts") %>
                     </div>
+                    
                 </div>
                 
                 <div class="or">
