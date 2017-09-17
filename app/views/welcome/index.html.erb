@@ -5,9 +5,33 @@
     <% puts session[:spotify_user] %>
         
         <%= form_tag("/set_time", method:"post") %>
-            <%= label_tag(:time, "Trip time") %>
-            <%= text_field(:time, :input) %>
-            <%= submit_tag("Make playlist") %>
+            <!-- GOOGLE MAPS DIRECTIONS INPUTS -->
+            
+            <h2>Playlist Time</h2>
+            <div id="time-wrap">
+                <div id="maps-directions">
+                    <div id="maps-directions-link">
+                        <%= link_to_function "Google Maps Directions", "$('#maps-directions-input').removeClass('hide'); $('#maps-directions-link').addClass('hide');" %>
+                    </div>
+                    <div id="maps-directions-input" class="hide">
+                        <%= label_tag(:directions, "Starting point and destination.") %>
+                        <%= text_field_tag(:start, :directions, placeholder: "Starting point, e.g. New York, New York") %>
+                        <%= text_field_tag(:destination, :directions, placeholder: "Destination, e.g. Boston, Massachusetts") %>
+                    </div>
+                </div>
+                
+                <div class="or">
+                    <hr><h3>OR</h3><hr>
+                </div>
+                
+                <div id="trip-time-input">
+                    <%= label_tag(:time, "Trip time") %>
+                    <%= number_field(:hours, :time, min: 0, max: 5, step: 1, placeholder: "Hours") %>
+                    <%= number_field(:minutes, :time, min: 0, max: 55, step: 5, placeholder: "Minutes") %>
+                    <%= submit_tag("Make playlist") %>
+                </div>
+            </div>
+            
         <% #end %>
     <% end %>
 </div>
