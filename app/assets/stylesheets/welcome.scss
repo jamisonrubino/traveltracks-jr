@@ -56,10 +56,17 @@ hr {
     color: #ccc;
 }
 
-input[type=number] {
+input[type=number], input[type=text] {
     width: 70px;
+    padding: 3px 5px;
     margin: 0 5px;
     border-radius: 2px;
+    border: 1px solid #aaa;
+}
+
+input[type=number]:focus, input[type=text]:focus {
+    border: 1px solid #666;
+    background: #efefef;
 }
 
 input[type=submit] {
