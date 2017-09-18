@@ -58,15 +58,6 @@ class PlaylistsController < ApplicationController
     
     redirect_to root_path
 
-    # respond_to do |format|
-    #   if @playlist.save
-    #     format.html { redirect_to @playlist, notice: 'Playlist was successfully created.' }
-    #     format.json { render :show, status: :created, location: @playlist }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @playlist.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   # PATCH/PUT /playlists/1
