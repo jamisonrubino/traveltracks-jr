@@ -8,3 +8,11 @@
 // }
 // var timeInput = $("#time_input");
 // $(document).on("change", timeInput, validateHhMm(timeInput));
+
+$("input#pool_genre").change(function() {
+    if ($("input#pool_genre").is(":checked")) {
+        $("#genre-seeds").removeClass("hide");
+    } else {
+        $("#genre-seeds").addClass("hide");
+    }
+});

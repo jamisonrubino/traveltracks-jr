@@ -42,12 +42,17 @@
                 <div id="track-pool-wrap">
                     <h2>Playlist Type</h2>
                     <div id="track-pool">
-                        
+                         
                         <!-- SPOTIFY USER GENRE SEEDS -->
-                        <div id="genre-seeds">
+                        <div id="genre-option">
+                            <%= radio_button_tag "pool", "genre" %>
+                            <%= label_tag "pool_genre", "Music by genre" %>
+                            <%= radio_button_tag "pool", "top_tracks" %>
+                            <%= label_tag "pool_top_tracks", "My top tracks" %>
+                        </div>
+                        <div id="genre-seeds" class="hide">
                             <%= label_tag "genre_seed", "Music Genre" %>
                             <%= select_tag "genre_seed", options_for_select(@genres) %>
-     
                         </div>
                     </div>
                     
@@ -56,7 +61,6 @@
                     </div>
                     
                     <div id="top-tracks">
-
                     </div>
     
                 
