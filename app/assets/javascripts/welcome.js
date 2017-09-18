@@ -14,13 +14,13 @@ $(document).ready(function() {
     $("input#pool_top_tracks").change(addHideGenres);
 });
 
-function addHideGenres() {
-    if ($("input:radio[name=pool]#pool_genre").is(":checked")) {
-        $("#genre-seeds").removeClass("hide");
-    }
-    if ($("input:radio[name=pool]#pool_top_tracks").is(":checked")) {
-        $("#genre-seeds").addClass("hide");
-    }
-}
+// function addHideGenres() {
+//     if ($("input:radio[name=pool]#pool_genre").is(":checked")) {
+//         $("#genre-seeds").removeClass("hide");
+//     }
+//     if ($("input:radio[name=pool]#pool_top_tracks").is(":checked")) {
+//         $("#genre-seeds").addClass("hide");
+//     }
+// }
 
 var genreNum = "two";
