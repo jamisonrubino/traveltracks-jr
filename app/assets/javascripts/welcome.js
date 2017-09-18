@@ -8,10 +8,3 @@
 // }
 // var timeInput = $("#time_input");
 // $(document).on("change", timeInput, validateHhMm(timeInput));
-
-$(document).ready(function() {
-    $("#maps-link").click(function() {
-        $('#maps-directions-input').removeClass('hide'); 
-        $('#maps-directions-link').addClass('hide');
-    });
-});

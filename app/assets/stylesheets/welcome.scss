@@ -7,17 +7,15 @@
     display: none;
 }
 
-#time-wrap {
+#time-wrap, #maps-directions, #trip-time-input {
     display: block;
     clear: both;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
 }
 
-#maps-directions, #trip-time-input, .or {
-    display: inline-block;
-    float: left;
-    padding: 15px;
+.or {
+    margin: 15px auto;
 }
 
 #maps-directions, #trip-time-input {
@@ -38,4 +36,8 @@
     padding: 0;
     display: inline-block;
     color: #ccc;
+}
+
+input[type='submit'] {
+    margin: 5 auto;
 }
