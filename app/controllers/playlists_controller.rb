@@ -44,7 +44,7 @@ class PlaylistsController < ApplicationController
     puts "Playlist time: #{playlist_time}"
     puts "Playlist pool: #{playlist_pool}"
     
-    
+    redirect_to root_path
 
     # respond_to do |format|
     #   if @playlist.save
