@@ -29,7 +29,7 @@ class PlaylistsController < ApplicationController
       unless directions.status == ("NOT_FOUND" || "OVER_QUERY_LIMIT")
         playlist_time = directions.drive_in_minutes
       end
-    elsif params[:time][:hours] || params[:time][:minutes]
+    elsif params[:time][:hours] != "" || params[:time][:minutes] != ""
       playlist_time = params[:time][:hours] * 60 + params[:time][:minutes]
     end
     
