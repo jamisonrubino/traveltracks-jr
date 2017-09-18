@@ -22,3 +22,14 @@ function addHideGenres() {
         $("#genre-seeds").addClass("hide");
     }
 }
+
+var genreNum = "two";
+function addGenre() {
+    $("#genre-seeds").append("<div class=\"genre\"><%= label_tag \"genre_seed_" + genreNum + "\", \"Music Genre\" %>");
+    
+    if (genreNum === "two") {   
+        genreNum = "three";
+    } else if (genreNum ==="three") {
+        $("#add_genre").addClass("hide");
+    }
+}

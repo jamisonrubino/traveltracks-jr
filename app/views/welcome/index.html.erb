@@ -49,15 +49,23 @@
                             <%= label_tag "pool_genre", "Music by genre" %><br>
                             
                             <div id="genre-seeds" class="hide">
-                                <%= label_tag "genre_seed", "Music Genre" %>
-                                <%= # select_tag "genre_seed", options_for_select(@genres) %>
-                                <% @genres.each do |genre| %>
-                                    <div class="genre_option">
-                                        <%= check_box_tag "genre_seed[]", genre %>
+                                <%= link_to "Add genre (up to 3)", "javascript: addGenre();", id: "add_genre" %>
+                                
+                                <div class="genre">
+                                    <%= label_tag "genre_seed", "Music Genre" %>
+                                    <%= select_tag "genre_seed_one", options_for_select(@genres) %>
+                                </div>
+
+                                
+                                
+                                <% #@genres.each do |genre| %>
+                                    <!--<div class="genre_option">-->
+                                        <%= #check_box_tag "genre_seed[]", genre %>
                                         <%= #label_tag "genre_seed[]", "Music Genre" %>
-                                    </div>
-                                <% end %>
+                                    <!--</div>-->
+                                <% #end %>
                             </div>
+                            
                         </div>
                         
                         <div class="or">
