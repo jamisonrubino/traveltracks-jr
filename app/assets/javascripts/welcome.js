@@ -18,7 +18,7 @@ function addHideGenres() {
     if ($("input:radio[name=pool]#pool_genre").is(":checked")) {
         $("#genre-seeds").removeClass("hide");
     }
-    if ($("input:radio[name=pool]#pool_top_tracks").is(":checked") == false) {
+    if ($("input:radio[name=pool]#pool_top_tracks").is(":checked")) {
         $("#genre-seeds").addClass("hide");
     }
 }
