@@ -1,3 +1,3 @@
 class WelcomeController < ApplicationController
-    include ApplicationHelper
+    # include ApplicationHelper
 end
