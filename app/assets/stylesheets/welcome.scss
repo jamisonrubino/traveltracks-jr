@@ -22,7 +22,6 @@ body {
 #time-wrap, #track-pool-wrap, #maps-directions, #trip-time-input {
     display: block;
     clear: both;
-    margin: 0 auto;
     padding: 0;
 }
 
@@ -74,6 +73,10 @@ input[type=number]:focus, input[type=text]:focus {
 
 input[type=submit] {
     margin: 5 auto;
+}
+
+#track-pool-wrap {
+    margin-bottom: 10px;
 }
 
 #track-pool-wrap label {

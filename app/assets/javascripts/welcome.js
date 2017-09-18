@@ -17,7 +17,8 @@ $(document).ready(function() {
 function addHideGenres() {
     if ($("input:radio[name=pool]#pool_genre").is(":checked")) {
         $("#genre-seeds").removeClass("hide");
-    } else if ($("input:radio[name=pool]#pool_top_tracks").is(":checked") == false) {
+    }
+    if ($("input:radio[name=pool]#pool_top_tracks").is(":checked") == false) {
         $("#genre-seeds").addClass("hide");
     }
 }
