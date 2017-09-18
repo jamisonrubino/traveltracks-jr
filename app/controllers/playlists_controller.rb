@@ -24,13 +24,13 @@ class PlaylistsController < ApplicationController
   # POST /playlists
   # POST /playlists.json
   def create
-    if params[:directions][:start] && params[:directions][:destination]
-      directions = GoogleDirections.new(params[:directions][:start], params[:directions][:destination])
+    if params[:directions_start] && params[:directions_destination]
+      directions = GoogleDirections.new(params[:directions_start], params[:directions_destination])
       unless directions.status == ("NOT_FOUND" || "OVER_QUERY_LIMIT")
         playlist_time = directions.drive_in_minutes
       end
-    elsif params[:time][:hours] != "" || params[:time][:minutes] != ""
-      playlist_time = params[:time][:hours] * 60 + params[:time][:minutes]
+    elsif params[:time][:hours] || params[:time][:minutes]
+      playlist_time = params[:time][:hours].to_i * 60 + params[:time][:minutes].to_i
     end
     
     if params[:pool] == "genre"
