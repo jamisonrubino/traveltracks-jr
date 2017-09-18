@@ -2,23 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body {
+    margin: 0;
+}
 
 .hide {
     display: none;
 }
 
 #form-wrap {
-    width: fit-content;
     text-align: center;
 }
 
 #time-wrap, #track-pool-wrap {
     overflow: auto;
-    width: fit-content;
-    margin-bottom: 20px;
+    margin: 0 auto 10px;
 }
 
-#time-wrap, #maps-directions, #trip-time-input {
+#time-wrap, #track-pool-wrap, #maps-directions, #trip-time-input {
     display: block;
     clear: both;
     margin: 0 auto;
