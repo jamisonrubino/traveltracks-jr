@@ -24,6 +24,9 @@ class PlaylistsController < ApplicationController
   # POST /playlists
   # POST /playlists.json
   def create
+    
+    # if user specifies starting point and destination
+    
     if params[:directions][:start] && params[:directions][:destination]
       start = params[:directions][:start]
       destination = params[:directions][:destination]
@@ -31,8 +34,17 @@ class PlaylistsController < ApplicationController
       unless directions.status == ("NOT_FOUND" || "OVER_QUERY_LIMIT")
         playlist_time = directions.drive_time_in_minutes
       end
+      
+    # if user manually enters time
+    
     elsif params[:time][:hours].to_i > 0 || params[:time][:minutes].to_i > 0
       playlist_time = params[:time][:hours].to_i * 60 + params[:time][:minutes].to_i
+    end
+    
+    # if trip is longer than six hours
+    
+    if playlist_time > 360
+      playlist_time = 360
     end
     
     if params[:pool] == "genre"
