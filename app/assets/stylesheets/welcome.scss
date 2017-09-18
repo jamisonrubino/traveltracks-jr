@@ -56,11 +56,12 @@ hr {
     color: #ccc;
 }
 
-input[type="number"] {
+input[type=number] {
     width: 70px;
-    margin: 0 10px 0 0;
+    margin: 0 5px;
+    border-radius: 2px;
 }
 
-input[type="submit"] {
+input[type=submit] {
     margin: 5 auto;
 }
