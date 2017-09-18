@@ -24,17 +24,35 @@ class PlaylistsController < ApplicationController
   # POST /playlists
   # POST /playlists.json
   def create
-    @playlist = Playlist.new(playlist_params)
-
-    respond_to do |format|
-      if @playlist.save
-        format.html { redirect_to @playlist, notice: 'Playlist was successfully created.' }
-        format.json { render :show, status: :created, location: @playlist }
-      else
-        format.html { render :new }
-        format.json { render json: @playlist.errors, status: :unprocessable_entity }
+    if params[:directions][:start] && params[:directions][:destination]
+      directions = GoogleDirections.new(params[:directions][:start], params[:directions][:destination])
+      unless directions.status == ("NOT_FOUND" || "OVER_QUERY_LIMIT")
+        playlist_time = directions.drive_in_minutes
       end
+    elsif params[:time][:hours] || params[:time][:minutes]
+      playlist_time = params[:time][:hours] * 60 + params[:time][:minutes]
     end
+    
+    if params[:pool] == "genre"
+      playlist_pool = params[:genre_seed]
+    else
+      playlist_pool = params[:pool]
+    end
+    
+    puts "Playlist time: #{playlist_time}"
+    puts "Playlist pool: #{playlist_pool}"
+    
+    
+
+    # respond_to do |format|
+    #   if @playlist.save
+    #     format.html { redirect_to @playlist, notice: 'Playlist was successfully created.' }
+    #     format.json { render :show, status: :created, location: @playlist }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @playlist.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /playlists/1
