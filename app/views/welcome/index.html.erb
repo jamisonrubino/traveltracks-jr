@@ -51,12 +51,12 @@
                             <div id="genre-seeds" class="hide">
                                 <%= label_tag "genre_seed", "Music Genre" %>
                                 <%= # select_tag "genre_seed", options_for_select(@genres) %>
-                                <% @genres.each do |genre| { %>
+                                <% @genres.each do |genre| %>
                                     <div class="genre_option">
                                         <%= check_box_tag "genre_seed[]", genre %>
-                                        <%= genre %>
+                                        <%= #label_tag "genre_seed[]", "Music Genre" %>
                                     </div>
-                                <% } %>
+                                <% end %>
                             </div>
                         </div>
                         
