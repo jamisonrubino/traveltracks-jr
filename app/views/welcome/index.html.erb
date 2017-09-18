@@ -11,7 +11,7 @@
                     
                     <!-- GOOGLE MAPS DIRECTIONS LINK -->
                     <div id="maps-directions-link">
-                        <%= link_to "Google Maps Directions", "#" %>
+                        <%= link_to "Google Maps Directions", "#", id: "maps-link" %>
                     </div>
                     
                     <!-- GOOGLE MAPS DIRECTIONS INPUTS -->
@@ -28,7 +28,6 @@
                 </div>
                 
                 <div id="trip-time-input">
-                    <%= label_tag(:time, "Trip time") %>
                     <%= number_field(:hours, :time, min: 0, max: 5, step: 1, placeholder: "Hours") %>
                     <%= number_field(:minutes, :time, min: 0, max: 55, step: 5, placeholder: "Minutes") %>
                     <%= submit_tag("Make playlist") %>

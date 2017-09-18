@@ -9,7 +9,7 @@
 // var timeInput = $("#time_input");
 // $(document).on("change", timeInput, validateHhMm(timeInput));
 
-$("#maps-directions-link a").click(function() {
+$("#maps-link").click(function() {
     $('#maps-directions-input').removeClass('hide'); 
     $('#maps-directions-link').addClass('hide');
 });
