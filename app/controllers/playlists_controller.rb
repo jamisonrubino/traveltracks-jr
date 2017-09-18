@@ -71,6 +71,7 @@ class PlaylistsController < ApplicationController
 
   # PATCH/PUT /playlists/1
   # PATCH/PUT /playlists/1.json
+  
   def update
     respond_to do |format|
       if @playlist.update(playlist_params)
