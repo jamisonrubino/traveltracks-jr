@@ -11,12 +11,13 @@
 
 $(document).ready(function() {
     $("input#pool_genre").change(addHideGenres);
+    $("input#pool_top_tracks").change(addHideGenres);
 });
 
 function addHideGenres() {
     if ($("input:radio[name=pool]#pool_genre").is(":checked")) {
         $("#genre-seeds").removeClass("hide");
-    } else if ($("input:radio[name=pool]#pool_genre").is(":checked") == false) {
+    } else if ($("input:radio[name=pool]#pool_top_tracks").is(":checked") == false) {
         $("#genre-seeds").addClass("hide");
     }
 }

@@ -52,21 +52,17 @@
                                 <%= label_tag "genre_seed", "Music Genre" %>
                                 <%= select_tag "genre_seed", options_for_select(@genres) %>
                             </div>
-                            
-                            <%= radio_button_tag "pool", "top_tracks" %>
-                            <%= label_tag "pool_top_tracks", "My top tracks" %>
                         </div>
-
-                    
+                        
                         <div class="or">
                             <hr><h3>OR</h3><hr>
                         </div>
-                        
+
                         <div id="top-tracks">
+                            <%= radio_button_tag "pool", "top_tracks" %>
+                            <%= label_tag "pool_top_tracks", "My top tracks" %>
                         </div>
                     </div>
-                
-                
                 </div>
                 <%= submit_tag("Make playlist") %>
             </div>
