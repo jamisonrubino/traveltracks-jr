@@ -46,14 +46,17 @@
                         <!-- SPOTIFY USER GENRE SEEDS -->
                         <div id="genre-option">
                             <%= radio_button_tag "pool", "genre" %>
-                            <%= label_tag "pool_genre", "Music by genre" %>
+                            <%= label_tag "pool_genre", "Music by genre" %><br>
+                            
+                            <div id="genre-seeds" class="hide">
+                                <%= label_tag "genre_seed", "Music Genre" %>
+                                <%= select_tag "genre_seed", options_for_select(@genres) %>
+                            </div>
+                            
                             <%= radio_button_tag "pool", "top_tracks" %>
                             <%= label_tag "pool_top_tracks", "My top tracks" %>
                         </div>
-                        <div id="genre-seeds" class="hide">
-                            <%= label_tag "genre_seed", "Music Genre" %>
-                            <%= select_tag "genre_seed", options_for_select(@genres) %>
-                        </div>
+
                     
                         <div class="or">
                             <hr><h3>OR</h3><hr>

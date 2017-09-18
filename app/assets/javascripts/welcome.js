@@ -16,7 +16,7 @@ $(document).ready(function() {
 function addHideGenres() {
     if ($("input:radio[name=pool]#pool_genre").is(":checked")) {
         $("#genre-seeds").removeClass("hide");
-    } else {
+    } else if ($("input:radio[name=pool]#pool_genre").is(":checked") == false) {
         $("#genre-seeds").addClass("hide");
     }
 }
