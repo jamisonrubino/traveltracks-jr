@@ -7,10 +7,15 @@
     display: none;
 }
 
-#time-wrap {
-    overflow: auto;
+#form-wrap {
     width: fit-content;
     text-align: center;
+}
+
+#time-wrap, #track-pool-wrap {
+    overflow: auto;
+    width: fit-content;
+    margin-bottom: 20px;
 }
 
 #time-wrap, #maps-directions, #trip-time-input {
@@ -29,13 +34,18 @@
 
 }
 
+hr {
+    display: block;
+    border-style: solid;
+    border-color: #ccc;
+    border-width: 1px;
+    width: 70%;
+}
+
 .or hr {
     display: inline-block;
     margin: 5px 6px;
-    border-width: 1px;
     width: 40px;
-    border-style: solid;
-    border-color: #ccc;
 }
 
 .or h3 {
@@ -45,6 +55,11 @@
     color: #ccc;
 }
 
-input[type='submit'] {
+input[type="number"] {
+    width: 70px;
+    margin: 0 10px 0 0;
+}
+
+input[type="submit"] {
     margin: 5 auto;
 }

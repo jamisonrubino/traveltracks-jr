@@ -5,30 +5,61 @@
     <% puts session[:spotify_user] %>
         
         <%= form_tag("/set_time", method:"post") %>
-            <div id="time-wrap">
-                <h2>Playlist Time</h2>
-                <div id="maps-directions">
-                    
-                    <!-- GOOGLE MAPS DIRECTIONS LINK -->
-                    <div id="maps-directions-link">
-                        <a href="javascript: $('#maps-directions-input').removeClass('hide'); $('#maps-directions-link').addClass('hide');" id="maps-link">Google Maps Direction</a>
+            <div id="form-wrap">
+            <!-- ---------SET PLAYLIST TIME--------- -->
+            
+            
+                <div id="time-wrap">
+                    <h2>Playlist Time</h2>
+                    <div id="maps-directions">
+                        
+                        <!-- GOOGLE MAPS DIRECTIONS LINK -->
+                        <div id="maps-directions-link">
+                            <a href="javascript: $('#maps-directions-input').removeClass('hide'); $('#maps-directions-link').addClass('hide');" id="maps-link">Google Maps Directions</a>
+                        </div>
+                        
+                        <!-- GOOGLE MAPS DIRECTIONS INPUTS -->
+                        <div id="maps-directions-input" class="hide">
+                            <%= label_tag(:directions, "Starting point and destination.") %>
+                            <%= text_field_tag(:directions, :start, placeholder: "New York, New York", value: "") %>
+                            <%= text_field_tag(:directions, :destination, placeholder: "Boston, Massachusetts", value: "") %>
+                        </div>
                     </div>
                     
-                    <!-- GOOGLE MAPS DIRECTIONS INPUTS -->
-                    <div id="maps-directions-input" class="hide">
-                        <%= label_tag(:directions, "Starting point and destination.") %>
-                        <%= text_field_tag(:start, :directions, placeholder: "Starting point, e.g. New York, New York", value: "") %>
-                        <%= text_field_tag(:destination, :directions, placeholder: "Destination, e.g. Boston, Massachusetts", value: "") %>
+                    <div class="or">
+                        <hr><h3>OR</h3><hr>
+                    </div>
+                    
+                    <div id="trip-time-input">
+                        <%= number_field(:time, :hours, min: 0, max: 5, step: 1, placeholder: "Hours") %>
+                        <%= number_field(:time, :minutes, :time, min: 0, max: 55, step: 5, placeholder: "Minutes") %>
                     </div>
                 </div>
                 
-                <div class="or">
-                    <hr><h3>OR</h3><hr>
-                </div>
                 
-                <div id="trip-time-input">
-                    <%= number_field(:hours, :time, min: 0, max: 5, step: 1, placeholder: "Hours") %>
-                    <%= number_field(:minutes, :time, min: 0, max: 55, step: 5, placeholder: "Minutes") %>
+                <!-- ---------SET PLAYLIST TRACK POOL--------- -->
+                
+                <div id="track-pool-wrap">
+                    <h2>Playlist Type</h2>
+                    <div id="track-pool">
+                        
+                        <!-- SPOTIFY USER GENRE SEEDS -->
+                        <div id="genre-seeds">
+                            <%= select_tag "genre_seed", options_for_select(@genres) %>
+                                
+                        </div>
+                    </div>
+                    
+                    <div class="or">
+                        <hr><h3>OR</h3><hr>
+                    </div>
+                    
+                    <div id="top-tracks">
+
+                    </div>
+    
+                
+                
                 </div>
                 <%= submit_tag("Make playlist") %>
             </div>
