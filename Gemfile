@@ -64,3 +64,4 @@ gem 'faraday'
 gem 'rspotify', '>= 1.22.1'
 
 gem 'google_directions'
+gem 'google-api-client'
