@@ -29,9 +29,9 @@ class PlaylistsController < ApplicationController
       destination = params[:directions][:destination]
       directions = GoogleDirections.new(start, destination)
       unless directions.status == ("NOT_FOUND" || "OVER_QUERY_LIMIT")
-        playlist_time = directions.drive_in_minutes
+        playlist_time = directions.drive_time_in_minutes
       end
-    elsif params[:time][:hours] != "" || params[:time][:minutes] != ""
+    elsif params[:time][:hours].to_i > 0 || params[:time][:minutes].to_i > 0
       playlist_time = params[:time][:hours].to_i * 60 + params[:time][:minutes].to_i
     end
     
