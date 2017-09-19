@@ -75,7 +75,7 @@ class PlaylistsController < ApplicationController
     # playlist.add_tracks!(recommendations.tracks)
     
     puts "Playlist time: #{playlist_time}"
-    puts "Playlist pool: #{JSON.parse(playlist_pool.tracks.to_s)}"
+    puts "Playlist pool: #{JSON.parse(playlist_pool.body)}"
     
     redirect_to root_path
 
