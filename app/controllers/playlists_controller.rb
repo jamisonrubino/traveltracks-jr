@@ -81,9 +81,10 @@ class PlaylistsController < ApplicationController
     # ADDING SELECTED TRACKS TO NEW PLAYLIST
     # playlist.add_tracks!(recommendations.tracks)
     
+    puts "params[:pool]: #{params[:pool]}"
     puts "Playlist time: #{playlist_time}"
     puts "Playlist pool: #{playlist_pool}"
-    puts session[:spotify_user].saved_tracks.size
+    puts session[:spotify_user]
     
     redirect_to root_path
 
