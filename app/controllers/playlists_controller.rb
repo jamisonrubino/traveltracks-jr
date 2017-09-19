@@ -68,8 +68,8 @@ class PlaylistsController < ApplicationController
       end
       playlist_pool = RSpotify::Recommendations.generate(seed_genres: genres, limit:100) #
     elsif params[:pool] == "my_top_tracks"
-      playlist_pool = session[:spotify_user].saved_tracks(limit:50)
-      playlist_pool += session[:spotify_user].saved_tracks(limit:50, offset:50)
+      playlist_pool = session[:spotify_user].saved_tracks
+      # playlist_pool += session[:spotify_user].saved_tracks
     end
     
     
