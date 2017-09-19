@@ -6,11 +6,10 @@ $(document).ready(function() {
 var genreNum = "two";
 
 function addHideGenres() {
-    $("#genre-seeds").append("<div class=\"genre\"><%= label_tag \"genre_seed_" + genreNum + "\", \"Music Genre\" %>");
-    
-    if (genreNum === "two") {   
-        genreNum = "three";
-    } else if (genreNum === "three") {
-        $("#add_genre").addClass("hide");
+    if ($("input:radio[name=pool]#pool_genre").is(":checked")) {
+        $("#genre-seeds").removeClass("hide");
+    } else if (($("input:radio[name=pool]#pool_top_tracks").is(":checked")) {
+        $("#genre-seeds").addClass("hide");
     }
+    
 }
