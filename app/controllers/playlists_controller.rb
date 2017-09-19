@@ -1,3 +1,5 @@
+require 'json'
+
 class PlaylistsController < ApplicationController
   before_action :set_playlist, only: [:show, :edit, :update, :destroy]
 
@@ -73,7 +75,7 @@ class PlaylistsController < ApplicationController
     # playlist.add_tracks!(recommendations.tracks)
     
     puts "Playlist time: #{playlist_time}"
-    puts "Playlist pool: #{playlist_pool.tracks.pluck(:id)}"
+    puts "Playlist pool: #{JSON.parse(playlist_pool)}"
     
     redirect_to root_path
 
