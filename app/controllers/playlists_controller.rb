@@ -28,8 +28,6 @@ class PlaylistsController < ApplicationController
   def create
     # if user specifies starting point and destination
     
-    RSpotify.raw_response = true
-    
     if params[:directions][:start].size > 0 && params[:directions][:destination].size > 0
       start = params[:directions][:start]
       destination = params[:directions][:destination]
@@ -84,6 +82,7 @@ class PlaylistsController < ApplicationController
     
     puts "Playlist time: #{playlist_time}"
     puts "Playlist pool: #{playlist_pool}"
+    puts session[:spotify_user].saved_tracks(limit: 50, offset: 0)
     
     redirect_to root_path
 
