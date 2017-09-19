@@ -5,7 +5,7 @@ $(document).ready(function() {
 
 var genreNum = "two";
 
-function addGenre() {
+function addHideGenres() {
     $("#genre-seeds").append("<div class=\"genre\"><%= label_tag \"genre_seed_" + genreNum + "\", \"Music Genre\" %>");
     
     if (genreNum === "two") {   
