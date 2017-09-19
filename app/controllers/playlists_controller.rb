@@ -28,7 +28,7 @@ class PlaylistsController < ApplicationController
   def create
     # if user specifies starting point and destination
     
-    if params[:directions][:start] && params[:directions][:destination]
+    if params[:directions][:start].size > 0 && params[:directions][:destination].size > 0
       start = params[:directions][:start]
       destination = params[:directions][:destination]
       directions = GoogleDirections.new(start, destination)
@@ -38,11 +38,14 @@ class PlaylistsController < ApplicationController
       
     # if user manually enters time
     
-    elsif params[:time][:hours].to_i > 0 || params[:time][:minutes].to_i > 0
-      playlist_time = params[:time][:hours].to_i * 60 + params[:time][:minutes].to_i
+    elsif params[:time][:hours].size > 0 || params[:time][:minutes].size > 0
+      hours = params[:time][:hours].to_i ||= 0
+      minutes = params[:time][:minutes].to_i ||= 0
+      playlist_time = hours * 60 + minutes
     else
       playlist_time = 0
       flash[:notice] = "There was an error with your playlist time. Double-check your input before resubmitting."
+      redirect_to root_path
     end
     
     # if trip is longer than six hours
