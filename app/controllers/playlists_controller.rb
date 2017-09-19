@@ -38,6 +38,9 @@ class PlaylistsController < ApplicationController
     
     elsif params[:time][:hours].to_i > 0 || params[:time][:minutes].to_i > 0
       playlist_time = params[:time][:hours].to_i * 60 + params[:time][:minutes].to_i
+    else
+      playlist_time = 0
+      flash[:notice] = "There was an error with your playlist time. Double-check your input before resubmitting."
     end
     
     # if trip is longer than six hours
@@ -46,17 +49,28 @@ class PlaylistsController < ApplicationController
       playlist_time = 360
     end
     
+    # SETTING POOL OF TRACKS FOR NEW PLAYLIST
     if params[:pool] == "genre"
-      playlist_pool = []
-      pool_options = [params[:genre_seed_one], params[:genre_seed_two], params[:genre_seed_three]]
-      pool_options.each do |opt|
+      genres = []
+      genre_options = [params[:genre_seed_one], params[:genre_seed_two], params[:genre_seed_three]]
+      genre_options.each do |opt|
         unless opt == ""
-          playlist_pool << opt
+          genres << opt
         end
       end
-    else
-      playlist_pool = params[:pool]
+      playlist_pool = RSpotify::Recommendations.generate(seed_genres: playlist_pool, limit: 100)
+    elseif params[:pool] == "my_top_tracks"
+      playlist_pool = session[:spotify_user].saved_tracks(limit:50, offset:0)
+      playlist_pool += session[:spotify_user].saved_tracks(limit:50, offset:50)
     end
+    
+    
+    # CREATING NEW PLAYLIST
+    # playlist = session[:spotify_user].create_playlist!("My Roadtrip Playlist #{params[:directions][:start] if params[:directions][:start]} to #{params[:directions][:destination] if params[:directions][:destination]}")
+    
+    
+    # ADDING SELECTED TRACKS TO NEW PLAYLIST
+    # playlist.add_tracks!(recommendations.tracks)
     
     puts "Playlist time: #{playlist_time}"
     puts "Playlist pool: #{playlist_pool}"

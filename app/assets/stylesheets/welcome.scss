@@ -6,6 +6,10 @@ body {
     margin: 0;
 }
 
+h4 {
+    margin: 10px 0;
+}
+
 .hide {
     display: none;
 }
@@ -28,6 +32,10 @@ body {
 .or {
     margin: 15px auto;
     text-align: center;
+}
+
+#maps-directions-input label {
+    margin-bottom: 5px;
 }
 
 #maps-directions, #trip-time-input {
