@@ -60,6 +60,9 @@ class PlaylistsController < ApplicationController
           genres << opt
         end
       end
+      if genres.size == 1
+        genres = genres[0].to_s
+      end
       playlist_pool = RSpotify::Recommendations.generate(seed_genres: genres, limit:100) #
     elsif params[:pool] == "my_top_tracks"
       playlist_pool = session[:spotify_user].saved_tracks(limit:50)
@@ -75,7 +78,7 @@ class PlaylistsController < ApplicationController
     # playlist.add_tracks!(recommendations.tracks)
     
     puts "Playlist time: #{playlist_time}"
-    puts "Playlist pool: #{playlist_pool.tracks}"
+    puts "Playlist pool: #{playlist_pool}"
     
     redirect_to root_path
 
