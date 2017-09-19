@@ -49,11 +49,17 @@
                             <%= label_tag "pool_genre", "Music by genre" %><br>
                             
                             <div id="genre-seeds" class="hide">
-                                <%= link_to "Add genre (up to 3)", "javascript: addGenre();", id: "add_genre" %>
-                                
                                 <div class="genre">
                                     <%= label_tag "genre_seed", "Music Genre" %>
                                     <%= select_tag "genre_seed_one", options_for_select(@genres) %>
+                                </div>
+                                <div class="genre">
+                                    <%= label_tag "genre_seed", "Music Genre" %>
+                                    <%= select_tag "genre_seed_two", options_for_select(@genres) %>
+                                </div>
+                                <div class="genre">
+                                    <%= label_tag "genre_seed", "Music Genre" %>
+                                    <%= select_tag "genre_seed_three", options_for_select(@genres) %>
                                 </div>
                                 
                             </div>
@@ -77,15 +83,3 @@
         <% #end %>
     <% end %>
 </div>
-
-<script>
-function addGenre() {
-    jQuery("#genre-seeds").append("<div class=\"genre\"><%= label_tag \"genre_seed_" + genreNum + "\", \"Music Genre\" %>");
-    
-    if (genreNum === "two") {   
-        genreNum = "three";
-    } else if (genreNum ==="three") {
-        jQuery("#add_genre").addClass("hide");
-    }
-}
-</script>

@@ -24,7 +24,6 @@ class PlaylistsController < ApplicationController
   # POST /playlists
   # POST /playlists.json
   def create
-    
     # if user specifies starting point and destination
     
     if params[:directions][:start] && params[:directions][:destination]
@@ -48,7 +47,13 @@ class PlaylistsController < ApplicationController
     end
     
     if params[:pool] == "genre"
-      playlist_pool = params[:genre_seed]
+      playlist_pool = []
+      pool_options = [params[:genre_seed_one], params[:genre_seed_two], params[:genre_seed_three]]
+      pool_options.each do |opt|
+        unless opt == ""
+          playlist_pool << opt
+        end
+      end
     else
       playlist_pool = params[:pool]
     end
