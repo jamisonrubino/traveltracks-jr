@@ -73,7 +73,7 @@ class PlaylistsController < ApplicationController
     # playlist.add_tracks!(recommendations.tracks)
     
     puts "Playlist time: #{playlist_time}"
-    puts "Playlist pool: #{playlist_pool}"
+    puts "Playlist pool: #{playlist_pool.tracks.pluck[:id]}"
     
     redirect_to root_path
 
