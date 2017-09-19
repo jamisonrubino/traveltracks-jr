@@ -28,6 +28,8 @@ class PlaylistsController < ApplicationController
   def create
     # if user specifies starting point and destination
     
+    RSpotify.raw_response = true
+    
     if params[:directions][:start].size > 0 && params[:directions][:destination].size > 0
       start = params[:directions][:start]
       destination = params[:directions][:destination]
@@ -68,7 +70,7 @@ class PlaylistsController < ApplicationController
       end
       playlist_pool = RSpotify::Recommendations.generate(seed_genres: genres, limit:100) #
     elsif params[:pool] == "my_top_tracks"
-      playlist_pool = session[:spotify_user].saved_tracks
+      playlist_pool = session[:spotify_user].saved_tracks(limit: 50, offset: 0)
       # playlist_pool += session[:spotify_user].saved_tracks
     end
     
