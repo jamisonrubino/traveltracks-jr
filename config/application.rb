@@ -12,12 +12,12 @@ module Triplist
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
+    
+    RSpotify::authenticate(ENV['CLIENT_ID'], ENV['CLIENT_SECRET'])
+
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
   end
 end
-
-
-RSpotify::authenticate(ENV['CLIENT_ID'], ENV['CLIENT_SECRET'])

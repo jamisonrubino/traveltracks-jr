@@ -60,7 +60,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # gem 'spotify-client'
 
 gem 'faraday'
-
 gem 'rspotify', '>= 1.22.1'
-
 gem 'google_directions'
