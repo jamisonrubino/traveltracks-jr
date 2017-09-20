@@ -84,7 +84,7 @@ class PlaylistsController < ApplicationController
     puts "params[:pool]: #{params[:pool]}"
     puts "Playlist time: #{playlist_time}"
     puts "Playlist pool: #{playlist_pool}"
-    puts session[:spotify_user]
+    puts session[:spotify_user].methods
     
     redirect_to root_path
 
