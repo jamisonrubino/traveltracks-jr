@@ -70,7 +70,7 @@ class PlaylistsController < ApplicationController
       playlist_pool = RSpotify::Recommendations.generate(seed_genres: genres, limit:100) #
     elsif params[:pool] == "top_tracks"
       puts "my_top_tracks if branch"
-      playlist_pool = spotify_user.saved_tracks
+      playlist_pool = spotify_user.saved_tracks.size)
       # playlist_pool = session[:spotify_user].saved_tracks(limit:50, offset:0)
       # playlist_pool += session[:spotify_user].saved_tracks
     end
@@ -89,7 +89,6 @@ class PlaylistsController < ApplicationController
     puts spotify_user.instance_methods(false)
     
     redirect_to root_path
-
   end
 
   # PATCH/PUT /playlists/1
