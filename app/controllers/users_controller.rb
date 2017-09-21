@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
   
-  def new_user
+  def logout
     session_reset
     redirect_to root_path
   end
