@@ -79,32 +79,44 @@ class PlaylistsController < ApplicationController
       playlist_pool += playlist_pool_1 + playlist_pool_2 + playlist_pool_3 + playlist_pool_4
     end
     
+    # TO-DO: CREATE POOL LENGTH VARIABLE, CHECK AGAINST TRIP LENGTH; SUGGEST SAVING TRACKS OR ADDING GENRE SEEDS IF POOL LENGTH IS SHORTER
+    
+    # RANDOMLY ADD TO PT (PLAYLIST TRACKS) ARRAY UNLESS IT WOULD EXCEED PLAYLIST_TIME
     pt = []
     ps = playlist_pool.size
     ptime = 0
     ps.times do
-      rn = Random.rand(ps-1)
-      puts playlist_pool[rn]
+      rn = Random.rand(playlist_pool.size-1)
       unless ptime + playlist_pool[rn].duration_ms/60000.round(2) >= playlist_time
         pt << playlist_pool[rn]
         playlist_pool.delete_at(rn)
         ptime += playlist_pool[rn].duration_ms/60000.round(2)
+        puts "ptime: #{ptime}"
       end
     end
     
-    ps = playlist_pool.size
-    ltt = playlist_time - ptime
-    playlist_pool.map {|t| pt << t if ltt - t.duration_ms/60000.round(2).abs < 1.5 }
+    puts "playlist_time: #{playlist_time}"
+    puts "ptime: #{ptime}"
+    puts pt.size
     
+    
+    # LOOP THROUGH EACH REMAINING TRACK, ADD IF IT BRINGS TIME LESS THAN 1.5 MINUTES FROM TRIP LENGTH
+    playlist_pool.map do |t| 
+      if (playlist_time - ptime.round(2) - t.duration_ms/60000.round(2)).abs < 1.5
+        pt << t
+        ptime += t.duration_ms/60000.round(2)
+      end
+    end
+    
+    puts pt.size
       
     if playlist_time - ptime > 6
       flash[:notice] = "Your playlist pool was shorter than your trip time. Try using genre seeds or saving more Spotify tracks to your library."
     end
     
-    puts "params[:pool]: #{params[:pool]}"
-    puts "Playlist time: #{playlist_time}"
-    puts "Playlist pool: #{playlist_pool}"
-    puts "Refined playlist pool: #{pps}"
+    # puts "params[:pool]: #{params[:pool]}"
+    # puts "Playlist time: #{playlist_time}"
+    # puts "Playlist pool: #{playlist_pool}"
 
     # CREATING NEW PLAYLIST
     playlist_name = "My Roadtrip Playlist"
@@ -113,9 +125,25 @@ class PlaylistsController < ApplicationController
     puts "Creating playlist!"
     playlist = spotify_user.create_playlist!(playlist_name)
     
+    
     puts "Adding tracks!"
     # ADDING SELECTED TRACKS TO NEW PLAYLIST
-    playlist.add_tracks!(pt)
+    n = (pt.size/10.0).ceil
+    puts "pt.size/10.0.ceil = #{n}"
+    
+    n.times do |i|
+      a=[]
+      pt.each_with_index.map do |t, e| 
+        unless e >= 10
+          a << t
+        end
+      end
+      pt.size > 10 ? c = 10 : c = pt.size
+      c.times do |q|
+        pt.delete_at(q)
+      end
+      playlist.add_tracks!(a)
+    end
 
 
     
