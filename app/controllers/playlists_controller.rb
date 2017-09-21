@@ -67,7 +67,8 @@ class PlaylistsController < ApplicationController
       if genres.size == 1
         genres = genres[0].to_s
       end
-      playlist_pool = RSpotify::Recommendations.generate(seed_genres: genres, limit:100) #
+      recommendations = RSpotify::Recommendations.generate(seed_genres: genres, limit:100) #
+      recommendations.map {|r| playlist_pool << r.track }
     elsif params[:pool] == "top_tracks"
       puts "my_top_tracks if branch"
       playlist_pool_1 = spotify_user.saved_tracks(limit: 50, offset: 0)
@@ -146,7 +147,6 @@ class PlaylistsController < ApplicationController
     end
 
 
-    
     redirect_to root_path
   end
 
