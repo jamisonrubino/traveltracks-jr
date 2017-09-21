@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     session[:spotify_user_name] = session[:spotify_user].display_name
     
     puts session[:spotify_user].email
-    puts session[:spotify_user].saved_tracks
+    puts session[:spotify_user].saved_tracks(limit: 50, offset: 0)
     
         # Access private data
     # spotify_user.country #=> "US"
