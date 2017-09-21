@@ -5,8 +5,19 @@ class UsersController < ApplicationController
     session[:spotify_user] = RSpotify::User.new(request.env['omniauth.auth'])
     session[:spotify_user_name] = session[:spotify_user].display_name
     
+    puts session[:spotify_user_name]
     puts session[:spotify_user].email
     puts session[:spotify_user].saved_tracks(limit: 50, offset: 0)
+    
+    session[:spotify_user].saved_tracks(limit: 50, offset: 0).each do |t|
+      session[:saved_tracks] << t
+    end
+    session[:spotify_user].saved_tracks(limit: 50, offset: 50).each do |t|
+      session[:saved_tracks] << t
+    end
+    session[:spotify_user].saved_tracks(limit: 50, offset: 100).each do |t|
+      session[:saved_tracks] << t
+    end
     
         # Access private data
     # spotify_user.country #=> "US"
