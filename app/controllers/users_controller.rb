@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   
   def spotify
     session[:spotify_user] = RSpotify::User.new(request.env['omniauth.auth'])
+    session[:spotify_user_name] = session[:spotify_user].display_name
     
     puts session[:spotify_user].email
     puts session[:spotify_user].saved_tracks
