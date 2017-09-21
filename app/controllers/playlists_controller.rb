@@ -84,6 +84,7 @@ class PlaylistsController < ApplicationController
     ptime = 0
     ps.times do
       rn = Random.rand(ps-1)
+      puts playlist_pool[rn]
       unless ptime + playlist_pool[rn].duration_ms/60000.round(2) >= playlist_time
         pt << playlist_pool[rn]
         playlist_pool.delete_at(rn)
