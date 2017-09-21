@@ -99,22 +99,24 @@ class PlaylistsController < ApplicationController
     if playlist_time - ptime > 6
       flash[:notice] = "Your playlist pool was shorter than your trip time. Try using genre seeds or saving more Spotify tracks to your library."
     end
-
-    # CREATING NEW PLAYLIST
-    playlist_name = "My Roadtrip Playlist"
-    playlist_name += " #{params[:directions][:start] if params[:directions][:start]} to #{params[:directions][:destination] if params[:directions][:destination]}" if params[:pool] = params[:directions][:start].size > 0 && params[:directions][:destination].size > 0
-    
-    playlist = spotify_user.create_playlist!(pt)
-    
-    
-    
-    # ADDING SELECTED TRACKS TO NEW PLAYLIST
-    # playlist.add_tracks!(recommendations.tracks)
     
     puts "params[:pool]: #{params[:pool]}"
     puts "Playlist time: #{playlist_time}"
     puts "Playlist pool: #{playlist_pool}"
     puts "Refined playlist pool: #{pps}"
+
+    # CREATING NEW PLAYLIST
+    playlist_name = "My Roadtrip Playlist"
+    playlist_name += " #{params[:directions][:start] if params[:directions][:start]} to #{params[:directions][:destination] if params[:directions][:destination]}" if params[:pool] = params[:directions][:start].size > 0 && params[:directions][:destination].size > 0
+    
+    puts "Creating playlist!"
+    playlist = spotify_user.create_playlist!(playlist_name)
+    
+    puts "Adding tracks!"
+    # ADDING SELECTED TRACKS TO NEW PLAYLIST
+    playlist.add_tracks!(pt)
+
+
     
     redirect_to root_path
   end
