@@ -15,7 +15,7 @@
       <header>
         <div id="header">
           <div id="username">
-            <span id="username-link"><%= session[:spotify_user_id] %></span>
+            <span id="username-link"><%= session[:spotify_user].display_name %></span>
           </div>
           <div id="logout">
             <%= link_to "Logout", logout_path, id: "logout-link" %>
