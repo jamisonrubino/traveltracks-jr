@@ -71,8 +71,8 @@ class PlaylistsController < ApplicationController
     elsif params[:pool] == "top_tracks"
       puts "my_top_tracks if branch"
       playlist_pool = spotify_user.saved_tracks(limit: 50, offset: 0)
-      # pps = []
-      # playlist_pool.map {|t| pps << {id: t['@id'], duration: t['@duration_ms']}}
+      pps = []
+      playlist_pool.map {|t| pps << {id: t.id, duration: t.duration_ms}}
     end
     
     
@@ -86,6 +86,7 @@ class PlaylistsController < ApplicationController
     puts "params[:pool]: #{params[:pool]}"
     puts "Playlist time: #{playlist_time}"
     puts "Playlist pool: #{playlist_pool}"
+    puts "Refined playlist pool: #{pps}"
     # puts "Playlist pool: #{pps}"
     # puts spotify_user.instance_methods(false)
     
