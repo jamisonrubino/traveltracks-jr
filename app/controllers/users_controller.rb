@@ -7,19 +7,17 @@ class UsersController < ApplicationController
     
     puts session[:spotify_user_name]
     puts session[:spotify_user].email
-    puts session[:spotify_user].saved_tracks(limit: 50, offset: 0)
     
-    session[:saved_tracks] = []
+    session[:saved_tracks_1] = session[:spotify_user].saved_tracks(limit: 50, offset: 0)
     
-    session[:spotify_user].saved_tracks(limit: 50, offset: 0).each do |t|
-      session[:saved_tracks] << t
-    end
-    session[:spotify_user].saved_tracks(limit: 50, offset: 50).each do |t|
-      session[:saved_tracks] << t
-    end
-    session[:spotify_user].saved_tracks(limit: 50, offset: 100).each do |t|
-      session[:saved_tracks] << t
-    end
+    session[:saved_tracks_2] = session[:spotify_user].saved_tracks(limit: 50, offset: 50)
+    
+    session[:saved_tracks_3] = session[:spotify_user].saved_tracks(limit: 50, offset: 100)
+    
+    puts session[:saved_tracks_1]
+    puts session[:saved_tracks_2]
+    puts session[:saved_tracks_3]
+    
     redirect_to root_path
   end
   
