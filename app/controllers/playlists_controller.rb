@@ -98,7 +98,7 @@ class PlaylistsController < ApplicationController
       
     if playlist_time - ptime > 6
       flash[:notice] = "Your playlist pool was shorter than your trip time. Try using genre seeds or saving more Spotify tracks to your library."
-    
+    end
 
     # CREATING NEW PLAYLIST
     playlist_name = "My Roadtrip Playlist"
