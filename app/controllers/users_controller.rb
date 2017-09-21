@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   end
   
   def logout
-    session_reset
+    reset_session
     redirect_to root_path
   end
 
