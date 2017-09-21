@@ -71,7 +71,7 @@ class PlaylistsController < ApplicationController
     elsif params[:pool] == "top_tracks"
       puts "my_top_tracks if branch"
       playlist_pool = session[:spotify_user].saved_tracks(limit: 50, offset: 0)
-      playlist_pool += session[:spotify_user].saved_tracks(limit:50, offset:50)
+      # playlist_pool += session[:spotify_user].saved_tracks(limit:50, offset:50)
       # playlist_pool += session[:spotify_user].saved_tracks
     end
     
