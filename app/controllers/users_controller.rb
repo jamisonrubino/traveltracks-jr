@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     session['spotify_user_id'] = session['spotify_user']['id']
     
     puts session['spotify_user_id']
-    puts session['spotify_user'].email
+    puts session['spotify_user']['email']
     
     # session[:saved_tracks_1] = session['spotify_user'].saved_tracks(limit: 50, offset: 0)
     
