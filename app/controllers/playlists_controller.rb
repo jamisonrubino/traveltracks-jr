@@ -70,15 +70,41 @@ class PlaylistsController < ApplicationController
       playlist_pool = RSpotify::Recommendations.generate(seed_genres: genres, limit:100) #
     elsif params[:pool] == "top_tracks"
       puts "my_top_tracks if branch"
-      playlist_pool = spotify_user.saved_tracks(limit: 50, offset: 0)
+      playlist_pool_1 = spotify_user.saved_tracks(limit: 50, offset: 0)
       playlist_pool_2 = spotify_user.saved_tracks(limit: 50, offset: 50)
-      pps = []
-      playlist_pool.map {|t| pps << {id: t.id, duration: t.duration_ms}}
+      playlist_pool_3 = spotify_user.saved_tracks(limit: 50, offset: 100)
+      playlist_pool_4 = spotify_user.saved_tracks(limit: 50, offset: 150)
+      
+      playlist_pool = []
+      playlist_pool += playlist_pool_1 + playlist_pool_2 + playlist_pool_3 + playlist_pool_4
     end
     
+    ps = playlist_pool.size
+    ptime = 0
+    ps.times do
+      rn = Random.rand(playlist_pool.size-1)
+      unless ptime + playlist_pool[rn].duration_ms/60000.round(2) >= playlist_time
+        pt << playlist_pool[rn]
+        playlist_pool.delete_at(rn)
+        ptime += playlist_pool[rn].duration_ms/60000.round(2)
+      end
+    end
     
+    ps = playlist_pool.size
+    ltt = playlist_time - ptime
+    playlist_pool.map {|t| pt << t if ltt - t.duration_ms/60000.round(2).abs < 1.5 }
+    
+      
+    if playlist_time - ptime > 6
+      flash[:notice] = "Your playlist pool was shorter than your trip time. Try using genre seeds or saving more Spotify tracks to your library."
+    
+
     # CREATING NEW PLAYLIST
-    # playlist = session['spotify_user'].create_playlist!("My Roadtrip Playlist #{params[:directions][:start] if params[:directions][:start]} to #{params[:directions][:destination] if params[:directions][:destination]}")
+    playlist_name = "My Roadtrip Playlist"
+    playlist_name += " #{params[:directions][:start] if params[:directions][:start]} to #{params[:directions][:destination] if params[:directions][:destination]}" if params[:pool] = params[:directions][:start].size > 0 && params[:directions][:destination].size > 0
+    
+    playlist = spotify_user.create_playlist!(pt)
+    
     
     
     # ADDING SELECTED TRACKS TO NEW PLAYLIST
@@ -87,10 +113,7 @@ class PlaylistsController < ApplicationController
     puts "params[:pool]: #{params[:pool]}"
     puts "Playlist time: #{playlist_time}"
     puts "Playlist pool: #{playlist_pool}"
-    puts "Playlist pool 2 (what happens when fewer than 5 tracks: #{playlist_pool_2}"
     puts "Refined playlist pool: #{pps}"
-    # puts "Playlist pool: #{pps}"
-    # puts spotify_user.instance_methods(false)
     
     redirect_to root_path
   end
