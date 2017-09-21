@@ -68,7 +68,9 @@ class PlaylistsController < ApplicationController
         genres = genres[0].to_s
       end
       recommendations = RSpotify::Recommendations.generate(seed_genres: genres, limit:100) #
-      recommendations.map {|r| playlist_pool << r.track }
+      recommendations['tracks'].each do |track|
+        playlist_pool << track
+      end
     elsif params[:pool] == "top_tracks"
       puts "my_top_tracks if branch"
       playlist_pool_1 = spotify_user.saved_tracks(limit: 50, offset: 0)
