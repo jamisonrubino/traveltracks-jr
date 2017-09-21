@@ -10,6 +10,22 @@
 
   <body>
     
+    <% if session[:spotify_user] %>
+    
+      <header>
+        <div id="header">
+          <div id="username">
+            <span id="username-link"><%= session[:spotify_user].id %></span>
+          </div>
+          <div id="logout">
+            <%= link_to "Logout", new_user_path, id: "logout-link" %>
+          </div>
+          
+        </div>
+      </header>
+      
+    <% end %>
+    
     <% if flash[:notice] %>
       <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -21,6 +37,7 @@
           <%= flash[:alert] %>
       </div>
     <% end %>
+    
     
     
     <%= yield %>

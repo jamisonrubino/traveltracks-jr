@@ -55,10 +55,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-# gem 'rspotify'
-# gem 'omniauth-spotify'
-# gem 'spotify-client'
-
 gem 'faraday'
 gem 'rspotify', '>= 1.22.1'
 gem 'google_directions'
