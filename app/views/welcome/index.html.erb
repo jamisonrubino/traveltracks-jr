@@ -2,7 +2,7 @@
     <% if !session['spotify_user'] %>
         <%= link_to "Sign in to Spotify", '/auth/spotify', class: "sign-in" %>
     <% else %>
-    <% puts session[:spotify_user] %>
+    <% puts session['spotify_user']['id'] %>
         
         <%= form_tag("/make_playlist", method:"post") %>
             <div id="form-wrap">

@@ -27,7 +27,7 @@ class PlaylistsController < ApplicationController
   # POST /playlists.json
   def create
     # if user specifies starting point and destination
-    spotify_user = session[:spotify_user]
+    spotify_user = session['spotify_user']
     
     if params[:directions][:start].size > 0 && params[:directions][:destination].size > 0
       start = params[:directions][:start]
@@ -70,13 +70,13 @@ class PlaylistsController < ApplicationController
       playlist_pool = RSpotify::Recommendations.generate(seed_genres: genres, limit:100) #
     elsif params[:pool] == "top_tracks"
       puts "my_top_tracks if branch"
-      playlist_pool = session[:spotify_user].saved_tracks(limit: 50, offset: 0)
+      playlist_pool = session['spotify_user'].saved_tracks(limit: 50, offset: 0)
       
     end
     
     
     # CREATING NEW PLAYLIST
-    # playlist = session[:spotify_user].create_playlist!("My Roadtrip Playlist #{params[:directions][:start] if params[:directions][:start]} to #{params[:directions][:destination] if params[:directions][:destination]}")
+    # playlist = session['spotify_user'].create_playlist!("My Roadtrip Playlist #{params[:directions][:start] if params[:directions][:start]} to #{params[:directions][:destination] if params[:directions][:destination]}")
     
     
     # ADDING SELECTED TRACKS TO NEW PLAYLIST
