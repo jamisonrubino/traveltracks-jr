@@ -79,10 +79,11 @@ class PlaylistsController < ApplicationController
       playlist_pool += playlist_pool_1 + playlist_pool_2 + playlist_pool_3 + playlist_pool_4
     end
     
+    pt = []
     ps = playlist_pool.size
     ptime = 0
     ps.times do
-      rn = Random.rand(playlist_pool.size-1)
+      rn = Random.rand(ps-1)
       unless ptime + playlist_pool[rn].duration_ms/60000.round(2) >= playlist_time
         pt << playlist_pool[rn]
         playlist_pool.delete_at(rn)
