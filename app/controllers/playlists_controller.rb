@@ -38,7 +38,6 @@ class PlaylistsController < ApplicationController
       end
       
     # if user manually enters time
-    
     elsif params[:time][:hours].size > 0 || params[:time][:minutes].size > 0
       hours = params[:time][:hours].to_i ||= 0
       minutes = params[:time][:minutes].to_i ||= 0
@@ -85,13 +84,12 @@ class PlaylistsController < ApplicationController
     end
     
     # TO-DO: CREATE POOL LENGTH VARIABLE, CHECK AGAINST TRIP LENGTH; SUGGEST SAVING TRACKS OR ADDING GENRE SEEDS IF POOL LENGTH IS SHORTER
-    
     # RANDOMLY ADD TO PT (PLAYLIST TRACKS) ARRAY UNLESS IT WOULD EXCEED PLAYLIST_TIME
     pt = []
     ps = playlist_pool.size
     puts "playlist pool size: #{ps}"
     ptime = 0
-    ps.times do
+    until (playlist_time - ptime).abs <= 2
       if playlist_pool.size >= 1
         rn = Random.rand(playlist_pool.size-1)
         unless ptime + playlist_pool[rn].duration_ms/60000.round(2) >= playlist_time+2
@@ -102,6 +100,7 @@ class PlaylistsController < ApplicationController
         end
       else
         flash[:notice] = "Failure building playlist pool. Try saving more tracks or selecting different genres."
+        break
         redirect_to root_path
       end
     end
@@ -110,24 +109,10 @@ class PlaylistsController < ApplicationController
     puts "ptime: #{ptime}"
     puts pt.size
     
-    
-    # LOOP THROUGH EACH REMAINING TRACK, ADD IF IT BRINGS TIME LESS THAN 1.5 MINUTES FROM TRIP LENGTH
-    # playlist_pool.map do |t| 
-    #   if (playlist_time - ptime.round(2) - t.duration_ms/60000.round(2)).abs < 1.5
-    #     pt << t
-    #     ptime += t.duration_ms/60000.round(2)
-    #   end
-    # end
-    
-    puts pt.size
-      
     if playlist_time - ptime > 6
       flash[:notice] = "Your playlist pool was shorter than your trip time. Try using genre seeds or saving more Spotify tracks to your library."
     end
-    
-    # puts "params[:pool]: #{params[:pool]}"
-    # puts "Playlist time: #{playlist_time}"
-    # puts "Playlist pool: #{playlist_pool}"
+
 
     # CREATING NEW PLAYLIST
     playlist_name = "My Roadtrip Playlist"
