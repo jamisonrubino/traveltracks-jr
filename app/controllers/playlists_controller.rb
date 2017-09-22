@@ -92,12 +92,17 @@ class PlaylistsController < ApplicationController
     puts "playlist pool size: #{ps}"
     ptime = 0
     ps.times do
-      rn = Random.rand(playlist_pool.size-1)
-      unless ptime + playlist_pool[rn].duration_ms/60000.round(2) >= playlist_time+2
-        pt << playlist_pool[rn]
-        playlist_pool.delete_at(rn)
-        ptime += playlist_pool[rn].duration_ms/60000.round(2)
-        puts "ptime: #{ptime}"
+      if playlist_pool.size >= 1
+        rn = Random.rand(playlist_pool.size-1)
+        unless ptime + playlist_pool[rn].duration_ms/60000.round(2) >= playlist_time+2
+          pt << playlist_pool[rn]
+          playlist_pool.delete_at(rn)
+          ptime += playlist_pool[rn].duration_ms/60000.round(2)
+          puts "ptime: #{ptime}"
+        end
+      else
+        flash[:notice] = "Failure building playlist pool. Try saving more tracks or selecting different genres."
+        redirect_to root_path
       end
     end
     
@@ -140,20 +145,21 @@ class PlaylistsController < ApplicationController
     n.times do |i|
       a[i] = []
       if i == n-1     # if it's the only set
+        puts "% times"
         # puts "pt.size%10: #{pt.size%10}"
         pt.size%10.times do |v|
-          a[i] << pt[i*10 + v]
+          a[i] << pt[i*10 + v] if pt[i*10 + v]
         end
       else
+        puts "10 times"
         10.times do |v|
-          a[i] << pt[i*10 + v]
+          a[i] << pt[i*10 + v] if pt[i*10 + v]
         end
       end
-      puts a[i]
       # puts a[i][0].uri
       playlist.add_tracks!(a[i])
     end
-      
+    puts a
 
 
     redirect_to root_path
