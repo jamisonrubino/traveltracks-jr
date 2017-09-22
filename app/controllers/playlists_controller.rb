@@ -90,7 +90,7 @@ class PlaylistsController < ApplicationController
     puts "playlist pool size: #{ps}"
     ptime = 0
     until (playlist_time - ptime).abs <= 2
-      if playlist_pool.size >= 1
+      if playlist_pool.size > 1
         rn = Random.rand(playlist_pool.size-1)
         unless ptime + playlist_pool[rn].duration_ms/60000.round(2) >= playlist_time+2
           pt << playlist_pool[rn]
