@@ -146,8 +146,10 @@ class PlaylistsController < ApplicationController
         end
       end
       pt.size > 10 ? c = 10 : c = pt.size
+      
       c.times do |q|
         pt.delete_at(q)
+        puts "Deleted pt[#{q}]"
       end
       playlist.add_tracks!(a)
       puts "This batch's queue size: #{a.size}"
