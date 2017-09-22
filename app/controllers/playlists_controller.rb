@@ -141,8 +141,8 @@ class PlaylistsController < ApplicationController
       pt.each_with_index.map do |t, e| 
         unless e >= 10
           a << t
-          tn++
-          puts "Queueing track ##{tn}"
+          tn += 1
+          puts "queued track nums: #{tn}"
         end
       end
       pt.size > 10 ? c = 10 : c = pt.size
