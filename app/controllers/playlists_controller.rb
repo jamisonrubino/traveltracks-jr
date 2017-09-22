@@ -93,7 +93,7 @@ class PlaylistsController < ApplicationController
     ptime = 0
     ps.times do
       rn = Random.rand(playlist_pool.size-1)
-      unless ptime + playlist_pool[rn].duration_ms/60000.round(2) >= playlist_time
+      unless ptime + playlist_pool[rn].duration_ms/60000.round(2) >= playlist_time+2
         pt << playlist_pool[rn]
         playlist_pool.delete_at(rn)
         ptime += playlist_pool[rn].duration_ms/60000.round(2)
@@ -107,12 +107,12 @@ class PlaylistsController < ApplicationController
     
     
     # LOOP THROUGH EACH REMAINING TRACK, ADD IF IT BRINGS TIME LESS THAN 1.5 MINUTES FROM TRIP LENGTH
-    playlist_pool.map do |t| 
-      if (playlist_time - ptime.round(2) - t.duration_ms/60000.round(2)).abs < 1.5
-        pt << t
-        ptime += t.duration_ms/60000.round(2)
-      end
-    end
+    # playlist_pool.map do |t| 
+    #   if (playlist_time - ptime.round(2) - t.duration_ms/60000.round(2)).abs < 1.5
+    #     pt << t
+    #     ptime += t.duration_ms/60000.round(2)
+    #   end
+    # end
     
     puts pt.size
       
@@ -134,7 +134,6 @@ class PlaylistsController < ApplicationController
     
     puts "Adding tracks!"
     # ADDING SELECTED TRACKS TO NEW PLAYLIST IN BLOCKS OF 10 (A[I][10TRACKS])
-    puts pt
     n = (pt.size/10.0).ceil
 
     a = []
@@ -151,6 +150,7 @@ class PlaylistsController < ApplicationController
         end
       end
       puts a[i]
+      # puts a[i][0].uri
       playlist.add_tracks!(a[i])
     end
       
