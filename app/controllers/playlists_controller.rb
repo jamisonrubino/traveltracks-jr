@@ -67,7 +67,7 @@ class PlaylistsController < ApplicationController
       if genres.size == 1
         genres = genres[0].to_s
       end
-      recs = RSpotify::Recommendations.generate(seed_genres: genres, limit: 100)
+      recs = RSpotify::Recommendations.generate(seed_genres: ["rock"], limit: 100)
       playlist_pool = []
       recs.tracks.each do |track|
         playlist_pool << track
@@ -89,6 +89,7 @@ class PlaylistsController < ApplicationController
     # RANDOMLY ADD TO PT (PLAYLIST TRACKS) ARRAY UNLESS IT WOULD EXCEED PLAYLIST_TIME
     pt = []
     ps = playlist_pool.size
+    puts "playlist pool size: #{ps}"
     ptime = 0
     ps.times do
       rn = Random.rand(playlist_pool.size-1)
@@ -132,28 +133,27 @@ class PlaylistsController < ApplicationController
     
     
     puts "Adding tracks!"
-    # ADDING SELECTED TRACKS TO NEW PLAYLIST
+    # ADDING SELECTED TRACKS TO NEW PLAYLIST IN BLOCKS OF 10 (A[I][10TRACKS])
+    puts pt
     n = (pt.size/10.0).ceil
-    puts "pt.size/10.0.ceil = #{n}"
-    tn = 0
+
+    a = []
     n.times do |i|
-      a=[]
-      pt.each_with_index.map do |t, e| 
-        unless e >= 10
-          a << t
-          tn += 1
-          puts "queued track nums: #{tn}"
+      a[i] = []
+      if i == n-1     # if it's the only set
+        # puts "pt.size%10: #{pt.size%10}"
+        pt.size%10.times do |v|
+          a[i] << pt[i*10 + v]
+        end
+      else
+        10.times do |v|
+          a[i] << pt[i*10 + v]
         end
       end
-      pt.size > 10 ? c = 10 : c = pt.size
-      
-      c.times do |q|
-        pt.delete_at(q)
-        puts "Deleted pt[#{q}]"
-      end
-      playlist.add_tracks!(a)
-      puts "This batch's queue size: #{a.size}"
+      puts a[i]
+      playlist.add_tracks!(a[i])
     end
+      
 
 
     redirect_to root_path
