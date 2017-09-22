@@ -89,13 +89,13 @@ class PlaylistsController < ApplicationController
     ps = playlist_pool.size
     puts "playlist pool size: #{ps}"
     ptime = 0
-    until (playlist_time - ptime).abs <= 3.00
+    until (playlist_time - ptime).abs.round(2) <= 3.00
       if playlist_pool.size > 1
         rn = Random.rand(playlist_pool.size-1)
-        unless ptime + playlist_pool[rn].duration_ms/60000.round(2) > playlist_time+3.00
+        unless ptime + playlist_pool[rn].duration_ms/60000 > playlist_time+3.00
           pt << playlist_pool[rn]
           playlist_pool.delete_at(rn)
-          ptime += playlist_pool[rn].duration_ms/60000.round(2)
+          ptime += playlist_pool[rn].duration_ms/60000
           puts "ptime: #{ptime}"
         end
       else
@@ -131,7 +131,6 @@ class PlaylistsController < ApplicationController
       a[i] = []
       if i == n-1     # if it's the only set
         puts "% times"
-        # puts "pt.size%10: #{pt.size%10}"
         pt.size%10.times do |v|
           a[i] << pt[i*10 + v] if pt[i*10 + v]
         end
@@ -141,7 +140,6 @@ class PlaylistsController < ApplicationController
           a[i] << pt[i*10 + v] if pt[i*10 + v]
         end
       end
-      # puts a[i][0].uri
       playlist.add_tracks!(a[i])
     end
     puts a
