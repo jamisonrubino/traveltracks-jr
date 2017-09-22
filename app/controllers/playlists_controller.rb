@@ -67,7 +67,7 @@ class PlaylistsController < ApplicationController
       if genres.size == 1
         genres = genres[0].to_s
       end
-      recs = RSpotify::Recommendations.generate(seed_genres: ["rock"], limit: 100)
+      recs = RSpotify::Recommendations.generate(seed_genres: genres, limit: 100)
       playlist_pool = []
       recs.tracks.each do |track|
         playlist_pool << track
