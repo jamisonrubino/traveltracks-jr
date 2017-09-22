@@ -135,12 +135,14 @@ class PlaylistsController < ApplicationController
     # ADDING SELECTED TRACKS TO NEW PLAYLIST
     n = (pt.size/10.0).ceil
     puts "pt.size/10.0.ceil = #{n}"
-    
+    tn = 0
     n.times do |i|
       a=[]
       pt.each_with_index.map do |t, e| 
         unless e >= 10
           a << t
+          tn++
+          puts "Queueing track ##{tn}"
         end
       end
       pt.size > 10 ? c = 10 : c = pt.size
@@ -148,6 +150,7 @@ class PlaylistsController < ApplicationController
         pt.delete_at(q)
       end
       playlist.add_tracks!(a)
+      puts "This batch's queue size: #{a.size}"
     end
 
 
