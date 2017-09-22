@@ -1,6 +1,8 @@
 <div id="welcome">
     <% if !session['spotify_user'] %>
-        <%= link_to "Sign in to Spotify", '/auth/spotify', class: "sign-in" %>
+        <div id="spotify-login-div">
+            <%= link_to "Sign in to Spotify", '/auth/spotify', class: "sign-in" %>
+        </div>
     <% else %>
     <% puts session['spotify_user_id'] %>
         

@@ -28,15 +28,31 @@ h4 {
 }
 
 header {
-    width: fit-content;
+    margin: 0 auto;
+    width: 60%;
+    min-width: 250px;
     height: fit-content;
     overflow: auto;
     box-sizing: border-box;
-    padding: 10px 20px;
+    padding: 15px 20px;
+    background: #f9f9f9;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
 }
 
 #header {
-    width: 100%;
+}
+
+#user-nav {
     height: 100%;
     overflow: auto;
+    float: right;
+}
+
+#username, #logout, #my-playlists {
+    display: inline-block;
+    float: left;
+}
+
+#username {
+    margin: 0 15px 0 0;
 }
