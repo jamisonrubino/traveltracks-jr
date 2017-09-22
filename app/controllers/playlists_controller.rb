@@ -68,7 +68,7 @@ class PlaylistsController < ApplicationController
         genres = genres[0].to_s
       end
       recommendations = RSpotify::Recommendations.generate(seed_genres: genres, limit:100) #
-      recommendations['tracks'].each do |track|
+      recommendations.tracks.each do |track|
         playlist_pool << track
       end
     elsif params[:pool] == "top_tracks"
