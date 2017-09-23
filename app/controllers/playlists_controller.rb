@@ -6,7 +6,8 @@ class PlaylistsController < ApplicationController
   # GET /playlists
   # GET /playlists.json
   def index
-    @playlists = session['spotify_user'].user_playlists(:id).pluck(:name)
+    spotify_user = RSpotify::User.new(session['spotify_user'])
+    @playlists = spotify_user.user_playlists(:id).pluck(:name)
   end
 
   # GET /playlists/1
@@ -146,7 +147,7 @@ class PlaylistsController < ApplicationController
       n.times do |i|
         a[i] = []
         if i == n-1     # if it's the only set
-          puts "% times"
+          puts "#{pt.size%10} times"
           pt.size%10.times do |v|
             a[i] << pt[i*10 + v] if pt[i*10 + v]
           end
