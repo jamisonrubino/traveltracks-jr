@@ -99,14 +99,14 @@ class PlaylistsController < ApplicationController
       pt = []
       ps = playlist_pool.size
       puts "playlist pool size: #{ps}"
-      ptime = 0
-      until (playlist_time - ptime).abs.round(2) <= 2.50
+      ptime = 0.000
+      until (playlist_time - ptime).abs.round(2) <= 2
         if playlist_pool.size > 1
           rn = Random.rand(playlist_pool.size-1)
-          unless ptime + playlist_pool[rn].duration_ms/60000 > playlist_time+2.50
+          unless ptime + playlist_pool[rn].duration_ms/60000.000 > playlist_time+2
             pt << playlist_pool[rn]
             playlist_pool.delete_at(rn)
-            ptime += playlist_pool[rn].duration_ms/60000
+            ptime += playlist_pool[rn].duration_ms/60000.000
             puts "ptime: #{ptime}"
           end
         else
