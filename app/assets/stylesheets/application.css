@@ -31,12 +31,13 @@ header {
     margin: 0 auto;
     width: 60%;
     min-width: 250px;
+    max-width: 900px;
     height: fit-content;
     overflow: auto;
     box-sizing: border-box;
     padding: 15px 20px;
     background: #f9f9f9;
-    box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
 
 #header {
