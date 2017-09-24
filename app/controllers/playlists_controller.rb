@@ -35,18 +35,16 @@ class PlaylistsController < ApplicationController
     playlist = make_playlist(spotify_user)
     add_tracks(pt, playlist)
     
-    flash[:notice] = "Your playlist was successfully created."
-    
     @playlist = Playlist.new
     @playlist.uri = playlist.uri
     @playlist.title = playlist.name
     @playlist.user_id = session['spotify_user_id']
     
     if @playlist.save
+      flash[:notice] = "Your playlist was successfully created."
       redirect_to "/playlists/#{@playlist.id}"
     end
     
-    # redirect_to root_path
   end
 
   # PATCH/PUT /playlists/1
