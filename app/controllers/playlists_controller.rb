@@ -78,8 +78,8 @@ class PlaylistsController < ApplicationController
           playlist_pool << track
         end
         puts playlist_pool
-      elsif params[:pool] == "top_tracks"
-        puts "my_top_tracks if branch"
+      elsif params[:pool] == "saved_tracks"
+        puts "my_saved_tracks if branch"
         playlist_pool_1 = spotify_user.saved_tracks(limit: 50, offset: 0)
         playlist_pool_2 = spotify_user.saved_tracks(limit: 50, offset: 50)
         playlist_pool_3 = spotify_user.saved_tracks(limit: 50, offset: 100)
@@ -87,6 +87,22 @@ class PlaylistsController < ApplicationController
         
         playlist_pool = []
         playlist_pool += playlist_pool_1 + playlist_pool_2 + playlist_pool_3 + playlist_pool_4
+        
+      elsif params[:pool] == "top_tracks"
+        playlist_pool_1 = spotify_user.top_tracks(time_range: 'long_term', limit: 50, offset: 0)
+        playlist_pool_2 = spotify_user.top_tracks(time_range: 'long_term', limit: 50, offset: 50)
+        playlist_pool_3 = spotify_user.top_tracks(time_range: 'long_term', limit: 50, offset: 100)
+        playlist_pool_4 = spotify_user.top_tracks(time_range: 'long_term', limit: 50, offset: 150)
+        
+        playlist_pool = []
+        playlist_pool += playlist_pool_1 + playlist_pool_2 + playlist_pool_3 + playlist_pool_4
+
+      elsif params[:pool] == "artist"
+        artist = RSpotify::Artist.search(params[:artist_seed])
+        recs = RSpotify::Recommendations.generate(seed_artists: artist.first.id, limit: 100)
+        recs.tracks.each do |track|
+          playlist_pool << track
+        end
       end
       
       playlist_pool

@@ -70,6 +70,20 @@
                                 </div>
                                 
                             </div>
+                        </div>
+                        
+                        <div class="or">
+                            <hr><h3>OR</h3><hr>
+                        </div>
+                        
+                        
+                        <div id="artist-option">
+                            <%= radio_button_tag "pool", "artist" %>
+                            <%= label_tag "pool_artist", "Recommendations based on an artist" %>
+                            
+                            <div id="track-input" class="hide">
+                                <%= text_field(:pool, :artist, placeholder: "Artist", value: "") %>
+                            </div>
                             
                         </div>
                         
@@ -77,9 +91,18 @@
                             <hr><h3>OR</h3><hr>
                         </div>
 
+                        <div id="saved-tracks">
+                            <%= radio_button_tag "pool", "saved_tracks" %>
+                            <%= label_tag "pool_saved_tracks", "My most recent saved tracks" %>
+                        </div>
+                        
+                        <div class="or">
+                            <hr><h3>OR</h3><hr>
+                        </div>
+                        
                         <div id="top-tracks">
                             <%= radio_button_tag "pool", "top_tracks" %>
-                            <%= label_tag "pool_top_tracks", "My top tracks" %>
+                            <%= label_tag "pool_top_tracks", "My most-listened-to tracks" %>
                         </div>
                     </div>
                 </div>
@@ -90,6 +113,11 @@
         <% #end %>
     <% end %>
 </div>
+
+
+
+
+
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places"></script>
 
