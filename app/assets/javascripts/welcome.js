@@ -15,8 +15,8 @@ function addHidePool() {
         $("#track-input").removeClass();
         $("#genre-seeds").addClass("hide");
         $("#track-input").addClass("hide");
-    } else if ($("input:radio[name=pool]#pool_track").is(":checked")) {
-        $("#track-input").removeClass("hide");
+    } else if ($("input:radio[name=pool]#pool_artist").is(":checked")) {
+        $("#artist-input").removeClass("hide");
         $("#genre-seeds").removeClass();
         $("#genre-seeds").addClass("hide");
     }
