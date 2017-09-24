@@ -9,6 +9,8 @@ var genreNum = "two";
 
 function addHidePool() {
     if ($("input:radio[name=pool]#pool_genre").is(":checked")) {
+        $("#artist-input").removeClass();
+        $("#artist-input").addClass("hide");
         $("#genre-seeds").removeClass("hide");
     } else if ($("input:radio[name=pool]#pool_top_tracks").is(":checked") || $("input:radio[name=pool]#pool_saved_tracks").is(":checked")) {
         $("#genre-seeds").removeClass();
