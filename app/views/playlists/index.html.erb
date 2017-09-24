@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Playlists</h1>
+<div id="playlists-wrap">
+  <h1>Playlists</h1>
 
 <table>
   <thead>
@@ -12,8 +13,8 @@
   <tbody>
     <% @playlists.each do |playlist| %>
       <tr>
+        <td><%= playlist.title %></td>
         <td><%= link_to 'Show', playlist %></td>
-        <td><%= link_to 'Edit', edit_playlist_path(playlist) %></td>
         <td><%= link_to 'Destroy', playlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -23,3 +24,7 @@
 <br>
 
 <%= link_to 'New Playlist', new_playlist_path %>
+  
+</div>
+
+

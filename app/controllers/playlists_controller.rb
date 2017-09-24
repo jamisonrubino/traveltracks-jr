@@ -7,7 +7,7 @@ class PlaylistsController < ApplicationController
   # GET /playlists.json
   def index
     spotify_user = RSpotify::User.new(session['spotify_user'])
-    @playlists = spotify_user.user_playlists(:id).pluck(:name)
+    @playlists = Playlist.where(user_id: session['spotify_user_id'])
   end
 
   # GET /playlists/1
@@ -27,8 +27,65 @@ class PlaylistsController < ApplicationController
   # POST /playlists
   # POST /playlists.json
   def create
-    # if user specifies starting point and destination
+    spotify_user = RSpotify::User.new(session['spotify_user'])
     
+    playlist_time = set_time
+    playlist_pool = set_pool(spotify_user)
+    pt = organize_tracks(playlist_time, playlist_pool)
+    playlist = make_playlist(spotify_user)
+    add_tracks(pt, playlist)
+    
+    flash[:notice] = "Your playlist was successfully created."
+    
+    @playlist = Playlist.new
+    @playlist.uri = playlist.uri
+    @playlist.title = playlist.name
+    @playlist.user_id = session['spotify_user_id']
+    
+    if @playlist.save
+      redirect_to "/playlists/#{@playlist.id}"
+    end
+    
+    # redirect_to root_path
+  end
+
+  # PATCH/PUT /playlists/1
+  # PATCH/PUT /playlists/1.json
+  
+  def update
+    respond_to do |format|
+      if @playlist.update(playlist_params)
+        format.html { redirect_to @playlist, notice: 'Playlist was successfully updated.' }
+        format.json { render :show, status: :ok, location: @playlist }
+      else
+        format.html { render :edit }
+        format.json { render json: @playlist.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /playlists/1
+  # DELETE /playlists/1.json
+  def destroy
+    @playlist.destroy
+    respond_to do |format|
+      format.html { redirect_to playlists_url, notice: 'Playlist was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_playlist
+      @playlist = Playlist.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def playlist_params
+      params.fetch(:playlist, {})
+    end
+    
+        
     def set_time
       if params[:directions][:start].size > 0 && params[:directions][:destination].size > 0
         start = params[:directions][:start]
@@ -130,7 +187,6 @@ class PlaylistsController < ApplicationController
           end
         else
           flash[:notice] = "Failure building playlist pool. Try saving more tracks or selecting different genres."
-          break
           redirect_to root_path
         end
       end
@@ -179,53 +235,5 @@ class PlaylistsController < ApplicationController
         playlist.add_tracks!(a[i])
       end
       puts a
-    end
-    
-    spotify_user = RSpotify::User.new(session['spotify_user'])
-    
-    playlist_time = set_time
-    playlist_pool = set_pool(spotify_user)
-    pt = organize_tracks(playlist_time, playlist_pool)
-    playlist = make_playlist(spotify_user)
-    add_tracks(pt, playlist)
-    
-    redirect_to root_path
-    
-  end
-
-  # PATCH/PUT /playlists/1
-  # PATCH/PUT /playlists/1.json
-  
-  def update
-    respond_to do |format|
-      if @playlist.update(playlist_params)
-        format.html { redirect_to @playlist, notice: 'Playlist was successfully updated.' }
-        format.json { render :show, status: :ok, location: @playlist }
-      else
-        format.html { render :edit }
-        format.json { render json: @playlist.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /playlists/1
-  # DELETE /playlists/1.json
-  def destroy
-    @playlist.destroy
-    respond_to do |format|
-      format.html { redirect_to playlists_url, notice: 'Playlist was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_playlist
-      @playlist = Playlist.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def playlist_params
-      params.fetch(:playlist, {})
     end
 end

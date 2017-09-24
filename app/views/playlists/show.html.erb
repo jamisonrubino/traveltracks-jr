@@ -1,4 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_playlist_path(@playlist) %> |
-<%= link_to 'Back', playlists_path %>
+<div id="playlist-wrap">
+    <iframe src="https://open.spotify.com/embed?uri=<%= @playlist.uri %>" width="400px" frameborder="0" allowtransparency="true"></iframe>
+</div>
+
+<div id="buttons-wrap">
+    <%= link_to 'Back', playlists_path, class: "back-btn" %>
+</div>

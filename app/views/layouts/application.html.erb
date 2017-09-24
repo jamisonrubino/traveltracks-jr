@@ -14,7 +14,8 @@
     
       <header>
         <div id="header">
-          <div id="my-playlists">
+          <div id="left-nav">
+            <%= link_to "Home", root_path, id: "home-link" %> | 
             <%= link_to "My Playlists", playlists_path, id: "my-playlists-link" %>
           </div>
           
@@ -34,12 +35,12 @@
     
     <% if flash[:notice] %>
       <div class="alert alert-success">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <!--<button type="button" class="close" data-dismiss="alert">&times;</button>-->
           <%= flash[:notice] %>
       </div>
     <% elsif flash[:alert] %>
       <div class="alert alert-warning">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <!--<button type="button" class="close" data-dismiss="alert">&times;</button>-->
           <%= flash[:alert] %>
       </div>
     <% end %>

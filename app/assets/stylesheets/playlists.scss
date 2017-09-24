@@ -1,3 +1,43 @@
 // Place all the styles related to the Playlists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#buttons-wrap {
+    width: 60%;
+    min-width: 325px;
+    max-width: 900px;  
+    margin: 0 auto;
+    display: block;
+    float: clear;
+}
+
+#playlist-wrap {
+    display: block;
+    min-width: 325px;
+    overflow: auto;
+    margin: 0 auto;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#playlists-wrap {
+    width: 60%;
+    min-width: 325px;
+    max-width: 900px;
+    height: fit-content;
+    overflow: auto;
+    margin: 0 auto;
+    box-sizing: border-box;
+    // text-align: center;
+}
+
+table {
+    margin: 0 0 0 15px;
+}
+
+iframe {
+    width: 60%;
+    min-width: 325px;
+    max-width: 900px;
+    height: 600px;
+}

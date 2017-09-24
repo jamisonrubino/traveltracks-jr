@@ -30,7 +30,7 @@ h4 {
 header {
     margin: 0 auto;
     width: 60%;
-    min-width: 250px;
+    min-width: 325px;
     max-width: 900px;
     height: fit-content;
     overflow: auto;
@@ -49,7 +49,7 @@ header {
     float: right;
 }
 
-#username, #logout, #my-playlists {
+#username, #logout, #left-nav {
     display: inline-block;
     float: left;
 }
