@@ -91,7 +91,7 @@
     <% end %>
 </div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places"></script>
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=ENV['GOOGLE_MAPS_API_KEY']&libraries=places"></script> ADD RUBY <> TO API KEY -->
 
 <script>
       var placeSearch, autocompleteStart, autocompleteDestination;
@@ -160,5 +160,5 @@
         }
       }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initAutocomplete"
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_PLACES_API_KEY'] %>&libraries=places&callback=initAutocomplete"
         async defer></script>
