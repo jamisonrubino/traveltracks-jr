@@ -98,9 +98,11 @@ class PlaylistsController < ApplicationController
         playlist_pool += playlist_pool_1 + playlist_pool_2 + playlist_pool_3 + playlist_pool_4
 
       elsif params[:pool] == "artist"
-        artists = RSpotify::Artist.search(params[:seed][:artist])
+        puts "params[:seed][:artist]: #{params[:seed][:artist]}"
+        artists = RSpotify::Artist.search(params[:seed][:artist], limit: 10, market: {from: spotify_user})
         artist = artists.first
-        recs = RSpotify::Recommendations.generate(seed_artists: artist["id"], limit: 100)
+        recs = RSpotify::Recommendations.generate(seed_artists: [artist.id], limit: 100)
+        playlist_pool = []
         recs.tracks.each do |track|
           playlist_pool << track
         end
