@@ -27,8 +27,8 @@
                             <input placeholder="New York, New York" value="" type="text" name="directions[start]" id="directions_start" onfocus="geolocate('start')">
                             <input placeholder="Boston, Massachusetts" value="" type="text" name="directions[destination]" id="directions_destination" onFocus="geolocate()">
                             
-                            <%= text_field(:directions, :start, placeholder: "New York, New York", value: "", id: "autocomplete-1") %>
-                            <%= text_field(:directions, :destination, placeholder: "Boston, Massachusetts", value: "", id: "autocomplete-2") %>
+                            <%= #text_field(:directions, :start, placeholder: "New York, New York", value: "", id: "autocomplete-1") %>
+                            <%= #text_field(:directions, :destination, placeholder: "Boston, Massachusetts", value: "", id: "autocomplete-2") %>
                         </div>
                     </div>
                     
@@ -91,7 +91,7 @@
     <% end %>
 </div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAPS_API_KEY']}&libraries=places"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places"></script>
 
 <script>
       var placeSearch, autocompletestart, autocompleteDestination;
@@ -160,5 +160,5 @@
         }
       }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAPS_API_KEY']}&libraries=places&callback=initAutocomplete"
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initAutocomplete"
         async defer></script>
