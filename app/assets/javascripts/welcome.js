@@ -12,3 +12,4 @@ function addHideGenres() {
         $("#genre-seeds").addClass("hide");
     }
 }
+
