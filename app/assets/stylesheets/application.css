@@ -58,7 +58,7 @@ header {
     margin: 0 15px 0 0;
 }
 
-#alert {
+.alert {
     margin: 0 auto;
     width: 60%;
     min-width: 325px;
