@@ -79,9 +79,9 @@ class PlaylistsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def playlist_params
-      params.fetch(:playlist, {})
-    end
+    # def playlist_params
+    #   params.fetch(:playlist, {})
+    # end
     
         
     def set_time
@@ -194,8 +194,7 @@ class PlaylistsController < ApplicationController
       puts pt.size
       
       if playlist_time - ptime > 6
-        flash[:notice] = "Your playlist pool was shorter than your trip time. Try using genre seeds or saving more Spotify tracks to your library."
-        redirect_to root_path
+        flash[:alert] = "Your playlist pool was shorter than your trip time. Try using genre seeds or saving more Spotify tracks to your library."
       end
       
       pt
