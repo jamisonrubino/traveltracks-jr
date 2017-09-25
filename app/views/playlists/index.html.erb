@@ -11,8 +11,8 @@
   <tbody>
     <% @playlists.each do |playlist| %>
       <tr>
-        <td><%= playlist.title %></td>
-        <td><%= link_to 'Show', playlist %></td>
+        <td><%= link_to playlist.title, playlist %></td>
+        <td class="date"><%= link_to playlist.created_at.to_s[0..9], playlist %></td>
         <td><%= link_to 'Delete', playlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

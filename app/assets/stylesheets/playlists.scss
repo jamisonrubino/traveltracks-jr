@@ -43,3 +43,31 @@ iframe {
     height: 600px;
     box-shadow: 0 0 6px rgba(0,0,0,0.4);
 }
+
+.date {
+    width: 80px;
+}
+
+td {
+    padding-top: 0;
+}
+
+td:last-child a {
+    color: #c55;
+}
+
+// tr {
+//     height: auto;
+// }
+
+// td {
+//     height: 100%;
+// }
+
+// .date-div {
+//     margin: -8px auto 0;
+//     position: relative;
+//     top: 50%;
+
+    
+// }
