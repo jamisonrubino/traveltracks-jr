@@ -66,11 +66,13 @@ class PlaylistsController < ApplicationController
   # DELETE /playlists/1
   # DELETE /playlists/1.json
   def destroy
-    @playlist.destroy
-    respond_to do |format|
-      format.html { redirect_to playlists_url, notice: 'Playlist was successfully destroyed.' }
-      format.json { head :no_content }
+    @playlist = Playlist.find(params[:id])
+    if @playlist.destroy
+      flash[:notice] = "Your playlist was successfully deleted."
+    else
+      flash[:alert] = "Something went wrong."
     end
+    redirect_to playlists_path
   end
 
   private
