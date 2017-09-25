@@ -99,6 +99,10 @@ class PlaylistsController < ApplicationController
         hours = params[:time][:hours].to_i ||= 0
         minutes = params[:time][:minutes].to_i ||= 0
         playlist_time = hours * 60 + minutes
+        if playlist_time == 0
+          flash[:alert] = "You forgot the length of your playlist."
+          redirect_to root_path
+        end
       else
         playlist_time = 0
         flash[:notice] = "There was an error with your playlist time. Double-check your input before resubmitting."
@@ -109,6 +113,8 @@ class PlaylistsController < ApplicationController
       if playlist_time > 360
         playlist_time = 360
       end
+      
+      if playlist_time
       
       playlist_time
     end
@@ -140,18 +146,21 @@ class PlaylistsController < ApplicationController
         playlist_pool_2 = spotify_user.saved_tracks(limit: 50, offset: 50)
         playlist_pool_3 = spotify_user.saved_tracks(limit: 50, offset: 100)
         playlist_pool_4 = spotify_user.saved_tracks(limit: 50, offset: 150)
+        playlist_pool_5 = spotify_user.saved_tracks(limit: 50, offset: 200)
+        playlist_pool_6 = spotify_user.saved_tracks(limit: 50, offset: 250)
         
         playlist_pool = []
-        playlist_pool += playlist_pool_1 + playlist_pool_2 + playlist_pool_3 + playlist_pool_4
+        playlist_pool += playlist_pool_1 + playlist_pool_2 + playlist_pool_3 + playlist_pool_4 + playlist_pool_5 + playlist_pool_6
         
       elsif params[:pool] == "top_tracks"
-        playlist_pool_1 = spotify_user.top_tracks(time_range: 'long_term', limit: 50, offset: 0)
-        playlist_pool_2 = spotify_user.top_tracks(time_range: 'long_term', limit: 50, offset: 50)
-        playlist_pool_3 = spotify_user.top_tracks(time_range: 'long_term', limit: 50, offset: 100)
-        playlist_pool_4 = spotify_user.top_tracks(time_range: 'long_term', limit: 50, offset: 150)
+        playlist_pool_1 = spotify_user.top_tracks(time_range: 'medium_term', limit: 50, offset: 0)
+        # playlist_pool_2 = spotify_user.top_tracks(time_range: 'long_term', limit: 50, offset: 50)
+        # playlist_pool_3 = spotify_user.top_tracks(time_range: 'long_term', limit: 50, offset: 100)
+        # playlist_pool_4 = spotify_user.top_tracks(time_range: 'long_term', limit: 50, offset: 150)
         
         playlist_pool = []
-        playlist_pool += playlist_pool_1 + playlist_pool_2 + playlist_pool_3 + playlist_pool_4
+        playlist_pool += playlist_pool_1
+        # + playlist_pool_2 + playlist_pool_3 + playlist_pool_4
 
       elsif params[:pool] == "artist"
         puts "params[:seed][:artist]: #{params[:seed][:artist]}"
