@@ -214,7 +214,17 @@ class PlaylistsController < ApplicationController
     def make_playlist(spotify_user)
       # CREATING NEW PLAYLIST
       playlist_name = "My Roadtrip Playlist"
+      
       playlist_name += " #{params[:directions][:start]} to #{params[:directions][:destination]}" if params[:directions][:start].size > 0 && params[:directions][:destination].size > 0
+      
+      playlist_name += ", my top tracks" if params[:pool] == "top_tracks"
+      
+      playlist_name += ", my saved tracks" if params[:pool] == "saved_tracks"
+      
+      playlist_name += ", #{params[:genre_seed_one]}" if params[:pool] == "genre" && params[:genre_seed_one]
+      playlist_name += ", #{params[:genre_seed_two]}" if params[:pool] == "genre" && params[:genre_seed_two]
+      playlist_name += ", #{params[:genre_seed_three]}" if params[:pool] == "genre" && params[:genre_seed_three]
+      
       
       puts "Creating playlist!"
       playlist = spotify_user.create_playlist!(playlist_name)
