@@ -11,9 +11,11 @@ class ApplicationController < ActionController::Base
   end
   
   def session_expiry
-    if Time.now.to_i > session[:expires_at]
-      flash[:alert] = "Your session expired. Please login again."
-      redirect_to "/logout"
+    if session[:expires_at]
+      if Time.now.to_i > session[:expires_at]
+        flash[:alert] = "Your session expired. Please login again."
+        redirect_to "/logout"
+      end
     end
   end
 end

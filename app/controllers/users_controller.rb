@@ -1,11 +1,10 @@
 class UsersController < ApplicationController
   skip_before_action :require_login
+  skip_before_action :session_expiry
 
   def spotify
     session['spotify_user'] = RSpotify::User.new(request.env['omniauth.auth']).to_hash
     session[:expires_at] = Time.now.to_i + 3600
-    
-    puts "session[:expires_at]: #{session[:expires_at]}, Time.current: #{Time}"
     
     session['spotify_user_id'] = session['spotify_user']['id']
     
