@@ -114,8 +114,6 @@ class PlaylistsController < ApplicationController
         playlist_time = 360
       end
       
-      if playlist_time
-      
       playlist_time
     end
     
