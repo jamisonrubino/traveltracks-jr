@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   
   def spotify
     session['spotify_user'] = RSpotify::User.new(request.env['omniauth.auth']).to_hash
-    session[:expires_at] = Time.current + 1.hour
+    session[:expires_at] = Time.current + 1.hours
     
     puts "session[:expires_at]: #{session[:expires_at]}, Time.current: #{Time.current}"
     
