@@ -70,7 +70,11 @@ input[type=number] {
 
 input[type=number]:focus, input[type=text]:focus {
     border: 1px solid #666;
-    background: #eef;
+    background: #efefff;
+}
+
+#artist-input input {
+    margin-top: 5px;
 }
 
 input[type=submit] {
