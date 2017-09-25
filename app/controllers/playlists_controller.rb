@@ -3,6 +3,7 @@ require 'json'
 class PlaylistsController < ApplicationController
   before_action :set_playlist, only: [:show, :edit, :update, :destroy]
 
+
   # GET /playlists
   # GET /playlists.json
   def index
