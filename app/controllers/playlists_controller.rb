@@ -146,9 +146,9 @@ class PlaylistsController < ApplicationController
         
       elsif params[:pool] == "top_tracks"
         playlist_pool_1 = spotify_user.top_tracks(time_range: 'long_term', limit: 50, offset: 0)
-        playlist_pool_2 += spotify_user.top_tracks(time_range: 'long_term', limit: 50, offset: 50)
-        playlist_pool_3 += spotify_user.top_tracks(time_range: 'long_term', limit: 50, offset: 100)
-        playlist_pool_4 += spotify_user.top_tracks(time_range: 'long_term', limit: 50, offset: 150)
+        playlist_pool_2 = spotify_user.top_tracks(time_range: 'long_term', limit: 50, offset: 50)
+        playlist_pool_3 = spotify_user.top_tracks(time_range: 'long_term', limit: 50, offset: 100)
+        playlist_pool_4 = spotify_user.top_tracks(time_range: 'long_term', limit: 50, offset: 150)
         
         playlist_pool = []
         playlist_pool += playlist_pool_1 + playlist_pool_2 + playlist_pool_3 + playlist_pool_4
