@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   before_action :require_login
+  before_action :session_expiry
 
   private
   
@@ -10,9 +11,9 @@ class ApplicationController < ActionController::Base
   end
   
   def session_expiry
-    # if Time.current > session[:expires_at].to_time
-    #   flash[:alert] = "Your session expired. Please login again."
-    #   redirect_to "/logout"
-    # end
+    if Time.now.to_i > session[:expires_at]
+      flash[:alert] = "Your session expired. Please login again."
+      redirect_to "/logout"
+    end
   end
 end
