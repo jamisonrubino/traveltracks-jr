@@ -8,7 +8,7 @@ class PlaylistsController < ApplicationController
   # GET /playlists.json
   def index
     spotify_user = RSpotify::User.new(session['spotify_user'])
-    @playlists = Playlist.where(user_id: session['spotify_user_id'])
+    @playlists = Playlist.where(user_id: session['spotify_user_id']).sort { |x,y| y.id <=> x.id }
   end
 
   # GET /playlists/1

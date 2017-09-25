@@ -15,17 +15,13 @@
       <header>
         <div id="header">
           <div id="left-nav">
-            <%= link_to "Home", root_path, id: "home-link" %> | 
+            <%= link_to "Home", root_path, id: "home-link" %>
             <%= link_to "My Playlists", playlists_path, id: "my-playlists-link" %>
           </div>
           
           <div id="user-nav">
-            <div id="username">
               <span id="username-link"><%= session[:spotify_user_id] %></span>
-            </div>
-            <div id="logout">
               <%= link_to "Logout", logout_path, id: "logout-link" %>
-            </div>
           </div>
           
         </div>

@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  */
+ 
+
 
 
 body {
@@ -43,9 +45,33 @@ header {
     height: fit-content;
     overflow: auto;
     box-sizing: border-box;
-    padding: 15px 20px;
-    background: #f9f9f9;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    padding: 7px 20px;
+    background: #bfefbf;
+    border-radius: 0 0 4px 4px;
+    /*box-shadow: 0 0 7px rgba(0,0,0,0.6);*/
+    border-width: 0 1px 1px 1px;
+    border-style: solid;
+    border-color: #888;
+
+    
+}
+
+#left-nav a, #user-nav a {
+    display: inline-block;
+}
+
+
+#home-link, #user-nav span {
+    padding: 8px 10px 8px 0;
+    border-right: 1px solid #888;
+}
+
+#my-playlists-link {
+    padding: 8px 0 8px 5px;
+}
+
+#user-nav a {
+    padding: 8px 0 8px 5px;
 }
 
 #header {

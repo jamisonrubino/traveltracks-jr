@@ -2,8 +2,59 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$black: #444;
+$grey: #888;
+$lightgreen: #dfffdf;
+$green: #bfefbf;
+$darkgreen: #7fbf7f;
+
+a {
+    text-decoration: none;
+
+    }
+
+a:hover {
+    background: none;
+    color: $black;
+}
+
+#form-wrap a {
+    color: $grey;
+    background: $lightgreen;
+    padding: 5px 10px;
+    border-radius: 2px;
+    transition: 0.3s background, 0.3s color;
+}
+
+#form-wrap a:hover {
+    color: $black;
+    background: $green;
+}
+
 #spotify-login-div {
     margin: 0 auto;
+    width:100vh;
+    height:100vh;
+}
+
+#spotify-login-div a {
+    margin: -75px 0 0 -145px;
+    display: inline-block;
+    padding: 40px 60px;
+    background: $lightgreen;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 1.5em;
+    text-decoration: none;
+    border-radius: 4px;
+    color: #888;
+    transition: 0.3s background, 0.3s color;
+}
+
+#spotify-login-div a:hover {
+    background: $green;
+    color: #444;
 }
 
 #form-wrap {
@@ -70,7 +121,7 @@ input[type=number] {
 
 input[type=number]:focus, input[type=text]:focus {
     border: 1px solid #666;
-    background: #efefff;
+    background: $lightgreen;
 }
 
 #artist-input input {
