@@ -215,7 +215,18 @@ class PlaylistsController < ApplicationController
       # CREATING NEW PLAYLIST
       playlist_name = "My Roadtrip Playlist"
       
-      playlist_name += " #{params[:directions][:start]} to #{params[:directions][:destination]}" if params[:directions][:start].size > 0 && params[:directions][:destination].size > 0
+      if params[:directions][:start].size > 0 && params[:directions][:destination].size > 0
+        if params[:directions][:start].count(',') > 1
+          start_arr = params[:directions][:start].split(',')
+          start = start_arr[0..1].join(',')
+        end
+        if params[:directions][:destination].count(',') > 1
+          destination_arr = params[:directions][:destination].split(',')
+          destination = destination_arr.take(2).join(',')
+        end
+        
+        playlist_name += " #{start} to #{destination}"
+      end
       
       playlist_name += ", my top tracks" if params[:pool] == "top_tracks"
       
