@@ -1,13 +1,7 @@
 <div id="playlists-wrap">
-  <h1>Playlists</h1>
+  <h2 class="playlists">Playlists</h2>
 
 <table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
   <tbody>
     <% @playlists.each do |playlist| %>
       <tr>
@@ -21,7 +15,7 @@
 
 <br>
 
-<%= link_to 'New Playlist', root_path %>
+<%= link_to 'Back', root_path %>
   
 </div>
 

@@ -11,18 +11,13 @@ class PlaylistsController < ApplicationController
     @playlists = Playlist.where(user_id: session['spotify_user_id']).sort { |x,y| y.id <=> x.id }
   end
 
-  # GET /playlists/1
-  # GET /playlists/1.json
+
   def show
   end
 
   # GET /playlists/new
   def new
     @playlist = Playlist.new
-  end
-
-  # GET /playlists/1/edit
-  def edit
   end
 
   # POST /playlists
@@ -32,6 +27,7 @@ class PlaylistsController < ApplicationController
     
     playlist_time = set_time
     playlist_pool = set_pool(spotify_user)
+    return if playlist_pool == "error"
     pt = organize_tracks(playlist_time, playlist_pool)
     playlist = make_playlist(spotify_user)
     add_tracks(pt, playlist)
@@ -46,21 +42,6 @@ class PlaylistsController < ApplicationController
       redirect_to "/playlists/#{@playlist.id}"
     end
     
-  end
-
-  # PATCH/PUT /playlists/1
-  # PATCH/PUT /playlists/1.json
-  
-  def update
-    respond_to do |format|
-      if @playlist.update(playlist_params)
-        format.html { redirect_to @playlist, notice: 'Playlist was successfully updated.' }
-        format.json { render :show, status: :ok, location: @playlist }
-      else
-        format.html { render :edit }
-        format.json { render json: @playlist.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # DELETE /playlists/1
@@ -131,9 +112,6 @@ class PlaylistsController < ApplicationController
             genres << opt
           end
         end
-        if genres.size == 1
-          genres = genres[0].to_s
-        end
         recs = RSpotify::Recommendations.generate(seed_genres: genres, limit: 100)
         playlist_pool = []
         recs.tracks.each do |track|
@@ -166,10 +144,16 @@ class PlaylistsController < ApplicationController
         puts "params[:seed][:artist]: #{params[:seed][:artist]}"
         artists = RSpotify::Artist.search(params[:seed][:artist], limit: 10, market: {from: spotify_user})
         artist = artists.first
-        recs = RSpotify::Recommendations.generate(seed_artists: [artist.id], limit: 100)
-        playlist_pool = []
-        recs.tracks.each do |track|
-          playlist_pool << track
+        if !artist.nil?
+          recs = RSpotify::Recommendations.generate(seed_artists: [artist.id], limit: 100)
+          playlist_pool = []
+          recs.tracks.each do |track|
+            playlist_pool << track
+          end
+        else
+          playlist_pool = "error"
+          flash[:alert] = "Artist not found."
+          redirect_to root_path
         end
       end
       
@@ -213,7 +197,7 @@ class PlaylistsController < ApplicationController
 
     def make_playlist(spotify_user)
       # CREATING NEW PLAYLIST
-      playlist_name = "My Roadtrip Playlist"
+      playlist_name = "Roadtrip Playlist"
       
       if params[:directions][:start].size > 0 && params[:directions][:destination].size > 0
         if params[:directions][:start].count(',') > 1
@@ -225,16 +209,16 @@ class PlaylistsController < ApplicationController
           destination = destination_arr.take(2).join(',')
         end
         
-        playlist_name += " #{start} to #{destination}"
+        playlist_name += ", #{start} to #{destination}"
       end
       
       playlist_name += ", my top tracks" if params[:pool] == "top_tracks"
       
       playlist_name += ", my saved tracks" if params[:pool] == "saved_tracks"
       
-      playlist_name += ", #{params[:genre_seed_one]}" if params[:pool] == "genre" && params[:genre_seed_one]
-      playlist_name += ", #{params[:genre_seed_two]}" if params[:pool] == "genre" && params[:genre_seed_two]
-      playlist_name += ", #{params[:genre_seed_three]}" if params[:pool] == "genre" && params[:genre_seed_three]
+      playlist_name += ", #{params[:genre_seed_one]}" if params[:pool] == "genre" && params[:genre_seed_one].size > 0
+      playlist_name += ", #{params[:genre_seed_two]}" if params[:pool] == "genre" && params[:genre_seed_two].size > 0
+      playlist_name += ", #{params[:genre_seed_three]}" if params[:pool] == "genre" && params[:genre_seed_three].size > 0
       
       
       puts "Creating playlist!"
