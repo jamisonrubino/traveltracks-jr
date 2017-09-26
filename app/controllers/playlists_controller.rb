@@ -24,25 +24,30 @@ class PlaylistsController < ApplicationController
   # POST /playlists.json
   def create
     spotify_user = RSpotify::User.new(session['spotify_user'])
-    
     playlist_time = set_time
     playlist_pool = set_pool(spotify_user)
-    
+  
     flash[:alert] = "Enter your playlist time and music source." if playlist_pool.nil? && playlist_time == 0
     
-    unless playlist_pool == "error" || playlist_pool.nil? || playlist_time == 0 || (!playlist_time.nil? && playlist_pool.nil?)
+    unless flash[:alert]
       pt = organize_tracks(playlist_time, playlist_pool)
-      playlist = make_playlist(spotify_user)
-      add_tracks(pt, playlist)
-      
-      @playlist = Playlist.new
-      @playlist.uri = playlist.uri
-      @playlist.title = playlist.name
-      @playlist.user_id = session['spotify_user_id']
-      
-      if @playlist.save
-        flash[:notice] = "Your playlist was successfully created."
-        redirect_to "/playlists/#{@playlist.id}"
+      unless flash[:alert]
+        playlist = make_playlist(spotify_user)
+        add_tracks(pt, playlist)
+        
+        @playlist = Playlist.new
+        @playlist.uri = playlist.uri
+        @playlist.title = playlist.name
+        @playlist.user_id = session['spotify_user_id']
+        
+        if @playlist.save
+          flash[:notice] = "Your playlist was successfully created."
+          redirect_to "/playlists/#{@playlist.id}"
+        end
+    
+      else
+        redirect_to root_path
+        return
       end
     else
       redirect_to root_path
@@ -89,12 +94,10 @@ class PlaylistsController < ApplicationController
         playlist_time = hours * 60 + minutes
         if playlist_time == 0
           flash[:alert] = "You forgot the length of your playlist."
-          redirect_to root_path
         end
       else
         playlist_time = 0
         flash[:alert] = "There was an error with your playlist time."
-        redirect_to root_path
       end
     
       # if trip is longer than six hours
@@ -158,13 +161,11 @@ class PlaylistsController < ApplicationController
         else
           playlist_pool = "error"
           flash[:alert] = "Artist not found."
-          redirect_to root_path
         end
       end
       
       if playlist_pool.nil?
         flash[:alert] = "Select your playlist music source."
-        redirect_to root_path
       end
       
       playlist_pool
@@ -188,9 +189,6 @@ class PlaylistsController < ApplicationController
             puts "ptime: #{ptime}"
           end
           playlist_pool.delete_at(rn)
-        else
-          flash[:alert] = "Failure building tracks pool."
-          redirect_to root_path
         end
       end
     
