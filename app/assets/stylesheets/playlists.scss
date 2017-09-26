@@ -57,8 +57,12 @@ iframe {
     width: 80px;
 }
 
+tr {
+    background: $lightgreen;
+}
+
 td {
-    padding-top: 0;
+    padding: 7px 5px;
 }
 
 td:last-child a {
