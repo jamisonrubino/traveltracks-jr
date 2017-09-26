@@ -241,6 +241,8 @@ class PlaylistsController < ApplicationController
       
       puts "Creating playlist!"
       playlist = spotify_user.create_playlist!(playlist_name)
+      playlist.change_details!(public: false)
+      playlist
     end
     
     

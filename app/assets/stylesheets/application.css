@@ -61,7 +61,7 @@ header {
 }
 
 
-#home-link, #user-nav span {
+#home-link, #user-nav a:first-child {
     padding: 8px 10px 8px 0;
     border-right: 1px solid #888;
 }
