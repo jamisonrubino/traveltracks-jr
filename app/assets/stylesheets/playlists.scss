@@ -57,7 +57,7 @@ iframe {
     width: 80px;
 }
 
-tr {
+tr:nth-child(2n) {
     background: $lightgreen;
 }
 
