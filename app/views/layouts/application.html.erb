@@ -46,6 +46,12 @@
     
     <%= yield %>
     
-    
+    <% if session['spotify_user'] %>
+      <footer>
+        <div id="footer-content">
+          Copyright <%= Time.now.year %> Triplist
+        </div>
+      </footer>
+    <% end %>
   </body>
 </html>

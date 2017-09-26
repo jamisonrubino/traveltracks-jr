@@ -56,9 +56,14 @@ a:hover {
 }
 
 #form-wrap {
+    margin: 0 auto;
     text-align: center;
-    margin: 10px 0 0 0;
     min-width: 275px;
+    max-width: 700px;
+    width: 60%;
+    position: relative;
+    z-index: 3;
+    background: #fff;
 }
 
 #time-wrap, #track-pool-wrap {
