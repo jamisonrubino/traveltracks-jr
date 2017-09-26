@@ -150,17 +150,22 @@ class PlaylistsController < ApplicationController
 
       elsif params[:pool] == "artist"
         puts "params[:seed][:artist]: #{params[:seed][:artist]}"
-        artists = RSpotify::Artist.search(params[:seed][:artist], limit: 10, market: {from: spotify_user})
-        artist = artists.first
-        if !artist.nil?
-          recs = RSpotify::Recommendations.generate(seed_artists: [artist.id], limit: 100)
-          playlist_pool = []
-          recs.tracks.each do |track|
-            playlist_pool << track
+        unless params[:seed][:artist].size == 0
+          artists = RSpotify::Artist.search(params[:seed][:artist], limit: 10, market: {from: spotify_user})
+          artist = artists.first
+          if !artist.nil?
+            recs = RSpotify::Recommendations.generate(seed_artists: [artist.id], limit: 100)
+            playlist_pool = []
+            recs.tracks.each do |track|
+              playlist_pool << track
+            end
+          else
+            playlist_pool = "error"
+            flash[:alert] = "Artist not found."
           end
         else
-          playlist_pool = "error"
-          flash[:alert] = "Artist not found."
+          flash[:alert] = "Please enter an artist."
+          playlist_pool = []
         end
       end
       
