@@ -27,20 +27,25 @@ class PlaylistsController < ApplicationController
     
     playlist_time = set_time
     playlist_pool = set_pool(spotify_user)
+    
     flash[:alert] = "Enter your playlist time and music source." if playlist_pool.nil? && playlist_time == 0
-    return if playlist_pool == "error" || playlist_pool.nil? || playlist_time == 0 || (!playlist_time.nil? && playlist_pool.nil?)
-    pt = organize_tracks(playlist_time, playlist_pool)
-    playlist = make_playlist(spotify_user)
-    add_tracks(pt, playlist)
     
-    @playlist = Playlist.new
-    @playlist.uri = playlist.uri
-    @playlist.title = playlist.name
-    @playlist.user_id = session['spotify_user_id']
-    
-    if @playlist.save
-      flash[:notice] = "Your playlist was successfully created."
-      redirect_to "/playlists/#{@playlist.id}"
+    unless playlist_pool == "error" || playlist_pool.nil? || playlist_time == 0 || (!playlist_time.nil? && playlist_pool.nil?)
+      pt = organize_tracks(playlist_time, playlist_pool)
+      playlist = make_playlist(spotify_user)
+      add_tracks(pt, playlist)
+      
+      @playlist = Playlist.new
+      @playlist.uri = playlist.uri
+      @playlist.title = playlist.name
+      @playlist.user_id = session['spotify_user_id']
+      
+      if @playlist.save
+        flash[:notice] = "Your playlist was successfully created."
+        redirect_to "/playlists/#{@playlist.id}"
+      end
+    else
+      redirect_to root_path
     end
   end
 
