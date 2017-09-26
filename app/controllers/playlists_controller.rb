@@ -113,7 +113,7 @@ class PlaylistsController < ApplicationController
     def set_pool(spotify_user)
       # SETTING POOL OF TRACKS FOR NEW PLAYLIST
       if params[:pool] == "genre"
-        unless [params[:genre_seed_one].size == 0 && params[:genre_seed_two].size == 0 && params[:genre_seed_three].size == 0
+        unless params[:genre_seed_one].size == 0 && params[:genre_seed_two].size == 0 && params[:genre_seed_three].size == 0
           genres = []
           genre_options = [params[:genre_seed_one], params[:genre_seed_two], params[:genre_seed_three]]
           genre_options.each do |opt|
