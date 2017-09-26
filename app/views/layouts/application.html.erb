@@ -20,7 +20,7 @@
           </div>
           
           <div id="user-nav">
-              <span id="username-link"><%= session[:spotify_user_id] %></span>
+              <span id="username-link"><%= link_to session[:spotify_user_id], profile_path %></span>
               <%= link_to "Logout", logout_path, id: "logout-link" %>
           </div>
           

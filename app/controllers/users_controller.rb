@@ -19,5 +19,16 @@ class UsersController < ApplicationController
     reset_session
     redirect_to root_path
   end
+  
+  def profile
+    @user = {}
+    @user['email'] = session['spotify_user']['email']
+    @user['birthdate'] = session['spotify_user']['birthdate']
+    @user['country'] = session['spotify_user']['country']
+    @user['follower_count'] = session['spotify_user']['followers']['total']
+    @user['spotify_url'] = session['spotify_user']['external_urls'].to_h['spotify']
+    
+    puts @user
+  end
 
 end

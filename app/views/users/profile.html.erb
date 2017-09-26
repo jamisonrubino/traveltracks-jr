@@ -1,0 +1,21 @@
+<div id="profile-wrap">
+    
+    <h2 class="profile">Profile</h2>
+    
+    <div id="profile-info">
+        <div class="profile-item-name">
+            Email:<br>
+            Birthdate:<br>
+            Country:<br>
+            Followers:<br>
+            Visit profile:
+        </div>
+        <div class="profile-item-value">
+            <%= @user['email'] %><br>
+            <%= @user['birthdate'] %><br>
+            <%= @user['country'] %><br>
+            <%= @user['follower_count'] %><br>
+            <%= link_to "your Spotify profile", @user['spotify_url'] %>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,28 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$max-width: 700px;
+
+#profile-wrap {
+    width: 60%;
+    min-width: 325px;
+    max-width: $max-width;
+    height: fit-content;
+    overflow: auto;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 20px 20px;
+}
+
+h2.profile {
+    margin-top: 25px;
+}
+
+.profile-item-name, .profile-item-value {
+    display: inline-block;
+    float: left;
+}
+
+.profile-item-value {
+    margin: 0 0 0 15px;
+}
