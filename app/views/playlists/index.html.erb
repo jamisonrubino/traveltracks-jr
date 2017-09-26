@@ -1,21 +1,19 @@
 <div id="playlists-wrap">
   <h2 class="playlists">Playlists</h2>
 
-<table>
-  <tbody>
-    <% @playlists.each do |playlist| %>
-      <tr>
-        <td><%= link_to playlist.title, playlist %></td>
-        <td class="date"><%= link_to playlist.created_at.to_s[0..9], playlist %></td>
-        <td><%= link_to 'Delete', playlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'Back', root_path %>
+  <table>
+    <tbody>
+      <% @playlists.each do |playlist| %>
+        <tr>
+          <td><%= link_to playlist.title, playlist %></td>
+          <td class="date"><%= link_to playlist.created_at.to_s[0..9], playlist %></td>
+          <td><%= link_to 'Delete', playlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <%= link_to 'Back', root_path, class: "btn-back" %>
   
 </div>
 

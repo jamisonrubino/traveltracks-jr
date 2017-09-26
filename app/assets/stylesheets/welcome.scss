@@ -151,3 +151,14 @@ input[type=submit] {
 .genre {
     margin: 0 0 5px;
 }
+
+#submit {
+    padding: 10px 15px;
+    background: linear-gradient($lightgreen, $green);
+    border: 2px solid $lightgreen;
+    color: $black;
+}
+
+#submit:active {
+    background: $green;
+}

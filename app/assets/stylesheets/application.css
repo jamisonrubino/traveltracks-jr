@@ -41,7 +41,7 @@ header {
     margin: 0 auto;
     width: 60%;
     min-width: 325px;
-    max-width: 900px;
+    max-width: 700px;
     height: fit-content;
     overflow: auto;
     box-sizing: border-box;
@@ -96,7 +96,7 @@ header {
     margin: 0 auto;
     width: 60%;
     min-width: 325px;
-    max-width: 900px;
+    max-width: 700px;
     height: fit-content;
     overflow: auto;
     box-sizing: border-box;
@@ -117,4 +117,8 @@ p#alert {
     margin: 0;
     position: relative;
     z-index: 1;
+}
+
+.btn-back {
+    margin-top: 8px;
 }

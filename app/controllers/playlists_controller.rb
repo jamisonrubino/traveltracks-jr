@@ -27,7 +27,8 @@ class PlaylistsController < ApplicationController
     
     playlist_time = set_time
     playlist_pool = set_pool(spotify_user)
-    return if playlist_pool == "error"
+    flash[:alert] = "Enter your playlist time and music source." if playlist_pool.nil? && playlist_time == 0
+    return if playlist_pool == "error" || playlist_pool.nil? || playlist_time == 0 || (!playlist_time.nil? && playlist_pool.nil?)
     pt = organize_tracks(playlist_time, playlist_pool)
     playlist = make_playlist(spotify_user)
     add_tracks(pt, playlist)
@@ -41,7 +42,6 @@ class PlaylistsController < ApplicationController
       flash[:notice] = "Your playlist was successfully created."
       redirect_to "/playlists/#{@playlist.id}"
     end
-    
   end
 
   # DELETE /playlists/1
@@ -88,7 +88,7 @@ class PlaylistsController < ApplicationController
         end
       else
         playlist_time = 0
-        flash[:notice] = "There was an error with your playlist time. Double-check your input before resubmitting."
+        flash[:alert] = "There was an error with your playlist time."
         redirect_to root_path
       end
     
@@ -157,6 +157,11 @@ class PlaylistsController < ApplicationController
         end
       end
       
+      if playlist_pool.nil?
+        flash[:alert] = "Select your playlist music source."
+        redirect_to root_path
+      end
+      
       playlist_pool
     end
     
@@ -167,18 +172,19 @@ class PlaylistsController < ApplicationController
       pt = []
       ps = playlist_pool.size
       puts "playlist pool size: #{ps}"
+      puts "playlist_time: #{playlist_time}"
       ptime = 0.000
       until (playlist_time - ptime).abs.round(2) <= 2.00
-        if playlist_pool.size > 1
+        if playlist_pool.size > 0
           rn = Random.rand(playlist_pool.size-1)
-          unless ptime + playlist_pool[rn].duration_ms/60000.000 > playlist_time+2.00
+          unless ptime + playlist_pool[rn].duration_ms/60000.000 > playlist_time + 2.00
             pt << playlist_pool[rn]
-            playlist_pool.delete_at(rn)
             ptime += playlist_pool[rn].duration_ms/60000.000
             puts "ptime: #{ptime}"
           end
+          playlist_pool.delete_at(rn)
         else
-          flash[:notice] = "Failure building playlist pool. Try saving more tracks or selecting different genres."
+          flash[:alert] = "Failure building tracks pool."
           redirect_to root_path
         end
       end
@@ -188,7 +194,7 @@ class PlaylistsController < ApplicationController
       puts pt.size
       
       if playlist_time - ptime > 6
-        flash[:alert] = "Your playlist pool was shorter than your trip time. Try using genre seeds or saving more Spotify tracks to your library."
+        flash[:alert] = "Your tracks pool was shorter than your trip time. Try using genre seeds or saving more Spotify tracks to your library."
       end
       
       pt

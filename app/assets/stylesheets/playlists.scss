@@ -7,11 +7,12 @@ $grey: #888;
 $lightgreen: #dfffdf;
 $green: #bfefbf;
 $darkgreen: #7fbf7f;
+$max-width: 700px;
 
 #buttons-wrap {
     width: 60%;
     min-width: 325px;
-    max-width: 900px;  
+    max-width: $max-width;  
     margin: 0 auto;
     display: block;
     float: clear;
@@ -29,25 +30,27 @@ $darkgreen: #7fbf7f;
 #playlists-wrap {
     width: 60%;
     min-width: 325px;
-    max-width: 900px;
+    max-width: $max-width;
     height: fit-content;
     overflow: auto;
     margin: 0 auto;
     box-sizing: border-box;
+    padding: 0 20px 20px;
     // text-align: center;
 }
 
 table {
-    margin: 0 0 0 15px;
+    margin: 0 0 8px 15px;
     padding-right: 15px;
 }
 
 iframe {
     width: 60%;
     min-width: 325px;
-    max-width: 900px;
+    max-width: $max-width;
     height: 600px;
     box-shadow: 0 0 6px rgba(0,0,0,0.4);
+    box-sizing: border-box;
 }
 
 .date {
@@ -68,4 +71,8 @@ td:last-child a:hover {
 
 h2.playlists {
     margin: 25px 0 15px;
+}
+
+#buttons-wrap {
+    margin-top: 15px;
 }
