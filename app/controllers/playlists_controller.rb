@@ -113,19 +113,23 @@ class PlaylistsController < ApplicationController
     def set_pool(spotify_user)
       # SETTING POOL OF TRACKS FOR NEW PLAYLIST
       if params[:pool] == "genre"
-        genres = []
-        genre_options = [params[:genre_seed_one], params[:genre_seed_two], params[:genre_seed_three]]
-        genre_options.each do |opt|
-          unless opt == ""
-            genres << opt
+        unless [params[:genre_seed_one].size == 0 && params[:genre_seed_two].size == 0 && params[:genre_seed_three].size == 0
+          genres = []
+          genre_options = [params[:genre_seed_one], params[:genre_seed_two], params[:genre_seed_three]]
+          genre_options.each do |opt|
+            unless opt == ""
+              genres << opt
+            end
           end
+          recs = RSpotify::Recommendations.generate(seed_genres: genres, limit: 100)
+          playlist_pool = []
+          recs.tracks.each do |track|
+            playlist_pool << track
+          end
+          puts playlist_pool
+        else
+          flash[:alert] = "Please enter genre seeds."
         end
-        recs = RSpotify::Recommendations.generate(seed_genres: genres, limit: 100)
-        playlist_pool = []
-        recs.tracks.each do |track|
-          playlist_pool << track
-        end
-        puts playlist_pool
       elsif params[:pool] == "saved_tracks"
         puts "my_saved_tracks if branch"
         playlist_pool_1 = spotify_user.saved_tracks(limit: 50, offset: 0)
