@@ -22,7 +22,7 @@
                         
                         <!-- GOOGLE MAPS DIRECTIONS INPUTS -->
                         <div id="maps-directions-input" class="hide">
-                            <%= label_tag(:directions, "Starting point and destination.") %>
+                            <%= label_tag(:directions, "Origin and destination.") %>
                             
                             <input placeholder="New York, New York" value="" type="text" name="directions[start]" id="directions_start" onFocus="geolocate('start')">
                             <input placeholder="Boston, Massachusetts" value="" type="text" name="directions[destination]" id="directions_destination" onFocus="geolocate()">
@@ -54,7 +54,7 @@
                             <%= radio_button_tag "pool", "genre" %>
                             <%= label_tag "pool_genre", "Recommendations based on genres" %><br>
                             
-                            <div id="genre-seeds" class="hide">
+                            <div id="genre-seeds">
                                 <h4>Choose up to 3</h4>
                                 <div class="genre">
                                     <%= label_tag "genre_seed", "Music Genre" %>
@@ -81,7 +81,7 @@
                             <%= radio_button_tag "pool", "artist" %>
                             <%= label_tag "pool_artist", "Recommendations based on an artist" %>
                             
-                            <div id="artist-input" class="hide">
+                            <div id="artist-input">
                                 <%= text_field "seed", "artist", placeholder: "Artist", value: "" %>
                             </div>
                             
@@ -121,22 +121,63 @@
     $("input#pool_genre").change(addHidePool);
     $("input#pool_top_tracks").change(addHidePool);
     $("input#pool_saved_tracks").change(addHidePool);
-    $("input#pool_artist").change(addHidePool)
+    $("input#pool_artist").change(addHidePool);
+    
+    
+    $("#genre-seeds, #artist-input").addClass("hide").css({"opacity": "0", "transition": "0.7s opacity"});
+    $("input:radio").css("display", "none");
+    
+    var topTracksR = $("input:radio[name=pool]#pool_top_tracks");
+    var genreR = $("input:radio[name=pool]#pool_genre");
+    var savedTracksR = $("input:radio[name=pool]#pool_saved_tracks");
+    var artistR = $("input:radio[name=pool]#pool_artist");
+        
+    var topTracksL = $("label[for=pool_top_tracks]");
+    var genreL = $("label[for=pool_genre]");
+    var savedTracksL = $("label[for=pool_saved_tracks]");
+    var artistL = $("label[for=pool_artist]");
+        
+    topTracksL.css({"transition": "0.3s font-size", "border-radius": "2px", "border-bottom": "2px solid #bfefbf"});
+    genreL.css({"transition": "0.3s font-size", "border-radius": "2px", "border-bottom": "2px solid #bfefbf"});
+    savedTracksL.css({"transition": "0.3s font-size", "border-radius": "2px", "border-bottom": "2px solid #bfefbf"});
+    artistL.css({"transition": "0.3s font-size", "border-radius": "2px", "border-bottom": "2px solid #bfefbf"});
+    
 
     function addHidePool() {
-        if ($("input:radio[name=pool]#pool_genre").is(":checked")) {
+    
+        if (genreR.is(":checked")) {
             $("#artist-input").removeClass();
-            $("#artist-input").addClass("hide");
+            $("#artist-input").addClass("hide").css("opacity", "0");
             $("#genre-seeds").removeClass();
-        } else if ($("input:radio[name=pool]#pool_top_tracks").is(":checked") || $("input:radio[name=pool]#pool_saved_tracks").is(":checked")) {
+            $("#genre-seeds").css("opacity", "1");
+            unsetAll();
+            genreL.addClass("selected");
+        } else if (topTracksR.is(":checked") || savedTracksR.is(":checked")) {
             $("#genre-seeds").removeClass();
             $("#artist-input").removeClass();
-            $("#genre-seeds").addClass("hide");
-            $("#artist-input").addClass("hide");
-        } else if ($("input:radio[name=pool]#pool_artist").is(":checked")) {
-            $("#artist-input").removeClass();
+            $("#genre-seeds").addClass("hide").css("opacity", "0");
+            $("#artist-input").addClass("hide").css("opacity", "0");
+            if (topTracksR.is(":checked")) {
+                unsetAll();
+                topTracksL.addClass("selected");
+            } else {
+                unsetAll();
+                savedTracksL.addClass("selected");
+            }
+        } else if (artistR.is(":checked")) {
             $("#genre-seeds").removeClass();
-            $("#genre-seeds").addClass("hide");
+            $("#genre-seeds").addClass("hide").css("opacity", "0");
+            $("#artist-input").removeClass().css("opacity", "1");
+
+            unsetAll();
+            artistL.addClass("selected");
+        }
+        
+        function unsetAll() {
+            topTracksL.removeClass("selected");
+            genreL.removeClass("selected");
+            savedTracksL.removeClass("selected");
+            artistL.removeClass("selected");
         }
     }
 </script>

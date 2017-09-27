@@ -1,6 +1,8 @@
 require 'json'
+require 'httparty'
 
 class PlaylistsController < ApplicationController
+  include HTTParty
   before_action :set_playlist, only: [:show, :edit, :update, :destroy]
 
 
@@ -80,12 +82,21 @@ class PlaylistsController < ApplicationController
         
     def set_time
       if params[:directions][:start].size > 0 && params[:directions][:destination].size > 0
-        start = params[:directions][:start]
-        destination = params[:directions][:destination]
-        directions = GoogleDirections.new(start, destination)
-        unless directions.status == ("NOT_FOUND" || "OVER_QUERY_LIMIT")
-          playlist_time = directions.drive_time_in_minutes
-        end
+        
+        values = {
+          origin: params[:directions][:start],
+          destination: params[:directions][:destination],
+          mode: "driving",
+          key: ENV['GOOGLE_MAPS_API_KEY']
+        }
+        
+        url = "https://maps.googleapis.com/maps/api/directions/json?" + values.to_query
+        
+        puts url
+        response = self.class.get url
+        
+        directions = JSON.parse(response.body)
+        playlist_time = directions['routes'].first['legs'].first['duration']['value'].to_i / 60.00
         
       # if user manually enters time
       elsif params[:time][:hours].size > 0 || params[:time][:minutes].size > 0
@@ -238,6 +249,7 @@ class PlaylistsController < ApplicationController
       playlist_name += ", #{params[:genre_seed_two]}" if params[:pool] == "genre" && params[:genre_seed_two].size > 0
       playlist_name += ", #{params[:genre_seed_three]}" if params[:pool] == "genre" && params[:genre_seed_three].size > 0
       
+      playlist_name += ", #{params[:seed][:artist]}" if params[:seed][:artist].size > 0
       
       puts "Creating playlist!"
       playlist = spotify_user.create_playlist!(playlist_name)

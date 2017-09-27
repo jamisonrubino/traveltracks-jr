@@ -11,7 +11,7 @@ $max-width: 700px;
 
 #buttons-wrap {
     width: 60%;
-    min-width: 325px;
+    min-width: 336px;
     max-width: $max-width;  
     margin: 0 auto;
     display: block;
@@ -20,7 +20,7 @@ $max-width: 700px;
 
 #playlist-wrap {
     display: block;
-    min-width: 325px;
+    min-width: 336px;
     overflow: auto;
     margin: 0 auto;
     box-sizing: border-box;
@@ -29,7 +29,7 @@ $max-width: 700px;
 
 #playlists-wrap {
     width: 60%;
-    min-width: 325px;
+    min-width: 336px;
     max-width: $max-width;
     height: fit-content;
     overflow: auto;
@@ -47,13 +47,27 @@ table {
     padding-right: 15px;
 }
 
+table a {
+    color: #444;
+}
+
+table a:visited {
+    color: #888;
+}
+
+table a:hover {
+    color: #444;
+}
+
 iframe {
     width: 60%;
-    min-width: 325px;
+    min-width: 336px;
     max-width: $max-width;
     height: 600px;
     box-shadow: 0 0 6px rgba(0,0,0,0.4);
     box-sizing: border-box;
+    position: relative;
+    z-index: 3;
 }
 
 .date {

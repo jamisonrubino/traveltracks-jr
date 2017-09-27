@@ -21,7 +21,17 @@ body {
     margin: 0;
     height: 100vh;
     z-index: 2;
+    font-smooth: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
+
+header a {
+    color: #888;
+}
+
+
+
 
 h1 {
     margin-top: 25px;
@@ -42,7 +52,7 @@ h4 {
 header {
     margin: 0 auto;
     width: 60%;
-    min-width: 325px;
+    min-width: 387px;
     max-width: 700px;
     height: fit-content;
     overflow: auto;
@@ -55,7 +65,6 @@ header {
     border-color: #888;
     z-index: 4;
     position: relative;
-    
 }
 
 #left-nav a, #user-nav a {
@@ -97,7 +106,7 @@ header {
 .alert {
     margin: 0 auto;
     width: 60%;
-    min-width: 325px;
+    min-width: 387px;
     max-width: 700px;
     height: fit-content;
     overflow: auto;
@@ -143,7 +152,7 @@ footer {
     padding: 7px 20px;
     margin: 0 auto;
     width: 60%;
-    min-width: 275px;
+    min-width: 387px;
     max-width: 700px;
     box-sizing: border-box;
     text-align: center;

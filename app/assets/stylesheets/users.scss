@@ -5,7 +5,7 @@ $max-width: 700px;
 
 #profile-wrap {
     width: 60%;
-    min-width: 325px;
+    min-width: 387px;
     max-width: $max-width;
     height: fit-content;
     overflow: auto;
@@ -28,4 +28,8 @@ h2.profile {
 
 .profile-item-value {
     margin: 0 0 0 15px;
+}
+
+#profile-info {
+    padding: 0 15px;
 }
