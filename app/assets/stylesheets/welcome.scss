@@ -67,7 +67,7 @@ a:hover {
 }
 
 #time-wrap, #track-pool-wrap {
-    overflow: auto;
+    overflow: visible;
     margin: 0 auto 10px;
 }
 
@@ -170,5 +170,6 @@ input[type=submit] {
     padding: 5px 10px;
     background: #444;
     color: #bfefbf;
-    font-size: 1.3em;
+    transform: scale(1.22, 1.22);
+    line-height: 1.22em;
 }
