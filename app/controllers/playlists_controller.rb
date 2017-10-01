@@ -42,8 +42,7 @@ class PlaylistsController < ApplicationController
         @playlist.uri = playlist.uri
         @playlist.title = playlist.name
         @playlist.user_id = session['spotify_user_id']
-        @playlist.playlist_id = playlist.id
-        
+
         if @playlist.save
           flash[:notice] = "Your playlist was successfully created."
           redirect_to "/playlists/#{@playlist.id}"
