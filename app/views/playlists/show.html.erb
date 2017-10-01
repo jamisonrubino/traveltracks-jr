@@ -2,9 +2,7 @@
     <div id="breadcrumbs">
         <%= link_to "Home", root_path %> > <%= link_to "My Playlists", playlists_path %> > <b><%= @playlist.title %></b><br>
     </div>
-    <iframe src="https://open.spotify.com/embed?uri=<%= @playlist.uri %>" width="400px" frameborder="0" allowtransparency="true"></iframe>
-    
-        <%= link_to 'Back', playlists_path, class: "btn-back" %>
+    <iframe src="https://open.spotify.com/embed?uri=<%= @playlist.uri %>" frameborder="0" allowtransparency="true"></iframe>
 </div>
 
 

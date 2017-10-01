@@ -14,13 +14,12 @@
  *= require_self
  */
  
-/*$lightgreen: #66ffa6;*/
-/*$green: #00e676;*/
-/*$darkgreen: #00b248;*/
+/*$lightgreen: #76d275;*/
+/*$green: #43a047;*/
+/*$darkgreen: #00701a;*/
 /*$lightyellow: #ffffbf;*/
 /*$yellow: #ffff8d;*/
 /*$darkyellow: #cacc5d;*/
-
 
 body {
     margin: 0;
@@ -92,7 +91,7 @@ h4 {
 header {
     margin: 0 auto;
     width: 60%;
-    min-width: 387px;
+    min-width: 410px;
     max-width: 700px;
     height: fit-content;
     overflow: auto;
@@ -151,9 +150,8 @@ header a:hover {
 
 .alert {
     margin: 0 auto;
-    width: 60%;
-    min-width: 387px;
-    max-width: 700px;
+    width: 100%;
+    min-width: 410px;
     height: fit-content;
     overflow: auto;
     box-sizing: border-box;
@@ -191,7 +189,7 @@ footer {
     height: fit-content;
     overflow: auto;
     box-sizing: border-box;
-    padding: 8px 0;
+    padding: 11px 0;
     padding: 0;
     margin: 0;
 }
@@ -199,12 +197,13 @@ footer {
 #footer-content {
     background: #444;
     color: #ffffbf;
-    padding: 7px 20px;
+    padding: 12px 20px;
     margin: 0 auto;
     width: 60%;
-    min-width: 387px;
+    min-width: 410px;
     max-width: 700px;
     box-sizing: border-box;
     text-align: center;
+    border-radius: 0 0 4px 4px;
 }
 

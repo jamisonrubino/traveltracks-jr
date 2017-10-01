@@ -20,7 +20,7 @@ $max-width: 700px;
 
 #buttons-wrap {
     width: 60%;
-    min-width: 336px;
+    min-width: 410px;
     max-width: $max-width;  
     margin: 0 auto;
     display: block;
@@ -29,12 +29,12 @@ $max-width: 700px;
 
 #playlist-wrap {
     width: 60%;
-    min-width: 387px;
+    min-width: 410px;
     max-width: 700px;
     height: fit-content;
     margin: 0 auto;
     box-sizing: border-box;
-    padding: 0 0 20px;
+    // padding: 0 0 20px;
     position: relative;
     background: $lightgreen;
 }
@@ -45,7 +45,7 @@ $max-width: 700px;
 
 #playlists-wrap {
     width: 60%;
-    min-width: 387px;
+    min-width: 410px;
     max-width: 700px;
     height: fit-content;
     margin: 0 auto;
@@ -81,7 +81,7 @@ iframe {
     height: 600px;
     box-sizing: border-box;
     position: relative;
-    margin-bottom: 30px;
+    // margin-bottom: 30px;
 }
 
 .date {

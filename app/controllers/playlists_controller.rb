@@ -15,9 +15,7 @@ class PlaylistsController < ApplicationController
 
 
   def show
-    # spotify_user = RSpotify::User.new(session['spotify_user'])
-    # @playlist.time = Rspotify::Playlist.find(spotify_user_id, @playlist.playlist_id)
-    
+
   end
 
   # GET /playlists/new

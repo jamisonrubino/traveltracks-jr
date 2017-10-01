@@ -37,7 +37,7 @@ form {
 #form-wrap {
     margin: 0 auto;
     text-align: center;
-    min-width: 387px;
+    min-width: 410px;
     max-width: 700px;
     width: 60%;    
     position: relative;
@@ -105,8 +105,19 @@ form {
     margin-bottom: 5px;
 }
 
-#maps-directions, #trip-time-input {
+#maps-directions {
+    padding-top: 10px;
+    box-sizing: border-box;
+    overflow: auto;
+}
 
+#maps-directions-link {
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+#maps-link {
+    display: inline-block;
 }
 
 hr {
@@ -151,7 +162,7 @@ input[type=number]:focus, input[type=text]:focus {
 }
 
 #artist-input {
-    margin-top: 8px;
+    margin-top: 5px;
 }
 
 #artist-input input {

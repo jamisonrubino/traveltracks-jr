@@ -1,0 +1,84 @@
+            <%= form_tag("/make_playlist", method:"post") %>
+                <div id="time-wrap">
+                    <div class="h2-wrap">
+                        <h2>Playlist Time</h2>
+                    </div>
+                    <div id="maps-directions">
+                        <!-- GOOGLE MAPS DIRECTIONS LINK -->
+                        <div id="maps-directions-link">
+                            <a href="javascript: $('#maps-directions-input').removeClass('hide'); $('#maps-directions-link').addClass('hide');" id="maps-link">Google Maps Directions</a>
+                        </div>
+                        
+                        <!-- GOOGLE MAPS DIRECTIONS INPUTS -->
+                        <div id="maps-directions-input" class="hide">
+                            <%= label_tag(:directions, "Origin and destination.") %>
+                            <input placeholder="New York, New York" value="" type="text" name="directions[start]" id="directions_start" onFocus="geolocate('start')">
+                            <input placeholder="Boston, Massachusetts" value="" type="text" name="directions[destination]" id="directions_destination" onFocus="geolocate()">
+                        </div>
+                    </div>
+                    
+                    <div class="or">
+                        <hr><h3>OR</h3><hr>
+                    </div>
+                    
+                    <div id="trip-time-input">
+                        <%= number_field(:time, :hours, min: 0, max: 5, step: 1, placeholder: "Hours") %>
+                        <%= number_field(:time, :minutes, min: 0, max: 59, step: 1, placeholder: "Minutes") %>
+                    </div>
+                </div>
+                
+                
+                <!-- ---------SET PLAYLIST TRACK POOL--------- -->
+                
+                <div id="track-pool-wrap">
+                    <div class="h2-wrap">
+                        <h2>Music Source</h2>
+                    </div>
+                    <div id="track-pool">
+                         
+                        <!-- SPOTIFY USER GENRE SEEDS -->
+                        <div id="genre-option">
+                            <%= radio_button_tag "pool", "genre" %>
+                            <%= label_tag "pool_genre", "Based on genre" %><br>
+                            
+                            <div id="genre-seeds">
+                                <h4>Choose up to 3</h4>
+                                <div class="genre">
+                                    <%= label_tag "genre_seed", "Music Genre" %>
+                                    <%= select_tag "genre_seed_one", options_for_select(@genres) %>
+                                </div>
+                                <div class="genre">
+                                    <%= label_tag "genre_seed", "Music Genre" %>
+                                    <%= select_tag "genre_seed_two", options_for_select(@genres) %>
+                                </div>
+                                <div class="genre">
+                                    <%= label_tag "genre_seed", "Music Genre" %>
+                                    <%= select_tag "genre_seed_three", options_for_select(@genres) %>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <div id="artist-option">
+                            <%= radio_button_tag "pool", "artist" %>
+                            <%= label_tag "pool_artist", "Based on artist" %>
+                            
+                            <div id="artist-input">
+                                <%= text_field "seed", "artist", placeholder: "Artist", value: "" %>
+                            </div>
+                            
+                        </div>
+
+                        <div id="saved-tracks">
+                            <%= radio_button_tag "pool", "saved_tracks" %>
+                            <%= label_tag "pool_saved_tracks", "Recently-saved tracks" %>
+                        </div>
+
+                        <div id="top-tracks">
+                            <%= radio_button_tag "pool", "top_tracks" %>
+                            <%= label_tag "pool_top_tracks", "My top 50 tracks" %>
+                        </div>
+                    </div>
+
+                </div>
+                <%= submit_tag "Make playlist", id: "submit" %>
