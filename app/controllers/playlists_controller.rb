@@ -15,6 +15,9 @@ class PlaylistsController < ApplicationController
 
 
   def show
+    # spotify_user = RSpotify::User.new(session['spotify_user'])
+    # @playlist.time = Rspotify::Playlist.find(spotify_user_id, @playlist.playlist_id)
+    
   end
 
   # GET /playlists/new
@@ -41,10 +44,13 @@ class PlaylistsController < ApplicationController
         @playlist.uri = playlist.uri
         @playlist.title = playlist.name
         @playlist.user_id = session['spotify_user_id']
+        @playlist.playlist_id = playlist.id
         
         if @playlist.save
           flash[:notice] = "Your playlist was successfully created."
           redirect_to "/playlists/#{@playlist.id}"
+        else
+          flash[:alert] = "We had trouble saving your playlist to our database. Please check your Spotify library."
         end
     
       else
@@ -174,6 +180,7 @@ class PlaylistsController < ApplicationController
             recs.tracks.each do |track|
               playlist_pool << track
             end
+            params[:seed][:artist] = artist.name
           else
             playlist_pool = "error"
             flash[:alert] = "Artist not found."

@@ -4,31 +4,57 @@
 
 $black: #444;
 $grey: #888;
-$lightgreen: #dfffdf;
-$green: #bfefbf;
-$darkgreen: #7fbf7f;
+
+
+// $lightgreen: #dfffdf;
+// $green: #bfefbf;
+// $darkgreen: #7fbf7f;
+
+$lightgreen: #76d275;
+$green: #43a047;
+$darkgreen: #00701a;
+$lightyellow: #ffffbf;
+$yellow: #ffff8d;
+$darkyellow: #cacc5d;
 
 a {
     text-decoration: none;
-
-    }
+}
 
 a:hover {
     background: none;
     color: $black;
 }
 
+form {
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    width: 100%;
+}
+
+
+#form-wrap {
+    margin: 0 auto;
+    text-align: center;
+    min-width: 387px;
+    max-width: 700px;
+    width: 60%;    
+    position: relative;
+    background: $lightgreen;
+}
+
 #form-wrap a {
     color: $grey;
-    background: $lightgreen;
+    background: $lightyellow;
     padding: 5px 10px;
     border-radius: 2px;
-    transition: 0.3s background, 0.3s color;
+    transition: 0.25s background, 0.25s color;
 }
 
 #form-wrap a:hover {
     color: $black;
-    background: $green;
+    background: $yellow;
 }
 
 #spotify-login-div {
@@ -46,29 +72,22 @@ a:hover {
     font-size: 1.5em;
     text-decoration: none;
     border-radius: 4px;
-    color: #888;
+    color: #fff;
     transition: 0.3s background, 0.3s color;
 }
 
 #spotify-login-div a:hover {
     background: $green;
-    color: #444;
+    color: #fff;
 }
 
-#form-wrap {
+#time-wrap {
     margin: 0 auto;
-    text-align: center;
-    min-width: 387px;
-    max-width: 700px;
-    width: 60%;
-    position: relative;
-    z-index: 3;
-    background: #fff;
 }
 
-#time-wrap, #track-pool-wrap {
+#track-pool-wrap {
+    margin-top: 25px;
     overflow: visible;
-    margin: 0 auto 10px;
 }
 
 #time-wrap, #track-pool-wrap, #maps-directions, #trip-time-input {
@@ -93,7 +112,7 @@ a:hover {
 hr {
     display: block;
     border-style: solid;
-    border-color: #ccc;
+    border-color: #ffffbf;
     border-width: 1px;
     width: 70%;
 }
@@ -108,7 +127,7 @@ hr {
 	margin: 0;
     padding: 0;
     display: inline-block;
-    color: #ccc;
+    color: #ffffbf;
 }
 
 input[type=number], input[type=text] {
@@ -124,7 +143,15 @@ input[type=number] {
 
 input[type=number]:focus, input[type=text]:focus {
     border: 1px solid #666;
-    background: $lightgreen;
+    background: $lightyellow;
+}
+
+#genre-seeds, #artist-input {
+    opacity: 1;
+}
+
+#artist-input {
+    margin-top: 8px;
 }
 
 #artist-input input {
@@ -141,6 +168,7 @@ input[type=submit] {
 
 #track-pool-wrap label {
     display: inline-block;
+    // font-size: 1.2em;
 }
 
 #artistR {
@@ -155,21 +183,28 @@ input[type=submit] {
     margin: 0 0 5px;
 }
 
+
+
 #submit {
     padding: 10px 15px;
-    background: linear-gradient($lightgreen, $green);
-    border: 2px solid $lightgreen;
+    background: $yellow;
+    border: 0;
     color: $black;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.2em;
 }
 
 #submit:active {
-    background: $green;
+    background: $lightyellow;
 }
 
 .selected {
-    padding: 5px 10px;
-    background: #444;
-    color: #bfefbf;
-    transform: scale(1.22, 1.22);
-    line-height: 1.22em;
+    // padding: 5px 10px;
+    background: #ffffbf;
+    color: #444;
+    // transform: scale(1.22, 1.22);
+    // line-height: 1.22em;
+    border-bottom: 2px solid #444;
+    font-weight: bold;
 }

@@ -3,23 +3,28 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 $max-width: 700px;
 
+$black: #444;
+$grey: #888;
+
+$lightgreen: #76d275;
+$green: #43a047;
+$darkgreen: #00701a;
+$lightyellow: #ffffbf;
+$yellow: #ffff8d;
+$darkyellow: #cacc5d;
+
 #profile-wrap {
     width: 60%;
     min-width: 387px;
     max-width: $max-width;
     height: fit-content;
-    overflow: auto;
     margin: 0 auto;
     box-sizing: border-box;
-    padding: 0 20px 20px;
+    padding: 0 0 20px;
     position: relative;
-    z-index: 3;
-    background: #fff;
+    background: $lightgreen;
 }
 
-h2.profile {
-    margin-top: 25px;
-}
 
 .profile-item-name, .profile-item-value {
     display: inline-block;
@@ -31,5 +36,8 @@ h2.profile {
 }
 
 #profile-info {
+    display: block;
     padding: 0 15px;
+    height: fit-content;
+    overflow: auto;
 }

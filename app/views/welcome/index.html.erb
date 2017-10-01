@@ -1,18 +1,16 @@
-<div id="welcome">
     <% if !session['spotify_user'] %>
         <div id="spotify-login-div">
             <%= link_to "Sign in to Spotify", '/auth/spotify', class: "sign-in" %>
         </div>
     <% else %>
-    <% puts session['spotify_user_id'] %>
-        
-        <%= form_tag("/make_playlist", method:"post") %>
-            <div id="form-wrap">
+        <% puts session['spotify_user_id'] %>
+        <div id="form-wrap">
             <!-- ---------SET PLAYLIST TIME--------- -->
-            
-            
+            <%= form_tag("/make_playlist", method:"post") %>
                 <div id="time-wrap">
-                    <h2>Playlist Time</h2>
+                    <div class="h2-wrap">
+                        <h2>Playlist Time</h2>
+                    </div>
                     <div id="maps-directions">
                         
                         <!-- GOOGLE MAPS DIRECTIONS LINK -->
@@ -34,7 +32,7 @@
                     
                     <div id="trip-time-input">
                         <%= number_field(:time, :hours, min: 0, max: 5, step: 1, placeholder: "Hours") %>
-                        <%= number_field(:time, :minutes, min: 0, max: 55, step: 5, placeholder: "Minutes") %>
+                        <%= number_field(:time, :minutes, min: 0, max: 59, step: 1, placeholder: "Minutes") %>
                     </div>
                 </div>
                 
@@ -42,13 +40,15 @@
                 <!-- ---------SET PLAYLIST TRACK POOL--------- -->
                 
                 <div id="track-pool-wrap">
-                    <h2>Music Source</h2>
+                    <div class="h2-wrap">
+                        <h2>Music Source</h2>
+                    </div>
                     <div id="track-pool">
                          
                         <!-- SPOTIFY USER GENRE SEEDS -->
                         <div id="genre-option">
                             <%= radio_button_tag "pool", "genre" %>
-                            <%= label_tag "pool_genre", "Recommendations based on genres" %><br>
+                            <%= label_tag "pool_genre", "Based on genre" %><br>
                             
                             <div id="genre-seeds">
                                 <h4>Choose up to 3</h4>
@@ -68,48 +68,31 @@
                             </div>
                         </div>
                         
-                        <!--<div class="or">-->
-                        <!--    <hr><h3>OR</h3><hr>-->
-                        <!--</div>-->
-                        
-                        
                         <div id="artist-option">
                             <%= radio_button_tag "pool", "artist" %>
-                            <%= label_tag "pool_artist", "Recommendations based on an artist" %>
+                            <%= label_tag "pool_artist", "Based on artist" %>
                             
                             <div id="artist-input">
                                 <%= text_field "seed", "artist", placeholder: "Artist", value: "" %>
                             </div>
                             
                         </div>
-                        
-                        <!--<div class="or">-->
-                        <!--    <hr><h3>OR</h3><hr>-->
-                        <!--</div>-->
 
                         <div id="saved-tracks">
                             <%= radio_button_tag "pool", "saved_tracks" %>
-                            <%= label_tag "pool_saved_tracks", "My most recent saved tracks" %>
+                            <%= label_tag "pool_saved_tracks", "Recently-saved tracks" %>
                         </div>
-                        
-                        <!--<div class="or">-->
-                        <!--    <hr><h3>OR</h3><hr>-->
-                        <!--</div>-->
-                        
+
                         <div id="top-tracks">
                             <%= radio_button_tag "pool", "top_tracks" %>
-                            <%= label_tag "pool_top_tracks", "My most-listened-to tracks" %>
+                            <%= label_tag "pool_top_tracks", "My top 50 tracks" %>
                         </div>
                     </div>
+
                 </div>
                 <%= submit_tag "Make playlist", id: "submit" %>
-            </div>
-
-            
-        <% #end %>
     <% end %>
 </div>
-
 
 
 
@@ -120,7 +103,7 @@
     $("input#pool_artist").change(addHidePool);
     
     
-    $("#genre-seeds, #artist-input").addClass("hide").css({"opacity": "0", "transition": "0.7s opacity"});
+    $("#genre-seeds, #artist-input").addClass("hide");
     $("input:radio").css("display", "none");
     
     var topTracksR = $("input:radio[name=pool]#pool_top_tracks");
@@ -133,26 +116,20 @@
     var savedTracksL = $("label[for=pool_saved_tracks]");
     var artistL = $("label[for=pool_artist]");
         
-    topTracksL.css({"transition": "0.3s transform", "border-radius": "2px", "border-bottom": "2px solid #bfefbf"});
-    genreL.css({"transition": "0.3s transform", "border-radius": "2px", "border-bottom": "2px solid #bfefbf"});
-    savedTracksL.css({"transition": "0.3s transform", "border-radius": "2px", "border-bottom": "2px solid #bfefbf"});
-    artistL.css({"transition": "0.3s transform", "border-radius": "2px", "border-bottom": "2px solid #bfefbf"});
+    $("label[for=pool_top_tracks], label[for=pool_genre], label[for=pool_saved_tracks], label[for=pool_artist]").css({"transition": "0.25s background, 0.25s color", "border-bottom": "2px solid #ffff8d", "width": "100%", "font-size": "1.1em", "padding": "7px 0"});
     
 
     function addHidePool() {
     
         if (genreR.is(":checked")) {
-            $("#artist-input").removeClass();
-            $("#artist-input").addClass("hide").css("opacity", "0");
-            $("#genre-seeds").removeClass();
-            $("#genre-seeds").css("opacity", "1");
+            // $("#artist-input").removeClass();
+            $("#artist-input").fadeOut(400).hide();
+            $("#genre-seeds").fadeIn(400).show();
             unsetAll();
             genreL.addClass("selected");
         } else if (topTracksR.is(":checked") || savedTracksR.is(":checked")) {
-            $("#genre-seeds").removeClass();
-            $("#artist-input").removeClass();
-            $("#genre-seeds").addClass("hide").css("opacity", "0");
-            $("#artist-input").addClass("hide").css("opacity", "0");
+            $("#genre-seeds").fadeOut(400).hide();
+            $("#artist-input").fadeOut(400).hide()
             if (topTracksR.is(":checked")) {
                 unsetAll();
                 topTracksL.addClass("selected");
@@ -161,9 +138,8 @@
                 savedTracksL.addClass("selected");
             }
         } else if (artistR.is(":checked")) {
-            $("#genre-seeds").removeClass();
-            $("#genre-seeds").addClass("hide").css("opacity", "0");
-            $("#artist-input").removeClass().css("opacity", "1");
+            $("#genre-seeds").fadeOut(400).hide();
+            $("#artist-input").fadeIn(400).show();
 
             unsetAll();
             artistL.addClass("selected");
@@ -178,7 +154,7 @@
     }
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places"></script>
+<!--<script src="https://maps.googleapis.com/maps/api/js?key= ENV['GOOGLE_MAPS_API_KEY']&libraries=places"></script>-->
 
 <script>
       var placeSearch, autocompleteStart, autocompleteDestination;

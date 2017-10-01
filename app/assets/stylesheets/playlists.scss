@@ -4,9 +4,18 @@
 
 $black: #444;
 $grey: #888;
-$lightgreen: #dfffdf;
-$green: #bfefbf;
-$darkgreen: #7fbf7f;
+
+// $lightgreen: #dfffdf;
+// $green: #bfefbf;
+// $darkgreen: #7fbf7f;
+
+$lightgreen: #76d275;
+$green: #43a047;
+$darkgreen: #00701a;
+$lightyellow: #ffffbf;
+$yellow: #ffff8d;
+$darkyellow: #cacc5d;
+
 $max-width: 700px;
 
 #buttons-wrap {
@@ -19,32 +28,39 @@ $max-width: 700px;
 }
 
 #playlist-wrap {
-    display: block;
-    min-width: 336px;
-    overflow: auto;
+    width: 60%;
+    min-width: 387px;
+    max-width: 700px;
+    height: fit-content;
     margin: 0 auto;
     box-sizing: border-box;
-    text-align: center;
+    padding: 0 0 20px;
+    position: relative;
+    background: $lightgreen;
+}
+
+#breadcrumbs {
+    padding: 15px 35px;
 }
 
 #playlists-wrap {
     width: 60%;
     min-width: 387px;
-    max-width: $max-width;
+    max-width: 700px;
     height: fit-content;
-    overflow: auto;
     margin: 0 auto;
     box-sizing: border-box;
-    padding: 0 20px 20px;
+    padding: 0 0 20px;
     position: relative;
-    z-index: 3;
-    background: #fff;
+    background: $lightgreen;
+
     // text-align: center;
 }
 
 table {
-    margin: 0 0 8px 15px;
+    margin: 0 15px 30px 30px;
     padding-right: 15px;
+    border-spacing: 0;
 }
 
 table a {
@@ -52,30 +68,32 @@ table a {
 }
 
 table a:visited {
-    color: #888;
-}
-
-table a:hover {
     color: #444;
 }
 
+table a:hover {
+    color: #000;
+}
+
 iframe {
-    width: 60%;
-    min-width: 336px;
+    width: 100%;
     max-width: $max-width;
     height: 600px;
-    box-shadow: 0 0 6px rgba(0,0,0,0.4);
     box-sizing: border-box;
     position: relative;
-    z-index: 3;
+    margin-bottom: 30px;
 }
 
 .date {
     width: 80px;
 }
 
-tr:nth-child(2n) {
-    background: $lightgreen;
+tr:nth-child(2n) a {
+    color: $lightyellow;
+}
+
+tr:nth-child(2n) a:hover {
+    color: $yellow;
 }
 
 td {
@@ -90,10 +108,10 @@ td:last-child a:hover {
     color: $black;
 }
 
-h2.playlists {
-    margin: 25px 0 8px;
-}
-
 #buttons-wrap {
     margin-top: 15px;
+}
+
+.btn-back {
+    margin-left: 30px;
 }
