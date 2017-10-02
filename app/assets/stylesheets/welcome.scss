@@ -156,7 +156,7 @@ hr {
     color: #ffffbf;
 }
 
-input:not(input[type=submit]), input[type=number], input[type=text] {
+input[type=number], input[type=text] {
     padding: 3px 5px;
     margin: 0 5px;
     border-radius: 2px;
