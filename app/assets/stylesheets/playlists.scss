@@ -20,7 +20,7 @@ $max-width: 700px;
 
 #buttons-wrap {
     width: 60%;
-    min-width: 410px;
+    min-width: 385px;
     max-width: $max-width;  
     margin: 0 auto;
     display: block;
@@ -29,7 +29,7 @@ $max-width: 700px;
 
 #playlist-wrap {
     width: 60%;
-    min-width: 410px;
+    min-width: 385px;
     max-width: 700px;
     height: fit-content;
     margin: 0 auto;
@@ -45,7 +45,7 @@ $max-width: 700px;
 
 #playlists-wrap {
     width: 60%;
-    min-width: 410px;
+    min-width: 385px;
     max-width: 700px;
     height: fit-content;
     margin: 0 auto;
@@ -128,4 +128,16 @@ td:last-child a:hover {
 
 #playlists-wrap nav a:hover {
     color: #000;
+}
+
+td.delete {
+    padding-top: 25px;
+}
+
+.delete-trash {
+    filter: invert(100%) grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-45deg) saturate(1200%) contrast(0.4);
+}
+
+.delete a:hover .delete-trash {
+    filter: invert(100%) grayscale(100%) brightness(20%) sepia(100%) hue-rotate(-45deg) saturate(1200%) contrast(0.60);
 }

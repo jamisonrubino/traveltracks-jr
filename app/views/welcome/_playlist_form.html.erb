@@ -8,11 +8,14 @@
                         <div id="maps-directions-link">
                             <a href="javascript: $('#maps-directions-input').removeClass('hide'); $('#maps-directions-link').addClass('hide');" id="maps-link">Google Maps Directions</a>
                         </div>
-                        
+
                         <!-- GOOGLE MAPS DIRECTIONS INPUTS -->
                         <div id="maps-directions-input" class="hide">
-                            <%= label_tag(:directions, "Origin and destination.") %>
+                            <!--label_tag(:directions, "<b>Origin and destination.</b>".html_safe)-->
                             <input placeholder="New York, New York" value="" type="text" name="directions[start]" id="directions_start" onFocus="geolocate('start')">
+                            
+                            <div class="icon-div"><%= image_tag "location.png", size: "30x30" %></div>
+                            
                             <input placeholder="Boston, Massachusetts" value="" type="text" name="directions[destination]" id="directions_destination" onFocus="geolocate()">
                         </div>
                     </div>
@@ -23,6 +26,7 @@
                     
                     <div id="trip-time-input">
                         <%= number_field(:time, :hours, min: 0, max: 5, step: 1, placeholder: "Hours") %>
+                        <div class="icon-div"><%= image_tag "ios7-timer-outline.png", size: "35x35", id:"timer-img" %></div>
                         <%= number_field(:time, :minutes, min: 0, max: 59, step: 1, placeholder: "Minutes") %>
                     </div>
                 </div>
@@ -44,15 +48,15 @@
                             <div id="genre-seeds">
                                 <h4>Choose up to 3</h4>
                                 <div class="genre">
-                                    <%= label_tag "genre_seed", "Music Genre" %>
+                                    <!--label_tag "genre_seed", "Music Genre" %>-->
                                     <%= select_tag "genre_seed_one", options_for_select(@genres) %>
                                 </div>
                                 <div class="genre">
-                                    <%= label_tag "genre_seed", "Music Genre" %>
+                                    <!--label_tag "genre_seed", "Music Genre" %>-->
                                     <%= select_tag "genre_seed_two", options_for_select(@genres) %>
                                 </div>
                                 <div class="genre">
-                                    <%= label_tag "genre_seed", "Music Genre" %>
+                                    <!--label_tag "genre_seed", "Music Genre" %>-->
                                     <%= select_tag "genre_seed_three", options_for_select(@genres) %>
                                 </div>
                                 

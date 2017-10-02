@@ -6,7 +6,6 @@
     <title>Triplist</title>
     <%= csrf_meta_tags %>
     
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application' %>
   </head>
@@ -32,7 +31,7 @@
         <div id="header">
           <div id="left-nav">
             <%= link_to "Home", root_path, id: "home-link" %>
-            <%= link_to "My Playlists", playlists_path, id: "my-playlists-link" %>
+            <%= link_to image_tag("ios7-albums-outline.png", size:"30x30", class: "nav-icon") + "My Playlists", playlists_path, id: "my-playlists-link" %>
           </div>
           
           <div id="user-nav">

@@ -37,7 +37,7 @@ form {
 #form-wrap {
     margin: 0 auto;
     text-align: center;
-    min-width: 410px;
+    min-width: 385px;
     max-width: 700px;
     width: 60%;    
     position: relative;
@@ -85,6 +85,11 @@ form {
     margin: 0 auto;
 }
 
+
+img#timer-img {
+    margin-top: -22px;
+}
+
 #track-pool-wrap {
     margin-top: 25px;
     overflow: visible;
@@ -108,7 +113,8 @@ form {
 #maps-directions {
     padding-top: 10px;
     box-sizing: border-box;
-    overflow: auto;
+    overflow: visible;
+    
 }
 
 #maps-directions-link {
@@ -116,8 +122,13 @@ form {
     overflow: auto;
 }
 
-#maps-link {
+a#maps-link {
     display: inline-block;
+    transition: 0.1s transform;
+}
+
+a#maps-link:active {
+    transform: scale(0.95, 0.95);
 }
 
 hr {
@@ -141,20 +152,27 @@ hr {
     color: #ffffbf;
 }
 
-input[type=number], input[type=text] {
+input, input[type=number], input[type=text] {
     padding: 3px 5px;
     margin: 0 5px;
     border-radius: 2px;
-    border: 1px solid #aaa;
+    border: 1px solid #43a047;
+}
+
+input[type=text] {
+    font-size: 0.9em;
 }
 
 input[type=number] {
     width: 70px;
+    border: 1px solid #43a047;
 }
 
-input[type=number]:focus, input[type=text]:focus {
-    border: 1px solid #666;
+input:focus, input[type=number]:focus, input[type=text]:focus, select:focus {
+    border: 1px solid #43a047;
     background: $lightyellow;
+    outline: none;
+    
 }
 
 #genre-seeds, #artist-input {
@@ -167,6 +185,8 @@ input[type=number]:focus, input[type=text]:focus {
 
 #artist-input input {
     margin-top: 5px;
+    padding: 3px 5px;
+    border: 1px solid #43a047;
 }
 
 input[type=submit] {
@@ -210,12 +230,20 @@ input[type=submit] {
     background: $lightyellow;
 }
 
+#genre-seeds select {
+    padding: 3px 5px;
+    border-radius: 3px;
+    border: 1px solid #43a047;
+}
+
 .selected {
     // padding: 5px 10px;
     background: #ffffbf;
     color: #444;
     // transform: scale(1.22, 1.22);
     // line-height: 1.22em;
-    border-bottom: 2px solid #444;
+    // border: 2px solid #444;
     font-weight: bold;
+    box-sizing: border-box;
 }
+
