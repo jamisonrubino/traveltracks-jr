@@ -161,7 +161,7 @@ header a:hover img {
 }
 
 header a:active {
-    transform: scale(0.93,0.93);
+    transform: scale(0.94,0.94);
 }
 
 .alert {
@@ -192,7 +192,7 @@ p#alert {
 
 a.btn-back {
     margin-top: 8px;
-    margin-left: 35px;
+    margin-left: 20px;
     color: #444;
 }
 

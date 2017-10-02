@@ -58,8 +58,7 @@ $max-width: 700px;
 }
 
 table {
-    margin: 0 15px 30px 30px;
-    padding-right: 15px;
+    margin: 0 20px 30px 20px;
     border-spacing: 0;
 }
 
@@ -97,7 +96,7 @@ tr:nth-child(2n) a:hover {
 }
 
 td {
-    padding: 7px 5px;
+    padding: 7px 5px 7px 0;
 }
 
 td:last-child a {
@@ -119,7 +118,7 @@ td:last-child a:hover {
 #playlists-wrap nav {
     display: block;
     float: right;
-    margin-right: 35px;
+    margin-right: 20px;
 }
 
 #playlists-wrap nav a {
@@ -131,7 +130,7 @@ td:last-child a:hover {
 }
 
 td.delete {
-    padding-top: 25px;
+    padding: 25px 0 0;
 }
 
 .delete-trash {
