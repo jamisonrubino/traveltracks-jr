@@ -183,11 +183,12 @@ p#notice {
 }
 
 p#alert {
-    background: #ffccaa;
+    background: #ff5533;
     padding: 8px;
     margin: 0;
     position: relative;
     z-index: 1;
+    color: #fff;
 }
 
 a.btn-back {
