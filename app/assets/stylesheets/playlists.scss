@@ -34,9 +34,9 @@ $max-width: 700px;
     height: fit-content;
     margin: 0 auto;
     box-sizing: border-box;
-    // padding: 0 0 20px;
     position: relative;
     background: $lightgreen;
+    line-height: 10px;
 }
 
 #breadcrumbs {
@@ -60,6 +60,7 @@ $max-width: 700px;
 table {
     margin: 0 20px 30px 20px;
     border-spacing: 0;
+    width: calc(100% - 40px);
 }
 
 table a {
@@ -131,12 +132,18 @@ td:last-child a:hover {
 
 td.delete {
     padding: 25px 0 0;
+    width: 20px;
 }
 
 .delete-trash {
     filter: invert(100%) grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-45deg) saturate(1200%) contrast(0.4);
+    transition: 0.1s scale;
 }
 
 .delete a:hover .delete-trash {
-    filter: invert(100%) grayscale(100%) brightness(20%) sepia(100%) hue-rotate(-45deg) saturate(1200%) contrast(0.60);
+    filter: invert(100%) grayscale(100%) brightness(20%) sepia(100%) hue-rotate(-45deg) saturate(800%) contrast(0.80) brightness(90%);
+}
+
+.delete a:active .delete-trash {
+    transform: scale(0.95);
 }
