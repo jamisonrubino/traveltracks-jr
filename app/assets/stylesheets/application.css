@@ -119,7 +119,8 @@ header {
 }
 
 header a {
-    transition: 0.1s transform;
+    transition: 0.15s transform;
+    transition-timing-function: ease-in-out;
 }
 
 #my-playlists-link {
@@ -161,7 +162,7 @@ header a:hover img {
 }
 
 header a:active {
-    transform: scale(0.94,0.94);
+    transform: scale(0.95,0.95);
 }
 
 .alert {

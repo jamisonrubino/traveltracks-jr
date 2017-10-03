@@ -15,14 +15,12 @@
     <% if session['spotify_user'] %>
     
       <% if flash[:notice] %>
-        <div class="alert alert-success">
-          <!--<button type="button" class="close" data-dismiss="alert">&times;</button>-->
+        <div class="alert">
             <p id="notice"><%= flash[:notice] %></p>
   
         </div>
       <% elsif flash[:alert] %>
-        <div class="alert alert-warning">
-          <!--<button type="button" class="close" data-dismiss="alert">&times;</button>-->
+        <div class="alert">
             <p id="alert"><%= flash[:alert] %></p>
         </div>
       <% end %>
@@ -51,7 +49,7 @@
     <% if session['spotify_user'] %>
       <footer>
         <div id="footer-content">
-          Copyright <%= Time.now.year %> Triplist
+          Copyright <%= Time.now.year %> TravelTracks
         </div>
       </footer>
     <% end %>

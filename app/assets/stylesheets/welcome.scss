@@ -50,6 +50,7 @@ form {
     padding: 5px 10px;
     border-radius: 2px;
     transition: 0.25s background, 0.25s color;
+    transition-timing-function: ease-in-out;
 }
 
 #form-wrap a:hover {
@@ -74,6 +75,7 @@ form {
     border-radius: 4px;
     color: #fff;
     transition: 0.3s background, 0.3s color, 0.1s transform;
+    transition-timing-function: ease-in-out;
 }
 
 #spotify-login-div a:hover {
@@ -129,6 +131,7 @@ img#timer-img {
 a#maps-link {
     display: inline-block;
     transition: 0.1s transform;
+    transition-timing-function: ease-in-out;
 }
 
 a#maps-link:active {
@@ -230,6 +233,7 @@ input[type=submit] {
     font-size: 1.2em;
     line-height: 1.2em;
     transition: 0.1s font-size, 0.1s background, 0.1s line-height;
+    transition-timing-function: ease-in-out;
 }
 
 #submit:active {

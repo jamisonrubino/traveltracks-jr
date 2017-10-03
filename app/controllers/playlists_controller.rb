@@ -97,7 +97,6 @@ class PlaylistsController < ApplicationController
         
         url = "https://maps.googleapis.com/maps/api/directions/json?" + values.to_query
         
-        puts url
         response = self.class.get url
         
         directions = JSON.parse(response.body)
@@ -142,12 +141,10 @@ class PlaylistsController < ApplicationController
           recs.tracks.each do |track|
             playlist_pool << track
           end
-          puts playlist_pool
         else
           flash[:alert] = "Please enter genre seeds."
         end
       elsif params[:pool] == "saved_tracks"
-        puts "my_saved_tracks if branch"
         playlist_pool_1 = spotify_user.saved_tracks(limit: 50, offset: 0)
         playlist_pool_2 = spotify_user.saved_tracks(limit: 50, offset: 50)
         playlist_pool_3 = spotify_user.saved_tracks(limit: 50, offset: 100)
@@ -169,7 +166,6 @@ class PlaylistsController < ApplicationController
         # + playlist_pool_2 + playlist_pool_3 + playlist_pool_4
 
       elsif params[:pool] == "artist"
-        puts "params[:seed][:artist]: #{params[:seed][:artist]}"
         unless params[:seed][:artist].size == 0
           artists = RSpotify::Artist.search(params[:seed][:artist], limit: 10, market: {from: spotify_user})
           artist = artists.first
@@ -203,8 +199,6 @@ class PlaylistsController < ApplicationController
       # RANDOMLY ADD TO PT (PLAYLIST TRACKS) ARRAY UNLESS IT WOULD EXCEED PLAYLIST_TIME
       pt = []
       ps = playlist_pool.size
-      puts "playlist pool size: #{ps}"
-      puts "playlist_time: #{playlist_time}"
       ptime = 0.000
       until (playlist_time - ptime).abs.round(2) <= 2.00
         if playlist_pool.size > 1
@@ -212,15 +206,10 @@ class PlaylistsController < ApplicationController
           unless ptime + playlist_pool[rn].duration_ms/60000.000 > playlist_time + 2.00
             pt << playlist_pool[rn]
             ptime += playlist_pool[rn].duration_ms/60000.000
-            puts "ptime: #{ptime}"
           end
           playlist_pool.delete_at(rn)
         end
       end
-    
-      puts "playlist_time: #{playlist_time}"
-      puts "ptime: #{ptime}"
-      puts pt.size
       
       if playlist_time - ptime > 6
         flash[:alert] = "Your tracks pool was shorter than your trip time. Try using genre seeds or saving more Spotify tracks to your library."
@@ -257,7 +246,6 @@ class PlaylistsController < ApplicationController
       
       playlist_name += ", #{params[:seed][:artist]}" if params[:seed][:artist].size > 0
       
-      puts "Creating playlist!"
       playlist = spotify_user.create_playlist!(playlist_name)
       playlist.change_details!(public: false)
       playlist
@@ -265,25 +253,21 @@ class PlaylistsController < ApplicationController
     
     
     def add_tracks(pt, playlist)
-      puts "Adding tracks!"
       n = (pt.size/10.0).ceil
   
       a = []
       n.times do |i|
         a[i] = []
         if i == n-1     # if it's the only set
-          puts "#{pt.size%10} times"
           pt.size%10.times do |v|
             a[i] << pt[i*10 + v] if pt[i*10 + v]
           end
         else
-          puts "10 times"
           10.times do |v|
             a[i] << pt[i*10 + v] if pt[i*10 + v]
           end
         end
         playlist.add_tracks!(a[i])
       end
-      puts a
     end
 end
