@@ -24,8 +24,8 @@ default: &default
 development:
   <<: *default
   database: traveltracks_development
-  username: <%= ENV['TRIPLIST_DATABASE_USERNAME'] %>
-  password: <%= ENV['TRIPLIST_DATABASE_PASSWORD'] %>
+  username: <%= ENV['TRAVELTRACKS_DATABASE_USERNAME'] %>
+  password: <%= ENV['TRAVELTRACKS_DATABASE_PASSWORD'] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -83,5 +83,5 @@ test:
 production:
   <<: *default
   database: traveltracks_production
-  username: <%= ENV['TRIPLIST_DATABASE_USERNAME'] %>
-  password: <%= ENV['TRIPLIST_DATABASE_PASSWORD'] %>
+  username: <%= ENV['TRAVELTRACKS_DATABASE_USERNAME'] %>
+  password: <%= ENV['TRAVELTRACKS_DATABASE_PASSWORD'] %>
