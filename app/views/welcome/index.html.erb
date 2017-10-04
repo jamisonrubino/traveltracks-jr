@@ -9,8 +9,8 @@
         </div>  
     <% end %>
 
-<!--javascript_include_tag "playlist_form" %>-->
- <!--javascript_include_tag "autocomplete" %>-->
+ <!--javascript_include_tag "playlist_form" %> INCLUDED IN _PLAYLIST_FORM.HTML.ERB INSTEAD -->
+<% javascript_include_tag "autocomplete" %>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_PLACES_API_KEY'] %>&libraries=places&callback=initAutocomplete"
         async defer></script>
