@@ -5,9 +5,6 @@ class PlaylistsController < ApplicationController
   include HTTParty
   before_action :set_playlist, only: [:show, :edit, :update, :destroy]
 
-
-  # GET /playlists
-  # GET /playlists.json
   def index
     spotify_user = RSpotify::User.new(session['spotify_user'])
     @playlists = Playlist.where(user_id: session['spotify_user_id']).order(id: :desc).page params[:page]
@@ -15,18 +12,13 @@ class PlaylistsController < ApplicationController
 
   end
 
-
   def show
-
   end
 
-  # GET /playlists/new
   def new
     @playlist = Playlist.new
   end
 
-  # POST /playlists
-  # POST /playlists.json
   def create
     spotify_user = RSpotify::User.new(session['spotify_user'])
     playlist_time = set_time
