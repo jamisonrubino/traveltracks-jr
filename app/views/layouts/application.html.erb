@@ -12,46 +12,49 @@
 
   <body>
     
+    
     <% if session['spotify_user'] %>
     
       <% if flash[:notice] %>
         <div class="alert">
             <p id="notice"><%= flash[:notice] %></p>
-  
         </div>
       <% elsif flash[:alert] %>
         <div class="alert">
             <p id="alert"><%= flash[:alert] %></p>
         </div>
       <% end %>
-    
-      <header>
-        <div id="header">
-          <div id="left-nav">
-            <%= link_to "Home", root_path, id: "home-link" %>
-            <%= link_to image_tag("ios7-albums-outline.png", size:"30x30", class: "nav-icon") + "My Playlists", playlists_path, id: "my-playlists-link" %>
-          </div>
-          
-          <div id="user-nav">
+      
+      <div id="main">
+        
+        <header>
+          <div id="header">
+            <div id="left-nav">
+              <%= link_to "Home", root_path, id: "home-link" %>
+              <%= link_to image_tag("ios7-albums-outline.png", size:"30x30", class: "nav-icon") + "My Playlists", playlists_path, id: "my-playlists-link" %>
+            </div>
+                
+            <div id="user-nav">
               <%= link_to session[:spotify_user_id], profile_path %>
               <%= link_to "Logout", logout_path, id: "logout-link" %>
+            </div>
+                
           </div>
+        </header>
           
-        </div>
-      </header>
-      
+        <%= yield %>
+        
+        <footer>
+          <div id="footer-content">
+            Copyright <%= Time.now.year %> Triplist
+          </div>
+        </footer>
+      </div>
+    <% else %>
+      <div id="spotify-login-div">
+        <%= link_to "Sign in to Spotify", '/auth/spotify', class: "sign-in" %>
+      </div>
     <% end %>
-    
-    
-    
-    <%= yield %>
-    
-    <% if session['spotify_user'] %>
-      <footer>
-        <div id="footer-content">
-          Copyright <%= Time.now.year %> Triplist
-        </div>
-      </footer>
-    <% end %>
+
   </body>
 </html>

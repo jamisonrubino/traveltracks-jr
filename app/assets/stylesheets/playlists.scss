@@ -28,9 +28,6 @@ $max-width: 700px;
 }
 
 #playlist-wrap {
-    width: 60%;
-    min-width: 385px;
-    max-width: 700px;
     height: fit-content;
     margin: 0 auto;
     box-sizing: border-box;
@@ -45,11 +42,6 @@ $max-width: 700px;
 }
 
 #playlists-wrap {
-    width: 60%;
-    min-width: 385px;
-    max-width: 700px;
-    height: fit-content;
-    margin: 0 auto;
     box-sizing: border-box;
     padding: 0 0 20px;
     position: relative;
@@ -132,7 +124,7 @@ td:last-child a:hover {
 }
 
 td.delete {
-    padding: 25px 0 0;
+    padding: 23px 0 0;
     width: 20px;
 }
 

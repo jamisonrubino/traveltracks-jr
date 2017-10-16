@@ -37,13 +37,8 @@ form {
 #form-wrap {
     margin: 0 auto;
     text-align: center;
-    min-width: 385px;
-    max-width: 700px;
-    width: 60%;    
     position: relative;
     background: $lightgreen;
-    z-index: 4;
-    box-shadow: 0 0 30px rgba(0,0,0,0.4);
 }
 
 #form-wrap a {

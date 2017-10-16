@@ -32,6 +32,16 @@ body {
     background: #efe;
 }
 
+#main {
+    box-shadow: 0 0 60px rgba(0,0,0,0.4);
+    width: fit-content;
+    margin: 0 auto;
+    width: 60%;
+    min-width: 385px;
+    max-width: 700px;
+    height: fit-content;
+}
+
 header a {
     color: #888;
 }
@@ -58,8 +68,7 @@ h2 {
     position: absolute;
     left: -5px;
     margin: 0;
-    border-radius: 4px 4px 0 0;
-    z-index: 4;
+    border-radius: 4px 4px 0 0;;
 }
 
 h2::before, h2::after {
@@ -93,9 +102,6 @@ h4 {
 
 header {
     margin: 0 auto;
-    width: 60%;
-    min-width: 385px;
-    max-width: 700px;
     height: fit-content;
     overflow: auto;
     box-sizing: border-box;
@@ -105,8 +111,6 @@ header {
     /*border-width: 0 1px 1px 1px;*/
     /*border-style: solid;*/
     /*border-color: #888;*/
-    z-index: 4;
-    box-shadow: 0 0 30px rgba(0,0,0,0.4);
     position: relative;
 }
 
@@ -240,9 +244,6 @@ img.nav-icon {
 }
 
 footer {
-    width: 60%;
-    min-width: 385px;
-    max-width: 700px;
     height: fit-content;
     overflow: auto;
     box-sizing: border-box;
@@ -250,8 +251,6 @@ footer {
     padding: 0;
     margin: 0 auto;
     border-radius: 0 0 4px 4px;
-    z-index: 4;
-    box-shadow: 0 0 30px rgba(0,0,0,0.4);
 }
 
 #footer-content {
