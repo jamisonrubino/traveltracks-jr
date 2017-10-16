@@ -42,6 +42,48 @@ body {
     height: fit-content;
 }
 
+#spotify-login-div {
+    margin: 0 auto;
+}
+
+#login-wrap {
+    margin: -98px 0 0 -145px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+#login-wrap a {
+    display: inline-block;
+    padding: 40px 60px;
+    background: #76d275;
+    font-size: 1.5em;
+    text-decoration: none;
+    border-radius: 4px;
+    color: #fff;
+    transition: 0.3s background, 0.3s color, 0.1s transform;
+    transition-timing-function: ease-in-out;
+}
+
+#spotify-login-div a:hover {
+    background: #43a047;
+    color: #fff;
+}
+
+#spotify-login-div a:active {
+    transform: scale(0.95, 0.95);
+}
+
+#login-details {
+    width: 290px;
+    background: transparent;
+}
+
+#login-details p {
+    text-align: center;
+    color: #888;
+}
+
 header a {
     color: #888;
 }
