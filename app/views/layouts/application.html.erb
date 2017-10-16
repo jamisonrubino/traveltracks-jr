@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Triplist - Make the perfect playlist for your trip!</title>
+    <title>Triplist</title>
     <%= csrf_meta_tags %>
     
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -17,6 +17,7 @@
       <% if flash[:notice] %>
         <div class="alert">
             <p id="notice"><%= flash[:notice] %></p>
+  
         </div>
       <% elsif flash[:alert] %>
         <div class="alert">

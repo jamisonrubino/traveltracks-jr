@@ -187,6 +187,8 @@ class PlaylistsController < ApplicationController
     
     
     def organize_tracks(playlist_time, playlist_pool)
+      # TO-DO: CREATE POOL LENGTH VARIABLE, CHECK AGAINST TRIP LENGTH; SUGGEST SAVING TRACKS OR ADDING GENRE SEEDS IF POOL LENGTH IS SHORTER
+      # RANDOMLY ADD TO PT (PLAYLIST TRACKS) ARRAY UNLESS IT WOULD EXCEED PLAYLIST_TIME
       pt = []
       ps = playlist_pool.size
       ptime = 0.000
@@ -248,9 +250,14 @@ class PlaylistsController < ApplicationController
       a = []
       n.times do |i|
         a[i] = []
-        i == n-1 ? t = pt.size%10 : t = 10
-        t.times do |v|
-          a[i] << pt[i*10 + v] if pt[i*10 + v]
+        if i == n-1     # if it's the only set
+          pt.size%10.times do |v|
+            a[i] << pt[i*10 + v] if pt[i*10 + v]
+          end
+        else
+          10.times do |v|
+            a[i] << pt[i*10 + v] if pt[i*10 + v]
+          end
         end
         playlist.add_tracks!(a[i])
       end

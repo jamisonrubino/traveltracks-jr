@@ -54,15 +54,8 @@ $max-width: 700px;
     padding: 0 0 20px;
     position: relative;
     background: $lightgreen;
-    z-index: 4;
-    box-shadow: 0 0 30px rgba(0,0,0,0.4);
 
     // text-align: center;
-}
-
-div[data-react-class=Playlists] {
-    width: 100%;
-    
 }
 
 table {

@@ -144,7 +144,6 @@ header a {
     overflow: auto;
     float: right;
     position: relative;
-
 }
 
 #username, #logout, #left-nav {
@@ -162,7 +161,6 @@ header a:hover {
 }
 
 header a:hover img {
-    /*opacity: 0.7;*/
 }
 
 header a:active {

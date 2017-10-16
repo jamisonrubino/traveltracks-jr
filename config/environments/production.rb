@@ -1,17 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-
-  config.react.server_renderer_pool_size  ||= 1  # ExecJS doesn't allow more than one on MRI
-  config.react.server_renderer_timeout    ||= 20 # seconds
-  config.react.server_renderer = React::ServerRendering::BundleRenderer
-  config.react.server_renderer_options = {
-    files: ["server_rendering.js"],       # files to load for prerendering
-    replay_console: true,                 # if true, console.* will be replayed client-side
-  }
-  # Changing files matching these dirs/exts will cause the server renderer to reload:
-  config.react.server_renderer_extensions = ["jsx", "js"]
-  config.react.server_renderer_directories = ["/app/assets/javascripts", "/app/javascripts/"]
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -40,6 +29,8 @@ Rails.application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
+  
+  config.react.variant = :production
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
@@ -99,5 +90,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
 end
