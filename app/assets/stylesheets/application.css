@@ -256,7 +256,7 @@ a.btn-back:hover {
     display: inline-block;
     width: fit-content;
     height: fit-content;
-    margin: 0 -8px;
+    margin: 0 -4px;
     text-align: center;
     position: relative;
 }
@@ -282,7 +282,7 @@ img.nav-icon {
     vertical-align: bottom;
     margin-right: 8px;
     filter:invert(100%);
-    margin-bottom: -5px;
+    margin-bottom: -2px;
 }
 
 footer {

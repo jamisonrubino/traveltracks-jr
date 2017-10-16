@@ -124,7 +124,7 @@ td:last-child a:hover {
 }
 
 td.delete {
-    padding: 23px 0 0;
+    padding: 25px 0 0;
     width: 20px;
 }
 
@@ -139,5 +139,5 @@ td.delete {
 }
 
 .delete a:active .delete-trash {
-    transform: scale(0.95);
+    transform: scale(0.9);
 }
