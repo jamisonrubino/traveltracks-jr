@@ -29,7 +29,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     height: 100vh;
-    background: #efe;
+    background: #f6ffef;
 }
 
 #main {
@@ -37,7 +37,7 @@ body {
     width: fit-content;
     margin: 0 auto;
     width: 60%;
-    min-width: 385px;
+    min-width: 425px;
     max-width: 700px;
     height: fit-content;
 }
@@ -216,7 +216,7 @@ header a:active {
 .alert {
     margin: 0 auto;
     width: 100%;
-    min-width: 385px;
+    min-width: 425px;
     height: fit-content;
     overflow: auto;
     box-sizing: border-box;
