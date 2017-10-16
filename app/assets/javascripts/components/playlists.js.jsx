@@ -4,7 +4,7 @@ var Playlists = React.createClass({
         var trash = this.props.trash;
         
         return (
-             <table>
+            <table>
                 <tbody>
                     {all_playlists.map((playlist) =>
                         <tr>
