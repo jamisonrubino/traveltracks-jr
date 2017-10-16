@@ -59,3 +59,5 @@ gem 'faraday'
 gem 'rspotify', '>= 1.22.1'
 gem 'httparty'
 gem 'kaminari'
+
+gem 'react-rails'

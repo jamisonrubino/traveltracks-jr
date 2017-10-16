@@ -42,6 +42,8 @@ form {
     width: 60%;    
     position: relative;
     background: $lightgreen;
+    z-index: 4;
+    box-shadow: 0 0 30px rgba(0,0,0,0.4);
 }
 
 #form-wrap a {
