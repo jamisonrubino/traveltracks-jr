@@ -3,6 +3,7 @@
     <%= render "playlist_form" %>
 </div>  
 
+<% javascript_include_tag "playlist_form" %>
 <% javascript_include_tag "autocomplete" %>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_PLACES_API_KEY'] %>&libraries=places&callback=initAutocomplete"

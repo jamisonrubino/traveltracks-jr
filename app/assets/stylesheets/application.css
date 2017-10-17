@@ -23,7 +23,6 @@
 
 body {
     margin: 0;
-    /*height: 100vh;*/
     z-index: 2;
     font-smooth: antialiased;
     -webkit-font-smoothing: antialiased;
