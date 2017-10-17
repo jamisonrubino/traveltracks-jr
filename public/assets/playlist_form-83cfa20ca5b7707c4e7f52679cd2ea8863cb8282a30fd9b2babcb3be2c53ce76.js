@@ -1,4 +1,4 @@
-$("#playlist-form").ready(function() {
+$("#playlist-form").load(function() {
     $("input#pool_genre").change(addHidePool);
     $("input#pool_top_tracks").change(addHidePool);
     $("input#pool_saved_tracks").change(addHidePool);
