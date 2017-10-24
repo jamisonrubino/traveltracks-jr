@@ -61,3 +61,5 @@ gem 'httparty'
 gem 'kaminari'
 
 gem 'react-rails'
+
+gem 'newrelic_rpm'

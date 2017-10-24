@@ -44,15 +44,12 @@
                 <div id="genre-seeds">
                     <h4>Choose up to 3</h4>
                     <div class="genre">
-                        <!--label_tag "genre_seed", "Music Genre" %>-->
                         <%= select_tag "genre_seed_one", options_for_select(@genres) %>
                     </div>
                     <div class="genre">
-                        <!--label_tag "genre_seed", "Music Genre" %>-->
                         <%= select_tag "genre_seed_two", options_for_select(@genres) %>
                     </div>
                     <div class="genre">
-                        <!--label_tag "genre_seed", "Music Genre" %>-->
                         <%= select_tag "genre_seed_three", options_for_select(@genres) %>
                     </div>
                             
@@ -104,7 +101,6 @@
     
         function addHidePool() {
             if (genreR.is(":checked")) {
-                // $("#artist-input").removeClass();
                 $("#artist-input").fadeOut(400).hide();
                 $("#genre-seeds").fadeIn(400).show();
                 unsetAll();
