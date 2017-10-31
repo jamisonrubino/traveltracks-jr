@@ -76,7 +76,7 @@ img#timer-img {
 }
 
 .or {
-    margin: 15px auto;
+    margin: 22px auto;
     text-align: center;
 }
 
@@ -85,7 +85,7 @@ img#timer-img {
 }
 
 #maps-directions {
-    padding-top: 10px;
+    padding-top: 7px;
     box-sizing: border-box;
     overflow: visible;
     
@@ -127,8 +127,10 @@ hr {
     color: #ffffbf;
 }
 
+
+
 input[type=number], input[type=text] {
-    padding: 3px 5px;
+    padding: 5px;
     margin: 0 5px;
     border-radius: 2px;
     border: 1px solid #43a047;
@@ -148,6 +150,11 @@ input:focus, input[type=number]:focus, input[type=text]:focus, select:focus {
     background: $lightyellow;
     outline: none;
     
+}
+
+#trip-time-input input {
+    padding: 6px 9px;
+    font-size: 1.23em;
 }
 
 #genre-seeds, #artist-input {

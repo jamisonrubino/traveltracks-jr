@@ -12,7 +12,7 @@
             <div id="maps-directions-input" class="hide">
                 <!--label_tag(:directions, "<b>Origin and destination.</b>".html_safe)-->
                 <input placeholder="New York, New York" value="" type="text" name="directions[start]" id="directions_start" onFocus="geolocate('start')">
-                <div class="icon-div"><%= image_tag "location-s.png", size: "19x30" %></div>
+                <%= image_tag "location-s.png", size: "19x30", class:"icon" %>
                 <input placeholder="Boston, Massachusetts" value="" type="text" name="directions[destination]" id="directions_destination" onFocus="geolocate()">
             </div>
         </div>
@@ -23,7 +23,7 @@
                     
         <div id="trip-time-input">
             <%= number_field(:time, :hours, min: 0, max: 5, step: 1, placeholder: "Hours") %>
-            <div class="icon-div"><%= image_tag "ios7-timer-outline-s.png", size: "32x32", id:"timer-img" %></div>
+            <%= image_tag "ios7-timer-outline-s.png", size: "32x32", class: "icon", id:"timer-img" %>
             <%= number_field(:time, :minutes, min: 0, max: 59, step: 1, placeholder: "Minutes") %>
         </div>
     </div>
@@ -97,13 +97,13 @@
     
         function addHidePool() {
             if (genreR.is(":checked")) {
-                $("#artist-input").fadeOut(400).hide();
+                $("#artist-input").hide();
                 $("#genre-seeds").fadeIn(400).show();
                 unsetAll();
                 genreL.addClass("selected");
             } else if (topTracksR.is(":checked") || savedTracksR.is(":checked")) {
-                $("#genre-seeds").fadeOut(400).hide();
-                $("#artist-input").fadeOut(400).hide()
+                $("#genre-seeds").hide();
+                $("#artist-input").hide()
                 if (topTracksR.is(":checked")) {
                     unsetAll();
                     topTracksL.addClass("selected");
@@ -112,7 +112,7 @@
                     savedTracksL.addClass("selected");
                 }
             } else if (artistR.is(":checked")) {
-                $("#genre-seeds").fadeOut(400).hide();
+                $("#genre-seeds").hide();
                 $("#artist-input").fadeIn(400).show();
     
                 unsetAll();

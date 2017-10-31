@@ -251,21 +251,28 @@ a.btn-back:hover {
 
 
 
-.icon-div {
+/*.icon-div {*/
+/*    display: inline-block;*/
+/*    width: fit-content;*/
+/*    height: fit-content;*/
+/*    margin: 0 -4px;*/
+/*    text-align: center;*/
+/*    position: relative;*/
+/*}*/
+
+
+
+.icon {
     display: inline-block;
-    width: fit-content;
-    height: fit-content;
-    margin: 0 -4px;
-    text-align: center;
-    position: relative;
-}
-
-#trip-time-input .icon-div {
-    margin: 0 -4px;
-}
-
-.icon-div img {
     filter:invert(100%);
+}
+
+#maps-directions .icon {
+    margin: 0 1px -8px;
+}
+
+#trip-time-input .icon {
+    margin: 0 1px -10px;
 }
 
 img {
