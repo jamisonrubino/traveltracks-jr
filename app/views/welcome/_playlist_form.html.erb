@@ -79,15 +79,11 @@
     
 <script>
     $("#playlist-form").ready(function() {
-        $("input#pool_genre").change(addHidePool);
-        $("input#pool_top_tracks").change(addHidePool);
-        $("input#pool_saved_tracks").change(addHidePool);
-        $("input#pool_artist").change(addHidePool);
-            
+        [$("input#pool_genre"), $("input#pool_top_tracks"), $("input#pool_saved_tracks"), $("input#pool_artist")].map(() => $(this).change(addHidePool));
+
         $("label[for=pool_top_tracks], label[for=pool_genre], label[for=pool_saved_tracks], label[for=pool_artist]").css({"transition": "0.25s background, 0.25s color", "border-bottom": "2px solid #ffff8d", "width": "100%", "font-size": "1.1em", "padding": "7px 0"});
         
         $("#genre-seeds, #artist-input").addClass("hide");
-        $("input:radio").css("display", "none");
         
         var topTracksR = $("input:radio[name=pool]#pool_top_tracks");
         var genreR = $("input:radio[name=pool]#pool_genre");

@@ -168,6 +168,11 @@ input[type=submit] {
     margin: 5 auto;
 }
 
+input[type=radio] {
+    visibility: hidden;
+    position: absolute;
+}
+
 #track-pool-wrap {
     margin-bottom: 25px;
 }
