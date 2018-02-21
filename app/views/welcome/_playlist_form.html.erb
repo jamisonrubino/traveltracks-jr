@@ -6,14 +6,14 @@
         <div id="maps-directions">
             <!-- GOOGLE MAPS DIRECTIONS LINK -->
             <div id="maps-directions-link">
-                <a href="javascript: $('#maps-directions-input').removeClass('hide'); $('#maps-directions-link').addClass('hide');" id="maps-link">Google Maps Directions</a>
+                <a onClick="javascript: $('#maps-directions-input').removeClass('hide'); $('#maps-directions-link').addClass('hide');" id="maps-link">Google Maps Directions</a>
             </div>
             <!-- GOOGLE MAPS DIRECTIONS INPUTS -->
-            <div id="maps-directions-input" class="hide">
+            <div id="maps-directions-input" class="hide" class="form-group">
                 <!--label_tag(:directions, "<b>Origin and destination.</b>".html_safe)-->
-                <input placeholder="New York, New York" value="" type="text" name="directions[start]" id="directions_start" onFocus="geolocate('start')">
+                <input placeholder="New York, New York" value="" type="text" name="directions[start]" id="directions_start" onFocus="geolocate('start')" class="form-control">
                 <%= image_tag "location-s.png", size: "19x30", class:"icon" %>
-                <input placeholder="Boston, Massachusetts" value="" type="text" name="directions[destination]" id="directions_destination" onFocus="geolocate()">
+                <input placeholder="Boston, Massachusetts" value="" type="text" name="directions[destination]" id="directions_destination" onFocus="geolocate()" class="form-control">
             </div>
         </div>
         
@@ -21,10 +21,10 @@
             <hr><h3>OR</h3><hr>
         </div>
                     
-        <div id="trip-time-input">
-            <%= number_field(:time, :hours, min: 0, max: 5, step: 1, placeholder: "Hours") %>
+        <div id="trip-time-input" class="form-group">
+            <%= number_field(:time, :hours, min: 0, max: 5, step: 1, placeholder: "Hours", class: "form-control") %>
             <%= image_tag "ios7-timer-outline-s.png", size: "32x32", class: "icon", id:"timer-img" %>
-            <%= number_field(:time, :minutes, min: 0, max: 59, step: 1, placeholder: "Minutes") %>
+            <%= number_field(:time, :minutes, min: 0, max: 59, step: 1, placeholder: "Minutes", class: "form-control") %>
         </div>
     </div>
                 
@@ -37,7 +37,7 @@
         <div id="track-pool">
                  
             <!-- SPOTIFY USER GENRE SEEDS -->
-            <div id="genre-option">
+            <div id="genre-option" class="form-group">
                 <%= radio_button_tag "pool", "genre" %>
                 <%= label_tag "pool_genre", "Based on genre" %><br>
                 
@@ -56,7 +56,7 @@
                 </div>
             </div>
                     
-            <div id="artist-option">
+            <div id="artist-option" class="form-group">
                 <%= radio_button_tag "pool", "artist" %>
                 <%= label_tag "pool_artist", "Based on artist" %>
                 
@@ -65,11 +65,11 @@
                 </div>
                         
             </div>
-                <div id="saved-tracks">
+                <div id="saved-tracks" class="form-group">
                 <%= radio_button_tag "pool", "saved_tracks" %>
                 <%= label_tag "pool_saved_tracks", "Recently-saved tracks" %>
             </div>
-                <div id="top-tracks">
+                <div id="top-tracks" class="form-group">
                 <%= radio_button_tag "pool", "top_tracks" %>
                 <%= label_tag "pool_top_tracks", "My top 50 tracks" %>
             </div>

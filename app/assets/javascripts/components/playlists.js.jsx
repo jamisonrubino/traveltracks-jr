@@ -1,4 +1,4 @@
-var Playlists = React.createClass({
+var Playlists = createReactClass({
     render: function() {
         var all_playlists = this.props.playlists;
         var trash = this.props.trash;

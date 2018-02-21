@@ -21,6 +21,8 @@
 /*$yellow: #ffff8d;*/
 /*$darkyellow: #cacc5d;*/
 
+@import "bootstrap";
+
 body {
     margin: 0;
     z-index: 2;

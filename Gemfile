@@ -13,6 +13,8 @@ gem 'pg'
 
 gem 'figaro'
 
+gem 'bootstrap', '~> 4.0.0'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -62,4 +64,4 @@ gem 'kaminari'
 
 gem 'react-rails'
 
-gem 'newrelic_rpm'
+# gem 'newrelic_rpm'

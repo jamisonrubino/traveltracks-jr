@@ -59,6 +59,9 @@ form {
     margin: 0 auto;
 }
 
+#maps-directions-link a {
+    cursor: pointer;
+}
 
 img#timer-img {
     margin-top: -22px;
@@ -154,7 +157,7 @@ input:focus, input[type=number]:focus, input[type=text]:focus, select:focus {
 
 #trip-time-input input {
     padding: 6px 9px;
-    font-size: 1.23em;
+    // font-size: 1.23em;
 }
 
 #genre-seeds, #artist-input {

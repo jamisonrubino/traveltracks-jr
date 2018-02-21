@@ -8,7 +8,7 @@ Bundler.require(*Rails.groups)
 
 # keys = Rails.application.secrets
 
-module Triplist
+module TravelTracks
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
