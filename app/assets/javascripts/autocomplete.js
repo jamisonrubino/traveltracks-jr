@@ -1,4 +1,4 @@
-      var placeSearch, autocompleteStart, autocompleteDestination, ac
+      var placeSearch, autocompleteStart, autocompleteDestination;
       var componentForm = {
         street_number: 'short_name',
         route: 'long_name',
