@@ -11,9 +11,9 @@
   </head>
 
   <body>
-    
     <% if session['spotify_user'] %>
-    
+      <div class="alert"><p id="alert">Please enter playlist length manually until further notice.</p></div>
+
       <% if flash[:notice] %>
         <div class="alert">
             <p id="notice"><%= flash[:notice] %></p>
