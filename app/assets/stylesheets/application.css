@@ -21,13 +21,68 @@
 /*$yellow: #ffff8d;*/
 /*$darkyellow: #cacc5d;*/
 
+@import "bootstrap";
+
 body {
     margin: 0;
-    /*height: 100vh;*/
     z-index: 2;
     font-smooth: antialiased;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    height: 100vh;
+    background: #faffff;
+}
+
+#main {
+    box-shadow: 0 0 60px rgba(0,0,0,0.4);
+    width: fit-content;
+    margin: 0 auto;
+    width: 60%;
+    min-width: 425px;
+    max-width: 700px;
+    height: fit-content;
+}
+
+#spotify-login-div {
+    margin: 0 auto;
+}
+
+#login-wrap {
+    margin: -98px 0 0 -145px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+#login-wrap a {
+    display: inline-block;
+    padding: 40px 60px;
+    background: #76d275;
+    font-size: 1.5em;
+    text-decoration: none;
+    border-radius: 4px;
+    color: #fff;
+    transition: 0.3s background, 0.3s color, 0.1s transform;
+    transition-timing-function: ease-in-out;
+}
+
+#spotify-login-div a:hover {
+    background: #43a047;
+    color: #fff;
+}
+
+#spotify-login-div a:active {
+    transform: scale(0.95, 0.95);
+}
+
+#login-details {
+    width: 290px;
+    background: transparent;
+}
+
+#login-details p {
+    text-align: center;
+    color: #888;
 }
 
 header a {
@@ -56,7 +111,7 @@ h2 {
     position: absolute;
     left: -5px;
     margin: 0;
-    border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;;
 }
 
 h2::before, h2::after {
@@ -90,9 +145,6 @@ h4 {
 
 header {
     margin: 0 auto;
-    width: 60%;
-    min-width: 385px;
-    max-width: 700px;
     height: fit-content;
     overflow: auto;
     box-sizing: border-box;
@@ -102,7 +154,6 @@ header {
     /*border-width: 0 1px 1px 1px;*/
     /*border-style: solid;*/
     /*border-color: #888;*/
-    z-index: 4;
     position: relative;
 }
 
@@ -140,7 +191,6 @@ header a {
     overflow: auto;
     float: right;
     position: relative;
-
 }
 
 #username, #logout, #left-nav {
@@ -158,7 +208,6 @@ header a:hover {
 }
 
 header a:hover img {
-    /*opacity: 0.7;*/
 }
 
 header a:active {
@@ -168,7 +217,7 @@ header a:active {
 .alert {
     margin: 0 auto;
     width: 100%;
-    min-width: 385px;
+    min-width: 425px;
     height: fit-content;
     overflow: auto;
     box-sizing: border-box;
@@ -204,21 +253,28 @@ a.btn-back:hover {
 
 
 
-.icon-div {
+/*.icon-div {*/
+/*    display: inline-block;*/
+/*    width: fit-content;*/
+/*    height: fit-content;*/
+/*    margin: 0 -4px;*/
+/*    text-align: center;*/
+/*    position: relative;*/
+/*}*/
+
+
+
+.icon {
     display: inline-block;
-    width: fit-content;
-    height: fit-content;
-    margin: 0 -8px;
-    text-align: center;
-    position: relative;
-}
-
-#trip-time-input .icon-div {
-    margin: 0 -4px;
-}
-
-.icon-div img {
     filter:invert(100%);
+}
+
+#maps-directions .icon {
+    margin: 0 1px -8px;
+}
+
+#trip-time-input .icon {
+    margin: 0 1px -10px;
 }
 
 img {
@@ -234,13 +290,10 @@ img.nav-icon {
     vertical-align: bottom;
     margin-right: 8px;
     filter:invert(100%);
-    margin-bottom: -5px;
+    margin-bottom: -2px;
 }
 
 footer {
-    width: 60%;
-    min-width: 385px;
-    max-width: 700px;
     height: fit-content;
     overflow: auto;
     box-sizing: border-box;

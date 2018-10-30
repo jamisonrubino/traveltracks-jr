@@ -20,7 +20,7 @@ $max-width: 700px;
 
 #buttons-wrap {
     width: 60%;
-    min-width: 385px;
+    min-width: 425px;
     max-width: $max-width;  
     margin: 0 auto;
     display: block;
@@ -28,9 +28,6 @@ $max-width: 700px;
 }
 
 #playlist-wrap {
-    width: 60%;
-    min-width: 385px;
-    max-width: 700px;
     height: fit-content;
     margin: 0 auto;
     box-sizing: border-box;
@@ -41,15 +38,14 @@ $max-width: 700px;
 
 #breadcrumbs {
     padding: 15px 35px;
+<<<<<<< HEAD
     line-height: 15px;
+=======
+    line-height: 14px;
+>>>>>>> c27d18a2c0abe24ae3f44a2cba1ad8926c0287fc
 }
 
 #playlists-wrap {
-    width: 60%;
-    min-width: 385px;
-    max-width: 700px;
-    height: fit-content;
-    margin: 0 auto;
     box-sizing: border-box;
     padding: 0 0 20px;
     position: relative;
@@ -147,5 +143,5 @@ td.delete {
 }
 
 .delete a:active .delete-trash {
-    transform: scale(0.95);
+    transform: scale(0.9);
 }

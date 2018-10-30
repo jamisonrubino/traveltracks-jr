@@ -5,28 +5,18 @@ class PlaylistsController < ApplicationController
   include HTTParty
   before_action :set_playlist, only: [:show, :edit, :update, :destroy]
 
-
-  # GET /playlists
-  # GET /playlists.json
   def index
     spotify_user = RSpotify::User.new(session['spotify_user'])
     @playlists = Playlist.where(user_id: session['spotify_user_id']).order(id: :desc).page params[:page]
-    # @playlists = all_playlists.page(params[:page])
-
   end
-
 
   def show
-
   end
 
-  # GET /playlists/new
   def new
     @playlist = Playlist.new
   end
 
-  # POST /playlists
-  # POST /playlists.json
   def create
     spotify_user = RSpotify::User.new(session['spotify_user'])
     playlist_time = set_time
@@ -72,18 +62,15 @@ class PlaylistsController < ApplicationController
     end
     redirect_to playlists_path
   end
+  
+  
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_playlist
       @playlist = Playlist.find(params[:id])
     end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    # def playlist_params
-    #   params.fetch(:playlist, {})
-    # end
-    
         
     def set_time
       if params[:directions][:start].size > 0 && params[:directions][:destination].size > 0
@@ -258,14 +245,9 @@ class PlaylistsController < ApplicationController
       a = []
       n.times do |i|
         a[i] = []
-        if i == n-1     # if it's the only set
-          pt.size%10.times do |v|
-            a[i] << pt[i*10 + v] if pt[i*10 + v]
-          end
-        else
-          10.times do |v|
-            a[i] << pt[i*10 + v] if pt[i*10 + v]
-          end
+        i==n-1 ? tn = pt.size%10 : tn = 10
+        tn.times do |v|
+          a[i] << pt[i*10 + v] if pt[i*10 + v]
         end
         playlist.add_tracks!(a[i])
       end

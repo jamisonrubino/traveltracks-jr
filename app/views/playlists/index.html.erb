@@ -2,18 +2,8 @@
   <div class="h2-wrap">
     <h2 class="playlists">Playlists</h2>
   </div>
-
-  <table>
-    <tbody>
-      <% @playlists.each do |playlist| %>
-        <tr>
-          <td><%= link_to playlist.title, playlist %></td>
-          <td class="date"><%= link_to playlist.created_at.to_s[0..9], playlist %></td>
-          <td class="delete"><%= link_to image_tag("trash-b.png", size: "20x20", class:"delete-trash"), playlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  
+  <%= react_component("Playlists", {playlists: @playlists, trash: asset_path("trash-b-s.png")}, {prerender: true}) %>
   
   <%= paginate @playlists %>
   

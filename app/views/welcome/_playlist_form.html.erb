@@ -1,88 +1,130 @@
-            <%= form_tag("/make_playlist", method:"post") %>
-                <div id="time-wrap">
-                    <div class="h2-wrap">
-                        <h2>Playlist Time</h2>
-                    </div>
-                    <div id="maps-directions">
-                        <!-- GOOGLE MAPS DIRECTIONS LINK -->
-                        <div id="maps-directions-link">
-                            <a href="javascript: $('#maps-directions-input').removeClass('hide'); $('#maps-directions-link').addClass('hide');" id="maps-link">Google Maps Directions</a>
-                        </div>
-
-                        <!-- GOOGLE MAPS DIRECTIONS INPUTS -->
-                        <div id="maps-directions-input" class="hide">
-                            <!--label_tag(:directions, "<b>Origin and destination.</b>".html_safe)-->
-                            <input placeholder="New York, New York" value="" type="text" name="directions[start]" id="directions_start" onFocus="geolocate('start')">
-                            
-                            <div class="icon-div"><%= image_tag "location.png", size: "30x30" %></div>
-                            
-                            <input placeholder="Boston, Massachusetts" value="" type="text" name="directions[destination]" id="directions_destination" onFocus="geolocate()">
-                        </div>
-                    </div>
+<%= form_tag("/make_playlist", method:"post", id: "playlist-form") %>
+    <div id="time-wrap">
+        <div class="h2-wrap">
+            <h2>Playlist Time</h2>
+        </div>
+        <div id="maps-directions">
+            <!-- GOOGLE MAPS DIRECTIONS LINK -->
+            <div id="maps-directions-link">
+                <a onClick="javascript: $('#maps-directions-input').removeClass('hide'); $('#maps-directions-link').addClass('hide');" id="maps-link">Google Maps Directions</a>
+            </div>
+            <!-- GOOGLE MAPS DIRECTIONS INPUTS -->
+            <div id="maps-directions-input" class="hide" class="form-group">
+                <!--label_tag(:directions, "<b>Origin and destination.</b>".html_safe)-->
+                <input placeholder="New York, New York" value="" type="text" name="directions[start]" id="directions_start" onFocus="geolocate('start')" class="form-control">
+                <%= image_tag "location-s.png", size: "19x30", class:"icon" %>
+                <input placeholder="Boston, Massachusetts" value="" type="text" name="directions[destination]" id="directions_destination" onFocus="geolocate()" class="form-control">
+            </div>
+        </div>
+        
+        <div class="or">
+            <hr><h3>OR</h3><hr>
+        </div>
                     
-                    <div class="or">
-                        <hr><h3>OR</h3><hr>
+        <div id="trip-time-input" class="form-group">
+            <%= number_field(:time, :hours, min: 0, max: 5, step: 1, placeholder: "Hours", class: "form-control") %>
+            <%= image_tag "ios7-timer-outline-s.png", size: "32x32", class: "icon", id:"timer-img" %>
+            <%= number_field(:time, :minutes, min: 0, max: 59, step: 1, placeholder: "Minutes", class: "form-control") %>
+        </div>
+    </div>
+                
+    <!-- ---------SET PLAYLIST TRACK POOL--------- -->
+                
+    <div id="track-pool-wrap">
+        <div class="h2-wrap">
+            <h2>Music Source</h2>
+        </div>
+        <div id="track-pool">
+                 
+            <!-- SPOTIFY USER GENRE SEEDS -->
+            <div id="genre-option" class="form-group">
+                <%= radio_button_tag "pool", "genre" %>
+                <%= label_tag "pool_genre", "Based on genre" %><br>
+                
+                <div id="genre-seeds">
+                    <h4>Choose up to 3</h4>
+                    <div class="genre">
+                        <%= select_tag "genre_seed_one", options_for_select(@genres) %>
                     </div>
-                    
-                    <div id="trip-time-input">
-                        <%= number_field(:time, :hours, min: 0, max: 5, step: 1, placeholder: "Hours") %>
-                        <div class="icon-div"><%= image_tag "ios7-timer-outline.png", size: "35x35", id:"timer-img" %></div>
-                        <%= number_field(:time, :minutes, min: 0, max: 59, step: 1, placeholder: "Minutes") %>
+                    <div class="genre">
+                        <%= select_tag "genre_seed_two", options_for_select(@genres) %>
                     </div>
+                    <div class="genre">
+                        <%= select_tag "genre_seed_three", options_for_select(@genres) %>
+                    </div>
+                            
                 </div>
+            </div>
+                    
+            <div id="artist-option" class="form-group">
+                <%= radio_button_tag "pool", "artist" %>
+                <%= label_tag "pool_artist", "Based on artist" %>
                 
-                
-                <!-- ---------SET PLAYLIST TRACK POOL--------- -->
-                
-                <div id="track-pool-wrap">
-                    <div class="h2-wrap">
-                        <h2>Music Source</h2>
-                    </div>
-                    <div id="track-pool">
-                         
-                        <!-- SPOTIFY USER GENRE SEEDS -->
-                        <div id="genre-option">
-                            <%= radio_button_tag "pool", "genre" %>
-                            <%= label_tag "pool_genre", "Based on genre" %><br>
-                            
-                            <div id="genre-seeds">
-                                <h4>Choose up to 3</h4>
-                                <div class="genre">
-                                    <!--label_tag "genre_seed", "Music Genre" %>-->
-                                    <%= select_tag "genre_seed_one", options_for_select(@genres) %>
-                                </div>
-                                <div class="genre">
-                                    <!--label_tag "genre_seed", "Music Genre" %>-->
-                                    <%= select_tag "genre_seed_two", options_for_select(@genres) %>
-                                </div>
-                                <div class="genre">
-                                    <!--label_tag "genre_seed", "Music Genre" %>-->
-                                    <%= select_tag "genre_seed_three", options_for_select(@genres) %>
-                                </div>
-                                
-                            </div>
-                        </div>
+                <div id="artist-input">
+                    <%= text_field "seed", "artist", placeholder: "Artist", value: "" %>
+                </div>
                         
-                        <div id="artist-option">
-                            <%= radio_button_tag "pool", "artist" %>
-                            <%= label_tag "pool_artist", "Based on artist" %>
-                            
-                            <div id="artist-input">
-                                <%= text_field "seed", "artist", placeholder: "Artist", value: "" %>
-                            </div>
-                            
-                        </div>
+            </div>
+                <div id="saved-tracks" class="form-group">
+                <%= radio_button_tag "pool", "saved_tracks" %>
+                <%= label_tag "pool_saved_tracks", "Recently-saved tracks" %>
+            </div>
+                <div id="top-tracks" class="form-group">
+                <%= radio_button_tag "pool", "top_tracks" %>
+                <%= label_tag "pool_top_tracks", "My top 50 tracks" %>
+            </div>
+        </div>
+    </div>
+    <%= submit_tag "Make playlist", id: "submit" %>
+    
+<script>
+    $("#playlist-form").ready(function() {
+        [$("input#pool_genre"), $("input#pool_top_tracks"), $("input#pool_saved_tracks"), $("input#pool_artist")].map(() => $(this).change(addHidePool));
 
-                        <div id="saved-tracks">
-                            <%= radio_button_tag "pool", "saved_tracks" %>
-                            <%= label_tag "pool_saved_tracks", "Recently-saved tracks" %>
-                        </div>
-
-                        <div id="top-tracks">
-                            <%= radio_button_tag "pool", "top_tracks" %>
-                            <%= label_tag "pool_top_tracks", "My top 50 tracks" %>
-                        </div>
-                    </div>
-
-                </div>
-                <%= submit_tag "Make playlist", id: "submit" %>
+        $("label[for=pool_top_tracks], label[for=pool_genre], label[for=pool_saved_tracks], label[for=pool_artist]").css({"transition": "0.25s background, 0.25s color", "border-bottom": "2px solid #ffff8d", "width": "100%", "font-size": "1.1em", "padding": "7px 0"});
+        
+        $("#genre-seeds, #artist-input").addClass("hide");
+        
+        var topTracksR = $("input:radio[name=pool]#pool_top_tracks");
+        var genreR = $("input:radio[name=pool]#pool_genre");
+        var savedTracksR = $("input:radio[name=pool]#pool_saved_tracks");
+        var artistR = $("input:radio[name=pool]#pool_artist");
+            
+        var topTracksL = $("label[for=pool_top_tracks]");
+        var genreL = $("label[for=pool_genre]");
+        var savedTracksL = $("label[for=pool_saved_tracks]");
+        var artistL = $("label[for=pool_artist]");
+    
+        function addHidePool() {
+            if (genreR.is(":checked")) {
+                $("#artist-input").hide();
+                $("#genre-seeds").fadeIn(400).show();
+                unsetAll();
+                genreL.addClass("selected");
+            } else if (topTracksR.is(":checked") || savedTracksR.is(":checked")) {
+                $("#genre-seeds").hide();
+                $("#artist-input").hide()
+                if (topTracksR.is(":checked")) {
+                    unsetAll();
+                    topTracksL.addClass("selected");
+                } else {
+                    unsetAll();
+                    savedTracksL.addClass("selected");
+                }
+            } else if (artistR.is(":checked")) {
+                $("#genre-seeds").hide();
+                $("#artist-input").fadeIn(400).show();
+    
+                unsetAll();
+                artistL.addClass("selected");
+            }
+            
+            function unsetAll() {
+                topTracksL.removeClass("selected");
+                genreL.removeClass("selected");
+                savedTracksL.removeClass("selected");
+                artistL.removeClass("selected");
+            }
+        } 
+    });    
+</script>

@@ -1,14 +1,9 @@
-    <% if !session['spotify_user'] %>
-        <div id="spotify-login-div">
-            <%= link_to "Sign in to Spotify", '/auth/spotify', class: "sign-in" %>
-        </div>
-    <% else %>
-        <% puts session['spotify_user_id'] %>
-        <div id="form-wrap">
-            <%= render "playlist_form" %>
-        </div>  
-    <% end %>
+<% puts session['spotify_user_id'] %>
+<div id="form-wrap">
+    <%= render "playlist_form" %>
+</div>  
 
+<<<<<<< HEAD
 <script>
     $("input#pool_genre").change(addHidePool);
     $("input#pool_top_tracks").change(addHidePool);
@@ -67,6 +62,10 @@
     }
 </script>
 <%= javascript_include_tag "autocomplete" %>
+=======
+<% javascript_include_tag "playlist_form" %>
+<% javascript_include_tag "autocomplete" %>
+>>>>>>> c27d18a2c0abe24ae3f44a2cba1ad8926c0287fc
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_PLACES_API_KEY'] %>&libraries=places&callback=initAutocomplete"
         async defer></script>
