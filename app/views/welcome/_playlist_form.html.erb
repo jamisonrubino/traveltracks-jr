@@ -11,9 +11,9 @@
             <!-- GOOGLE MAPS DIRECTIONS INPUTS -->
             <div id="maps-directions-input" class="hide" class="form-group">
                 <!--label_tag(:directions, "<b>Origin and destination.</b>".html_safe)-->
-                <input placeholder="New York, New York" value="" type="text" name="directions[start]" id="directions_start" onFocus="geolocate('start')" class="form-control">
+                <input placeholder="Origin (Ex: Boston, MA)" value="" type="text" name="directions[start]" id="directions_start" onFocus="geolocate('start')" class="form-control">
                 <%= image_tag "location-s.png", size: "19x30", class:"icon" %>
-                <input placeholder="Boston, Massachusetts" value="" type="text" name="directions[destination]" id="directions_destination" onFocus="geolocate()" class="form-control">
+                <input placeholder="Destination (Ex: New York, NY)" value="" type="text" name="directions[destination]" id="directions_destination" onFocus="geolocate()" class="form-control">
             </div>
         </div>
         

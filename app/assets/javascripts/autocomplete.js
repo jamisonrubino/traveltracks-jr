@@ -21,8 +21,8 @@
 
         // When the user selects an address from the dropdown, populate the address
         // fields in the form.
-        autocompleteStart.addListener('place_changed', fillInAddress("start"));
-        autocompleteDestination.addListener('place_changed', fillInAddress);
+        autocompleteStart.addListener(fillInAddress("start"));
+        autocompleteDestination.addListener(fillInAddress);
       }
 
       function fillInAddress(a) {

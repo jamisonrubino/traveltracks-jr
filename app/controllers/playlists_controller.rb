@@ -73,6 +73,7 @@ class PlaylistsController < ApplicationController
     end
         
     def set_time
+      puts "///////////// params: #{params}"
       if params[:directions][:start].size > 0 && params[:directions][:destination].size > 0
         
         values = {
