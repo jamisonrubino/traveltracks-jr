@@ -13,10 +13,6 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
-<<<<<<< HEAD
-Rails.application.config.assets.precompile += %w( playlist_form.js autocomplete.js )
-=======
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 # Rails.application.config.assets.precompile += ['*.js', '*.css', '*.css.erb'] 
 Rails.application.config.assets.precompile += %w( server_rendering.js playlist_form.js autocomplete.js )
->>>>>>> c27d18a2c0abe24ae3f44a2cba1ad8926c0287fc
